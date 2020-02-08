@@ -11,8 +11,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+
+import connection.Classes;
 
 
 /*import android.view.View;
@@ -108,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
 
     }
-
     public void test(View V){
         new Thread(new Runnable(){
 
