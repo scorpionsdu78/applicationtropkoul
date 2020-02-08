@@ -26,12 +26,13 @@ public class MainActivity extends AppCompatActivity {
 
             public void run(){
                 try {
-                    final Classes test = new Classes("bard");
+                    final Classes test = new Classes("ranger");
                     MainActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             TextView text = findViewById(R.id.test);
-                            text.setText(test.getFile().toString());
+                            text.setText(test.getChoice().get(0).toString());
+
                         }
                     });
 
