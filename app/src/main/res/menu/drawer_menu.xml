@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ShowIn="navigation_view">
+
+    <item android:title="Etapes">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item android:id="@+id/nav_description"
+                    android:title="Description" />
+                <item android:id="@+id/nav_caracComp"
+                    android:title="Caractéristiques et Compétences" />
+                <item android:id="@+id/nav_capaDons"
+                    android:title="Capacités et Dons" />
+                <item android:id="@+id/nav_equipSorts"
+                    android:title="Equipements et Sorts" />
+                <item android:id="@+id/nav_personnalité"
+                    android:title="Personnalité" />
+
+            </group>
+
+        </menu>
+
+    </item>
+
+</menu>
