@@ -1,13 +1,9 @@
-package connection;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+package model;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
+
+import model.Proficiencies;
 
 public class ProficienciesList {
     List<Proficiencies> list;

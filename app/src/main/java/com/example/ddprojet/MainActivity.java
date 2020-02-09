@@ -21,6 +21,7 @@ import org.json.JSONException;
 import java.io.IOException;
 
 import connection.Classes;
+import connection.Races;
 
 
 /*import android.view.View;
@@ -121,13 +122,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             public void run(){
                 try {
-                    final Classes test = new Classes("ranger");
+                    final Races test = new Races("dragonborn");
                     MainActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             TextView text = findViewById(R.id.test);
-                            text.setText(test.getChoice().get(0).toString());
 
+                            //text.setText(Integer.toString(test.getHitDice()));
+
+                            text.setText(test.getLanguages().get(0));
                         }
                     });
 

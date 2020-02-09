@@ -1,4 +1,4 @@
-package connection;
+package model;
 
 public class Proficiencies {
     String url;

@@ -14,7 +14,7 @@ import java.net.URL;
 
 public class APIconnection {
 
-    JSONObject file;
+    protected JSONObject file;
 
     public APIconnection(){
 

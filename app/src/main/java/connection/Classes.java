@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Proficiencies;
+import model.ProficienciesList;
+
 public class Classes extends APIconnection {
 
     private List<ProficienciesList> ProficienciesChoice;
@@ -76,7 +79,24 @@ public class Classes extends APIconnection {
 
     }
 
-    public List<ProficienciesList> getChoice() {
+
+    public List<ProficienciesList> getProficienciesChoice() {
         return ProficienciesChoice;
+    }
+
+    public ProficienciesList getBasicProficiencies() {
+        return BasicProficiencies;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHitDice() {
+        return hitDice;
+    }
+
+    public List<String> getJetDeSauv() {
+        return JetDeSauv;
     }
 }
