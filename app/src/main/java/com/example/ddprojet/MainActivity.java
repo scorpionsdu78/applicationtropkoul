@@ -22,6 +22,8 @@ import java.io.IOException;
 
 import connection.Classes;
 import connection.Races;
+import connection.spellList;
+import model.Spell;
 
 
 /*import android.view.View;
@@ -122,15 +124,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             public void run(){
                 try {
-                    final Races test = new Races("dragonborn");
+                    //final Races test = new Races("dragonborn");
+                    final spellList test = new spellList();
+                    final Spell test2 = test.getSpell("aid");
+
+
+
                     MainActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             TextView text = findViewById(R.id.test);
 
-                            //text.setText(Integer.toString(test.getHitDice()));
+                            //text.setText(Integer.toString(test.getSpeed()));
+                            text.setText(test2.toString());
 
-                            text.setText(test.getLanguages().get(0));
                         }
                     });
 

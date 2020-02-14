@@ -20,6 +20,11 @@ public class Races extends APIconnection {
     private List<String> languages;
     private String name;
     private int speed;
+    private String alignement;
+    private String age;
+    private String size;
+    private String size_desc;
+    private String langDesc;
 
 
     public Races() throws IOException, JSONException {
@@ -66,6 +71,27 @@ public class Races extends APIconnection {
             languages.add(tampon.getString("name"));
         }
 
+        //on récupère le nom
+        name = file.getString("name");
+
+        //on récupère la vitesse
+        speed = file.getInt("speed");
+
+        //on récupère l'alignement
+        alignement = file.getString("alignment");
+
+        //on récupère les infos sur l'age
+        age = file.getString("age");
+
+        //on recupere la size
+        size = file.getString("size");
+
+        //on récupere les infos sur la size
+        size_desc = file.getString("size_description");
+
+        //on récupère la descritpion des langues
+        langDesc = file.getString("language_desc");
+
 
     }
 
@@ -75,6 +101,38 @@ public class Races extends APIconnection {
 
     public TraitList getGlobalTrait() {
         return globalTrait;
+    }
+
+    public List<Bonus> getBonuses() {
+        return bonuses;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public String getAlignement() {
+        return alignement;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public String getSize_desc() {
+        return size_desc;
+    }
+
+    public String getLangDesc() {
+        return langDesc;
     }
 
     public List<String> getLanguages() {
