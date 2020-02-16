@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardBackgroundColor="#83FFCEAE">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="15dp">
+
+                    <ImageView
+                        android:id="@+id/imageViewAvatar"
+                        android:layout_width="168dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:maxWidth="200dp"
+                        android:minWidth="200dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/avatar_dark_wizard" />
+
+                </FrameLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textViewLabelName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:text="Name :"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                            <TextView
+                                android:id="@+id/textViewName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/textViewLabelRace"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:text="Race :"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                            <TextView
+                                android:id="@+id/textViewRace"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textViewLabelClass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:text="Class"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                            <TextView
+                                android:id="@+id/textViewClass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/textViewLabelAlignement"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:text="Alignement :"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                            <TextView
+                                android:id="@+id/textViewAlignement"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
+
+                            <TextView
+                                android:id="@+id/textViewLabelLevel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="15dp"
+                                android:text="Level"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+
+                            <TextView
+                                android:id="@+id/textViewLevel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="TextView"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/CharacterSelectionViewTextSize" />
+                        </TableRow>
+
+                    </TableLayout>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
