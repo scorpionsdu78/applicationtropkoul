@@ -12,29 +12,29 @@ import model.Bonus;
 import model.Trait;
 import model.TraitList;
 
-public class Races extends APIconnection {
+public class Race extends APIconnection {
 
-    protected static final String racePath = "races/";
+    protected static final java.lang.String racePath = "races/";
 
     private List<Bonus>  bonuses;
     private TraitList traitList;
     private TraitList globalTrait;
-    private List<String> languages;
-    private String name;
+    private List<java.lang.String> languages;
+    private java.lang.String name;
     private int speed;
-    private String alignement;
-    private String age;
-    private String size;
-    private String size_desc;
-    private String langDesc;
+    private java.lang.String alignement;
+    private java.lang.String age;
+    private java.lang.String size;
+    private java.lang.String size_desc;
+    private java.lang.String langDesc;
 
 
-    public Races() throws IOException, JSONException {
-        super(Races.racePath);
+    public Race() throws IOException, JSONException {
+        super(Race.racePath);
     }
 
-    public Races(String race) throws IOException, JSONException {
-        super(Races.racePath + race);
+    public Race(java.lang.String race) throws IOException, JSONException {
+        super(Race.racePath + race);
 
         //recuperation des bonus de race
         bonuses = new ArrayList<>();
@@ -109,7 +109,7 @@ public class Races extends APIconnection {
         return bonuses;
     }
 
-    public String getName() {
+    public java.lang.String getName() {
         return name;
     }
 
@@ -117,27 +117,27 @@ public class Races extends APIconnection {
         return speed;
     }
 
-    public String getAlignement() {
+    public java.lang.String getAlignement() {
         return alignement;
     }
 
-    public String getAge() {
+    public java.lang.String getAge() {
         return age;
     }
 
-    public String getSize() {
+    public java.lang.String getSize() {
         return size;
     }
 
-    public String getSize_desc() {
+    public java.lang.String getSize_desc() {
         return size_desc;
     }
 
-    public String getLangDesc() {
+    public java.lang.String getLangDesc() {
         return langDesc;
     }
 
-    public List<String> getLanguages() {
+    public List<java.lang.String> getLanguages() {
         return languages;
     }
 }

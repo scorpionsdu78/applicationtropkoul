@@ -11,9 +11,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.ddprojet.fragment.CapaDonsFragment;
+import com.example.ddprojet.fragment.CaracCompFragment;
+import com.example.ddprojet.fragment.Classes;
+import com.example.ddprojet.fragment.EquipSortsFragment;
+import com.example.ddprojet.fragment.FragmentEnum;
+import com.example.ddprojet.fragment.PersonnaliteFragment;
+import com.example.ddprojet.fragment.RaceFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import org.json.JSONException;
@@ -65,10 +73,17 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         SetFragment(pager);
 
+        pager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                return true;
+            }
+        });
+
 
         /*if(savedInstanceState == null){
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new Race()).commit();
+                    new RaceFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_description);
         }*/
 
@@ -76,7 +91,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     private void SetFragment(ViewPager pager){
         Adapter adapter = new Adapter(getSupportFragmentManager());
-        adapter.add(new Race());
+        adapter.add(new RaceFragment());
         adapter.add(new Classes());
         adapter.add(new CaracCompFragment());
         adapter.add(new CapaDonsFragment());
@@ -145,7 +160,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
             public void run(){
                 try {
-                    //final Races test = new Races("dragonborn");
+                    //final String test = new String("dragonborn");
                     final SpellList test = new SpellList();
                     final Spell test2 = test.getSpell("aid");
 

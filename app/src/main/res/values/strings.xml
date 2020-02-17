@@ -4,6 +4,8 @@
     <string name="open_actionBar">Ouvrir le menu</string>
     <string name="close_actionBar">Fermer le menu</string>
 
+    <string name="raceList">RaceList</string>
+
     <string name="main_font">@font/balthazar</string>
 
 </resources>

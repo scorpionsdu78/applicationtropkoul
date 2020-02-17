@@ -1,4 +1,4 @@
-package com.example.ddprojet;
+package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,26 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.ddprojet.R;
 
-import android.view.View;
-import android.widget.TextView;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-
-import connection.APIconnection;
-import connection.Classes;
-
-public class Race extends Fragment {
+public class PersonnaliteFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         View v = inflater.inflate(R.layout.description_layout, container, false);
-
-         return v;
+        return inflater.inflate(R.layout.personnalite_layout, container, false);
     }
-
-
 }
