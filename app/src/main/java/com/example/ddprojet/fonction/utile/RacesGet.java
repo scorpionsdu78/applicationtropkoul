@@ -31,7 +31,7 @@ public class RacesGet extends AsyncTask<String, String, String> {
             JSONObject file = race.getFile();
             JSONArray array = file.getJSONArray("results");
             for(String r : races){
-                for(int i=array.length()-1; i>=0; i--){
+                for(int i=0; i<array.length(); i++){
                     JSONObject tmp = array.getJSONObject(i);
                     publishProgress(tmp.getString("name"));
                 }
