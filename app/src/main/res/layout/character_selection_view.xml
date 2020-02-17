@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="30dp"
+        android:layout_margin="@dimen/_15sdp"
         app:cardBackgroundColor="#83FFCEAE">
 
         <RelativeLayout
@@ -29,7 +29,7 @@
 
                     <ImageView
                         android:id="@+id/imageViewAvatar"
-                        android:layout_width="168dp"
+                        android:layout_width="@dimen/_70sdp"
                         android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:adjustViewBounds="true"
