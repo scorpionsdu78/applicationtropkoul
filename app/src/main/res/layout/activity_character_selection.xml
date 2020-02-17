@@ -17,7 +17,8 @@
             android:id="@+id/ImageViewBackgroundHead"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/background_wood" />
 
         <LinearLayout
             android:id="@+id/LinearLayoutHead"
@@ -59,7 +60,8 @@
             android:id="@+id/imageViewBackgroundContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/background_scroll" />
 
         <ScrollView
             android:layout_width="match_parent"
