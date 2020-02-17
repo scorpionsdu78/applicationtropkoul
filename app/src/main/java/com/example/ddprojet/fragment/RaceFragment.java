@@ -88,7 +88,7 @@ public class RaceFragment extends Fragment {
             images.put("Gnome", new Integer(R.drawable.race_gnome));
             images.put("Half-Elf", new Integer(R.drawable.race_half_elf));
             images.put("Halfling", new Integer(R.drawable.race_halfling));
-            images.put("Half-Orc", new Integer(R.drawable.avatar_dark_wizard));
+            images.put("Half-Orc", new Integer(R.drawable.race_half_orc));
             images.put("Human", new Integer(R.drawable.race_human));
             images.put("Tiefling", new Integer(R.drawable.race_tiefling));
 
