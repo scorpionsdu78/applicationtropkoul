@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
 
 
 import android.os.Bundle;
@@ -37,9 +38,15 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     private DrawerLayout drawerLayout;
 
+    private Adapter sectionAdapter;
+    private ViewPager pager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sectionAdapter = new Adapter(getSupportFragmentManager());
+
         setContentView(R.layout.character_edition);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
@@ -54,12 +61,32 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         toggle.syncState();
 
-        if(savedInstanceState == null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new DescriptionFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_description);
-        }
+        pager = (ViewPager) findViewById(R.id.fragment_container);
 
+        SetFragment(pager);
+
+
+        /*if(savedInstanceState == null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new Race()).commit();
+            navigationView.setCheckedItem(R.id.nav_description);
+        }*/
+
+    }
+
+    private void SetFragment(ViewPager pager){
+        Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.add(new Race());
+        adapter.add(new Classes());
+        adapter.add(new CaracCompFragment());
+        adapter.add(new CapaDonsFragment());
+        adapter.add(new EquipSortsFragment());
+        adapter.add(new PersonnaliteFragment());
+        pager.setAdapter(adapter);
+    }
+
+    public void ChangeFragment(int id){
+        pager.setCurrentItem(id);
     }
 
     @Override
@@ -68,36 +95,31 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         switch (item.getItemId()){
             case R.id.nav_description :
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new DescriptionFragment()).commit();
+                ChangeFragment(FragmentEnum.Race.getValue());
 
                 break;
 
             case R.id.nav_caracComp :
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CaracCompFragment()).commit();
+                ChangeFragment(FragmentEnum.CaracComp.getValue());
 
                 break;
 
             case R.id.nav_capaDons :
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CapaDonsFragment()).commit();
+                ChangeFragment(FragmentEnum.CapaDons.getValue());
 
                 break;
 
             case R.id.nav_equipSorts :
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new EquipSortsFragment()).commit();
+                ChangeFragment(FragmentEnum.Equip.getValue());
 
                 break;
 
             case R.id.nav_personnalité :
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new PersonnaliteFragment()).commit();
+                ChangeFragment(FragmentEnum.Personnaliter.getValue());
 
                 break;
         }
