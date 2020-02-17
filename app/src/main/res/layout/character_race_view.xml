@@ -2,8 +2,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_200sdp"
-    android:layout_height="@dimen/_200sdp">
+    android:layout_width="@dimen/_150sdp"
+    android:layout_height="@dimen/_225sdp">
 
 
     <RelativeLayout
@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="fitCenter"
-            tools:srcCompat="@drawable/avatar_barbarian" />
+            tools:srcCompat="@drawable/race_dragonborn" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -71,7 +71,7 @@
                             android:gravity="bottom|center_horizontal"
                             android:padding="@dimen/_2sdp"
                             android:shadowColor="#3F0000"
-                            android:text="Race"
+                            android:text="Dragonborn"
                             android:textColor="#642D04"
                             android:textSize="@dimen/_20sdp" />
                     </androidx.cardview.widget.CardView>
