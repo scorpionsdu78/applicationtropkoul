@@ -14,7 +14,7 @@ public class Trait extends APIconnection {
     String Description;
 
     public Trait(String path, String _name) throws IOException, JSONException {
-        super("http://www.dnd5eapi.co"+path);
+        super("https://www.dnd5eapi.co"+path);
 
 
 

@@ -15,6 +15,7 @@ import java.net.URL;
 public class APIconnection {
 
     protected JSONObject file;
+    protected final String basePath = "https://www.dnd5eapi.co/api/";
 
     public APIconnection(){
 
@@ -22,7 +23,7 @@ public class APIconnection {
 
     public APIconnection(String path) throws IOException, JSONException {
 
-        URL urlForRequest = new URL(path);
+        URL urlForRequest = new URL(this.basePath + path);
 
         HttpURLConnection connection = (HttpURLConnection) urlForRequest.openConnection();
         connection.setRequestMethod("GET");

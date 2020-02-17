@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -103,5 +104,30 @@ public class CharacterSelectionView extends LinearLayout {
             // for reuse
             typedArray.recycle();
         }
+    }
+
+
+    public void setName(String name) {
+        this.textView_name.setText(name);
+    }
+
+    public void setRace(String race) {
+        this.textView_race.setText(race);
+    }
+
+    public void setClass(String class_) {
+        this.textView_class.setText(class_);
+    }
+
+    public void setAlignement(String alignement) {
+        this.textView_alignement.setText(alignement);
+    }
+
+    public void setLevel(String level) {
+        this.textView_level.setText(level);
+    }
+
+    public void setAvatar(@DrawableRes int avatar) {
+        this.imageView_avatar.setImageResource(avatar);
     }
 }

@@ -13,6 +13,8 @@ import model.ProficienciesList;
 
 public class Classes extends APIconnection {
 
+    protected static final String classPath = "classes/";
+
     private List<ProficienciesList> ProficienciesChoice;
     private ProficienciesList BasicProficiencies;
     private String name;
@@ -20,11 +22,11 @@ public class Classes extends APIconnection {
     private List<String> JetDeSauv;
 
     public Classes() throws IOException, JSONException{
-        super("http://www.dnd5eapi.co/api/classes/");
+        super(Classes.classPath);
     }
 
-    public Classes(String classe) throws IOException, JSONException {
-        super( "http://www.dnd5eapi.co/api/classes/" + classe);
+    public Classes(String class_) throws IOException, JSONException {
+        super( Classes.classPath + class_);
 
         //creations de la proficiencies l
         ProficienciesChoice = new ArrayList<>();

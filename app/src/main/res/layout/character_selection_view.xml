@@ -176,9 +176,10 @@
 
                         <TextView
                             android:id="@+id/textViewLevel"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@string/main_font"
+                            android:inputType="number"
                             android:text="TextView"
                             android:textColor="#642D04"
                             android:textSize="@dimen/CharacterSelectionViewTextSize" />

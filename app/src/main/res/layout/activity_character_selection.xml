@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="fill"
-    tools:context=".CharacterSelection">
+    tools:context=".CharacterSelectionActivity">
 
     <RelativeLayout
         android:id="@+id/RelativeLayoutHead"
@@ -49,15 +49,6 @@
                 android:textStyle="bold"
                 app:autoSizeTextType="uniform" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="ChangeActivity"
-                android:text="test"
-                android:textSize="@dimen/_8sdp" />
-
         </LinearLayout>
 
     </RelativeLayout>
@@ -83,55 +74,72 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewCharacterView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="match_parent" />
 
-                <com.example.ddprojet.CustomComponent.CharacterSelectionView
-                    android:id="@+id/Chara1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:Class="Paladin"
-                    app:alignement="Good/Lawful"
-                    app:level="5"
-                    app:name="Eozen Daragon"
-                    app:race="Human"
-                    app:avatar="@drawable/avatar_barbarian" />
-
-
-                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:avatar="@drawable/avatar_barbarian_2" />
+                    android:layout_margin="@dimen/_15sdp"
+                    app:cardBackgroundColor="#83FFE1CF"
+                    android:onClick="ChangeActivity">
 
-                <com.example.ddprojet.CustomComponent.CharacterSelectionView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:name="Je suis un nom vachement long quand même et encore je pourrais être vachement plus long, genre vraiment vraiment plus long"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                <com.example.ddprojet.CustomComponent.CharacterSelectionView
-                    android:id="@+id/Chara2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:name="Heritage"
-                    app:race="Sword"
-                    app:Class="Item"
-                    app:alignement="Good/Neutral"
-                    app:level="500"
-                    app:avatar="@drawable/background_wood"/>
+                        <FrameLayout
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="#83FFE1CF">
 
-                <com.example.ddprojet.CustomComponent.CharacterSelectionView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:alignement="test"
-                    app:avatar="@drawable/background_scroll"/>
+                            <ImageView
+                                android:id="@+id/imageViewAvatar"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:tint="#642D04"
+                                app:srcCompat="@drawable/ic_add_circle_black_24dp" />
 
-                <com.example.ddprojet.CustomComponent.CharacterSelectionView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:avatar="@drawable/background_scroll"/>
+                        </FrameLayout>
 
-                <include layout="@layout/new_character_view"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_4sdp"
+                            android:layout_marginTop="@dimen/_4sdp"
+                            android:layout_marginEnd="@dimen/_4sdp"
+                            android:layout_marginBottom="@dimen/_4sdp"
+                            android:minHeight="@dimen/_85sdp"
+                            app:cardBackgroundColor="#2CFFFFFF"
+                            app:cardElevation="-10dp">
+
+                            <TextView
+                                android:id="@+id/textViewLevel"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center"
+                                android:fontFamily="@string/main_font"
+                                android:gravity="center"
+                                android:text="Create new character"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/_25sdp" />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
         </ScrollView>

@@ -19,7 +19,7 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-import connection.spellList;
+import connection.SpellList;
 import model.Spell;
 
 
@@ -124,7 +124,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
             public void run(){
                 try {
                     //final Races test = new Races("dragonborn");
-                    final spellList test = new spellList();
+                    final SpellList test = new SpellList();
                     final Spell test2 = test.getSpell("aid");
 
 

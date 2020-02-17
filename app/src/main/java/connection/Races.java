@@ -14,6 +14,8 @@ import model.TraitList;
 
 public class Races extends APIconnection {
 
+    protected static final String racePath = "races/";
+
     private List<Bonus>  bonuses;
     private TraitList traitList;
     private TraitList globalTrait;
@@ -28,11 +30,11 @@ public class Races extends APIconnection {
 
 
     public Races() throws IOException, JSONException {
-        super("http://www.dnd5eapi.co/api/races/");
+        super(Races.racePath);
     }
 
-    public Races(String path) throws IOException, JSONException {
-        super("http://www.dnd5eapi.co/api/races/"+path);
+    public Races(String race) throws IOException, JSONException {
+        super(Races.racePath + race);
 
         //recuperation des bonus de race
         bonuses = new ArrayList<>();

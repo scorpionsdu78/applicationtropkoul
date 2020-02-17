@@ -16,19 +16,21 @@ import java.util.Set;
 
 import model.Spell;
 
-public class spellList extends APIconnection {
+public class SpellList extends APIconnection {
+
+    protected static final String spellListPath = "spells/";
 
     HashMap<String, String> spells;
 
-    public spellList() throws IOException, JSONException {
-        super("http://www.dnd5eapi.co/api/spells/");
+    public SpellList() throws IOException, JSONException {
+        super(SpellList.spellListPath);
 
         spells = new HashMap<String, String>();
 
         JSONArray tab = file.getJSONArray("results");
         for(int i=0; i<tab.length(); i++){
             JSONObject tmp = tab.getJSONObject(i);
-            spells.put(tmp.getString("index"),"http://www.dnd5eapi.co"+tmp.getString("url"));
+            spells.put(tmp.getString("index"),"https://www.dnd5eapi.co"+tmp.getString("url"));
         }
     }
 
@@ -46,7 +48,7 @@ public class spellList extends APIconnection {
     @Override
     public String toString() {
 
-        String s ="spellList{";
+        String s ="SpellList{";
 
         for (String i : spells.keySet()) {
             s= s +i+"\n";
