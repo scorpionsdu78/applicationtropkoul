@@ -17,15 +17,14 @@
             android:id="@+id/ImageViewBackgroundHead"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/background_wood" />
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:id="@+id/LinearLayoutHead"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="@dimen/_3sdp">
 
             <ImageView
                 android:id="@+id/imageViewDD_logo"
@@ -38,7 +37,7 @@
                 android:id="@+id/textViewActivityName"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
+                android:layout_marginLeft="@dimen/_5sdp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:shadowColor="#4D2F20"
@@ -54,15 +53,13 @@
     <RelativeLayout
         android:id="@+id/RelativeLayoutContent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteY="733dp">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/imageViewBackgroundContent"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:srcCompat="@drawable/background_scroll" />
+            android:scaleType="centerCrop" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -105,15 +102,13 @@
                     android:layout_height="wrap_content"
                     app:Class="Item"
                     app:alignement="Good/Neutral"
-                    app:avatar="@drawable/background_wood"
                     app:level="500"
                     app:name="Heritage"
                     app:race="Sword" />
 
                 <com.example.ddprojet.CustomComponent.CharacterSelectionView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:avatar="@drawable/background_scroll" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
         </ScrollView>
