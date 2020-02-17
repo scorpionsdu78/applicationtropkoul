@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
 
 import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
@@ -52,10 +51,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_character_edition);
 
         sectionAdapter = new Adapter(getSupportFragmentManager());
-
-        setContentView(R.layout.character_edition);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -169,10 +167,10 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
                     CharacterEditionActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            TextView text = findViewById(R.id.test);
+                            //TextView text = findViewById(R.id.test);
 
                             //text.setText(Integer.toString(test.getSpeed()));
-                            text.setText(test2.toString());
+                            //text.setText(test2.toString());
 
                         }
                     });

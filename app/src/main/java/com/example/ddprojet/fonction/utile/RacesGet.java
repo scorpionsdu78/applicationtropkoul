@@ -25,7 +25,7 @@ public class RacesGet extends AsyncTask<String, String, String> {
             JSONArray array = file.getJSONArray("results");
             for(String r : races){
                 for(int i=0; i<array.length(); i++){
-                    tmp.
+                    //tmp.
                 }
             }
         } catch (IOException e) {
