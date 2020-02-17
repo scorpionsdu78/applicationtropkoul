@@ -61,7 +61,6 @@ public class RaceFragment extends Fragment {
             name = (TextView) itemView.findViewById(R.id.textViewRace);
             FrameLayout fr = (FrameLayout) itemView.findViewById(R.id.frameLayoutRace);
             fr.setPadding(5,5,5,5);
-            name.setTextSize(16);
         }
 
         public void setName(String _name) {

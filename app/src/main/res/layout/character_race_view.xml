@@ -86,7 +86,7 @@
                             android:shadowColor="#3F0000"
                             android:text="Human"
                             android:textColor="#642D04"
-                            android:textSize="@dimen/_20sdp" />
+                            android:textSize="@dimen/_15sdp" />
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
