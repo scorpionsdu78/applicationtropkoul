@@ -9,8 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#83FFEB3B">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/imageViewRace"
@@ -22,14 +21,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/relativeLayout2"
-            tools:srcCompat="@drawable/race_dragonborn" />
+            app:srcCompat="@drawable/race_human" />
 
         <RelativeLayout
             android:id="@+id/relativeLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="8dp"
-            android:background="#00E00909"
             android:gravity="bottom|center_horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +80,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:gravity="bottom|center_horizontal"
+                            android:minWidth="@dimen/_50sdp"
                             android:padding="@dimen/_2sdp"
                             android:shadowColor="#3F0000"
                             android:text="Human"

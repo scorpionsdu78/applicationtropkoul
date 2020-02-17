@@ -40,6 +40,9 @@ public class CharacterSelectionActivity extends AppCompatActivity {
 
         characterDescriptionViewAdapter.add(new CharacterDescription("Eozen Thelir Daragon", "Elf des sables", "Paladin", new Alignment(Alignment.LawfulChaoticAxis.LAWFUL, Alignment.GoodEvilAxis.GOOD), 12, R.drawable.avatar_barbarian));
         characterDescriptionViewAdapter.add(new CharacterDescription("Edgar", "Margull", "Necromancien", new Alignment(Alignment.LawfulChaoticAxis.CHAOTIC, Alignment.GoodEvilAxis.NEUTRAL), 9000, R.drawable.avatar_dark_wizard));
+        characterDescriptionViewAdapter.add(new CharacterDescription("Eude", "Elf", "Mandiant", new Alignment(Alignment.LawfulChaoticAxis.NEUTRAL, Alignment.GoodEvilAxis.NEUTRAL), 0, R.drawable.race_half_elf));
+        characterDescriptionViewAdapter.add(new CharacterDescription("Ielle", "Non raciste", "Social Justice Warrior", new Alignment(Alignment.LawfulChaoticAxis.CHAOTIC, Alignment.GoodEvilAxis.NEUTRAL), 666, R.drawable.race_dwarf));
+
     }
 
 
