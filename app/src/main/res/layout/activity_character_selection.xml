@@ -47,6 +47,15 @@
                 android:textColor="#db3812"
                 app:autoSizeTextType="uniform" />
 
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="ChangeActivity"
+                android:text="test"
+                android:textSize="@dimen/_8sdp" />
+
         </LinearLayout>
 
     </RelativeLayout>
@@ -104,13 +113,15 @@
                     android:layout_height="wrap_content"
                     app:Class="Item"
                     app:alignement="Good/Neutral"
+                    app:avatar="@drawable/background_wood"
                     app:level="500"
                     app:name="Heritage"
                     app:race="Sword" />
 
                 <com.example.ddprojet.CustomComponent.CharacterSelectionView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:avatar="@drawable/background_scroll" />
 
             </LinearLayout>
         </ScrollView>

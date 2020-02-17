@@ -1,7 +1,6 @@
 package com.example.ddprojet;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,8 +19,6 @@ import org.json.JSONException;
 
 import java.io.IOException;
 
-import connection.Classes;
-import connection.Races;
 import connection.spellList;
 import model.Spell;
 
@@ -36,14 +33,14 @@ import java.io.IOException;
 import connection.APIconnection;
 import connection.Classes;*/
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.character_edition);
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -119,6 +116,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
 
     }
+
+
     public void test(View V){
         new Thread(new Runnable(){
 
@@ -130,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-                    MainActivity.this.runOnUiThread(new Runnable() {
+                    CharacterEditionActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             TextView text = findViewById(R.id.test);
