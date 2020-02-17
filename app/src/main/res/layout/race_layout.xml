@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
-    >
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RaceRecyclerView"
-        android:layout_width="@dimen/_315sdp"
-        android:layout_height="@dimen/_560sdp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:text="les races: "
+            android:textAlignment="center"
+            android:textSize="@dimen/_30sdp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/RaceRecyclerView"
+            android:layout_width="@dimen/_315sdp"
+            android:layout_height="@dimen/_560sdp" />
+    </LinearLayout>
+
+
+</ScrollView>

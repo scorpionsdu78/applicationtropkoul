@@ -155,35 +155,5 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     }
 
 
-    public void test(View V){
-        new Thread(new Runnable(){
 
-            public void run(){
-                try {
-                    //final String test = new String("dragonborn");
-                    final SpellList test = new SpellList();
-                    final Spell test2 = test.getSpell("aid");
-
-
-
-                    CharacterEditionActivity.this.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            TextView text = findViewById(R.id.test);
-
-                            //text.setText(Integer.toString(test.getSpeed()));
-                            text.setText(test2.toString());
-
-                        }
-                    });
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-    }
 }
