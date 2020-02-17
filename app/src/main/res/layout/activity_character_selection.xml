@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="fill"
+    tools:context=".CharacterSelection">
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutHead"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <ImageView
+            android:id="@+id/ImageViewBackgroundHead"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/background_wood" />
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutHead"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/imageViewDD_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:srcCompat="@drawable/dd_icon" />
+
+            <TextView
+                android:id="@+id/textViewActivityName"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:shadowColor="#4D2F20"
+                android:shadowRadius="2"
+                android:text="Character selection"
+                android:textColor="#db3812"
+                app:autoSizeTextType="uniform" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteY="733dp">
+
+        <ImageView
+            android:id="@+id/imageViewBackgroundContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/background_scroll" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+                    android:id="@+id/Chara1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:Class="Paladin"
+                    app:alignement="Good/Lawful"
+                    app:level="5"
+                    app:name="Eozen Daragon"
+                    app:race="Human"
+                    app:avatar="@drawable/avatar_barbarian" />
+
+
+                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:avatar="@drawable/avatar_barbarian_2" />
+
+                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:name="Je suis un nom vachement long quand même"/>
+
+                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+                    android:id="@+id/Chara2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:Class="Item"
+                    app:alignement="Good/Neutral"
+                    app:avatar="@drawable/background_wood"
+                    app:level="500"
+                    app:name="Heritage"
+                    app:race="Sword" />
+
+                <com.example.ddprojet.CustomComponent.CharacterSelectionView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:avatar="@drawable/background_scroll" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+
+</TableLayout>

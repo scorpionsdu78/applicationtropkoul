@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CharacterSelectionCard">
+        <attr name="name" format="string" />
+        <attr name="race" format="string"/>
+        <attr name="Class" format="string" />
+        <attr name="alignement" format="string"/>
+        <attr name="level" format="integer"/>
+        <attr name="avatar" format="reference"/>
+    </declare-styleable>
+</resources>
