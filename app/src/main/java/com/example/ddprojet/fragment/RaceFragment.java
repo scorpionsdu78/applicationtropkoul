@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ddprojet.CharacterEditionActivity;
 import com.example.ddprojet.R;
 import com.example.ddprojet.fonction.asyncFonc.RaceInfoGet;
 import com.example.ddprojet.fonction.asyncFonc.RacesGet;
@@ -40,13 +41,6 @@ public class RaceFragment extends Fragment {
         RecyclerView rv = (v).findViewById(R.id.RaceRecyclerView);
         RaceDescriptionAdaptator adaptator = new RaceDescriptionAdaptator();
 
-        Button popBut = (Button) v.findViewById(R.id.popup);
-        popBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onButtonShowPopupWindowClick(view, "dwarf");
-            }
-        });
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3,LinearLayoutManager.VERTICAL,false);
 
@@ -67,9 +61,9 @@ public class RaceFragment extends Fragment {
 
         public RaceHolder(@NonNull View itemView) {
             super(itemView);
-            photo = (ImageView) itemView.findViewById(R.id.imageViewRace);
-            name = (TextView) itemView.findViewById(R.id.textViewRace);
-            fr = (FrameLayout) itemView.findViewById(R.id.frameLayoutRace);
+            photo = (ImageView) itemView.findViewById(R.id.imageViewClass);
+            name = (TextView) itemView.findViewById(R.id.textViewClass);
+            fr = (FrameLayout) itemView.findViewById(R.id.frameLayoutClass);
             fr.setPadding(5,5,5,5);
         }
 
@@ -85,7 +79,7 @@ public class RaceFragment extends Fragment {
             fr.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onButtonShowPopupWindowClick(view,name.getText().toString().toLowerCase());
+                    onButtonShowPopupWindowClick(view, name.getText().toString().toLowerCase());
                 }
             });
         }
@@ -151,6 +145,7 @@ public class RaceFragment extends Fragment {
         View PopupView = inflater.inflate(R.layout.race_info, null);
 
 
+
         RaceInfoGet getter = new RaceInfoGet(PopupView,(TextView)PopupView.findViewById(R.id.name),(TextView)PopupView.findViewById(R.id.speed),(TextView)PopupView.findViewById(R.id.alignment),(TextView)PopupView.findViewById(R.id.age),
                 (TextView)PopupView.findViewById(R.id.size), (TextView)PopupView.findViewById(R.id.sizeDesc),(TextView)PopupView.findViewById(R.id.langDesc) ,(ListView)PopupView.findViewById(R.id.langauges),
                 (ListView)PopupView.findViewById(R.id.trait),(ListView)PopupView.findViewById(R.id.Bonus));
@@ -165,6 +160,30 @@ public class RaceFragment extends Fragment {
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
+        Button bt1 = (Button) PopupView.findViewById(R.id.selectRace);
+        bt1.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+                onValidation(view);
+            }
+        });
+
+        Button bt2 = (Button) PopupView.findViewById(R.id.backButton);
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
+
+    public void onValidation(View v){
+        CharacterEditionActivity activity = (CharacterEditionActivity)getActivity();
+
+        activity.ChangeFragment(FragmentEnum.Classe.getValue());
     }
 
 

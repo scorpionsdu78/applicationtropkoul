@@ -3,7 +3,6 @@ package com.example.ddprojet.CustomComponent;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
@@ -41,7 +40,7 @@ public class CharacterSelectionView extends LinearLayout {
         inflater.inflate(R.layout.character_selection_view, this, true);
 
         this.textView_name = findViewById(R.id.textViewName);
-        this.textView_race = findViewById(R.id.textViewRace);
+        this.textView_race = findViewById(R.id.textViewClass);
         this.textView_class = findViewById(R.id.textViewClass);
         this.textView_alignement = findViewById(R.id.textViewAlignement);
         this.textView_level = findViewById(R.id.textViewLevel);
@@ -61,7 +60,7 @@ public class CharacterSelectionView extends LinearLayout {
         inflater.inflate(R.layout.character_selection_view, this, true);
 
         this.textView_name = findViewById(R.id.textViewName);
-        this.textView_race = findViewById(R.id.textViewRace);
+        this.textView_race = findViewById(R.id.textViewClass);
         this.textView_class = findViewById(R.id.textViewClass);
         this.textView_alignement = findViewById(R.id.textViewAlignement);
         this.textView_level = findViewById(R.id.textViewLevel);

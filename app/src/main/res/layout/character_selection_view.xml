@@ -99,7 +99,7 @@
                             android:textSize="@dimen/CharacterSelectionViewTextSize" />
 
                         <TextView
-                            android:id="@+id/textViewRace"
+                            android:id="@+id/textViewClass"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@string/main_font"
