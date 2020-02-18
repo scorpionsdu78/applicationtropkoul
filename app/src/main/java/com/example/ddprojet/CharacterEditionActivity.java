@@ -1,5 +1,9 @@
 package com.example.ddprojet;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,12 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
-
-
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 
 import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
@@ -23,24 +21,13 @@ import com.example.ddprojet.fragment.PersonnaliteFragment;
 import com.example.ddprojet.fragment.RaceFragment;
 import com.google.android.material.navigation.NavigationView;
 
-import org.json.JSONException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.io.IOException;
-
-import connection.SpellList;
+import model.Character;
 import model.CustomViewPager;
-import model.Spell;
-
-
-/*import android.view.View;
-import android.widget.TextView;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-
-import connection.APIconnection;
-import connection.Classes;*/
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -49,11 +36,61 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private Adapter sectionAdapter;
     private CustomViewPager pager;
 
+    private Character character;
+
+    private List<String> bonuses;
+    private Map<String, Integer> classRequierement;
+
+
+    public boolean containBonus(String key){
+        return this.bonuses.contains(key);
+    }
+
+
+    public int getClassRequierement(String key){
+        if(this.classRequierement.containsKey(key))
+            return this.classRequierement.get(key);
+
+        return 0;
+    }
+
+
+    public int levelBonusSkill(){
+        return 2;
+    }
+
+    public int levelBonusCharac(){
+        return 0;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_edition);
+
+        this.character = new Character();
+
+        this.bonuses = new ArrayList<>();
+        this.classRequierement = new HashMap<>();
+
+        this.bonuses.add("Strength");
+        this.bonuses.add("Constitution");
+
+        this.bonuses.add("Acrobatics");
+        this.bonuses.add("Sleight of Hand");
+        this.bonuses.add("History");
+        this.bonuses.add("Investigation");
+        this.bonuses.add("Religion");
+        this.bonuses.add("Animal Handling");
+        this.bonuses.add("Medicine");
+        this.bonuses.add("Survival");
+        this.bonuses.add("Intimidation");
+        this.bonuses.add("Performance");
+        this.bonuses.add("Persuasion");
+
+        this.classRequierement.put("Strength", 16);
+        this.classRequierement.put("Wisdom", 19);
 
 
         sectionAdapter = new Adapter(getSupportFragmentManager());
@@ -152,6 +189,15 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         else
             super.onBackPressed();
 
+    }
+
+
+    public void onBackButtonClick(View v){
+        this.ChangeFragment(pager.getCurrentItem() - 1);
+    }
+
+    public void onNextButtonClick(View v){
+        this.ChangeFragment(pager.getCurrentItem() + 1);
     }
 
 

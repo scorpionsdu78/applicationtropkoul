@@ -18,7 +18,6 @@ public class Character {
 
     protected Map<String, Integer> characteristic;
     protected Map<String, Integer> skills;
-    protected Map<String, Integer> savingThrows;
 
     protected List<String> spells;
 
@@ -36,7 +35,6 @@ public class Character {
 
         this.characteristic = new HashMap<>();
         this.skills = new HashMap<>();
-        this.savingThrows = new HashMap<>();
 
         this.spells = new ArrayList<>();
         this.proficiencies = new ArrayList<>();
@@ -57,7 +55,6 @@ public class Character {
 
         this.characteristic = new HashMap<>();
         this.skills = new HashMap<>();
-        this.savingThrows = new HashMap<>();
 
         this.spells = new ArrayList<>();
         this.proficiencies = new ArrayList<>();
@@ -81,7 +78,6 @@ public class Character {
 
         this.characteristic = characteristic;
         this.skills = skills;
-        this.savingThrows = savingThrows;
 
         this.spells = spells;
         this.proficiencies = proficiencies;
@@ -158,14 +154,6 @@ public class Character {
 
     public void setSkills(Map<String, Integer> skills) {
         this.skills = skills;
-    }
-
-    public Map<String, Integer> getSavingThrows() {
-        return savingThrows;
-    }
-
-    public void setSavingThrows(Map<String, Integer> savingThrows) {
-        this.savingThrows = savingThrows;
     }
 
     public List<String> getSpells() {

@@ -9,7 +9,7 @@
     tools:context=".CharacterSelectionActivity">
 
     <RelativeLayout
-        android:id="@+id/RelativeLayoutHead"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_30sdp">
 
