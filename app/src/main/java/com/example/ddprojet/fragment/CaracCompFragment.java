@@ -158,6 +158,7 @@ public class CaracCompFragment extends Fragment {
         }
 
         textViewValue.setText(String.valueOf(initValue));
+        this.parent_activity.getCharacter().getCharacteristic().put(characName, initValue);
 
         updateSkillsValue(parent);
     }
@@ -209,6 +210,10 @@ public class CaracCompFragment extends Fragment {
 
                 if(number_parsed <= 20) {
                     characTextView.setText(String.valueOf(number_parsed));
+
+                    String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getText().toString();
+                    this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
+
                     this.characPoints--;
                     this.updateButtonNextState();
 
@@ -238,6 +243,9 @@ public class CaracCompFragment extends Fragment {
 
             if(number_parsed >= min_limit && number_parsed >= this.parent_activity.getClassRequierement(characName)) {
                 characTextView.setText(String.valueOf(number_parsed));
+
+                this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
+
                 this.characPoints++;
                 updateButtonNextState();
 
@@ -373,6 +381,7 @@ public class CaracCompFragment extends Fragment {
                 value += this.parent_activity.levelBonusSkill();
 
             textView.setText(String.valueOf(value));
+            this.parent_activity.getCharacter().getSkills().put(skillName, value);
 
         } catch (NumberFormatException e) {
             return;
