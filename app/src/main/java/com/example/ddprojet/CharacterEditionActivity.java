@@ -43,6 +43,10 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private Map<String, Integer> classRequierement;
 
 
+    public Character getCharacter() {
+        return character;
+    }
+
     public boolean containBonus(String key){
         return this.bonuses.contains(key);
     }
