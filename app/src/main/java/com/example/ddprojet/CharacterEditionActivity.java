@@ -28,6 +28,7 @@ import org.json.JSONException;
 import java.io.IOException;
 
 import connection.SpellList;
+import model.CustomViewPager;
 import model.Spell;
 
 
@@ -46,12 +47,14 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private DrawerLayout drawerLayout;
 
     private Adapter sectionAdapter;
-    private ViewPager pager;
+    private CustomViewPager pager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_edition);
+
 
         sectionAdapter = new Adapter(getSupportFragmentManager());
 
@@ -67,16 +70,15 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         toggle.syncState();
 
-        pager = (ViewPager) findViewById(R.id.fragment_container);
+        pager = (CustomViewPager) findViewById(R.id.fragment_container);
+
+        
+
+
 
         SetFragment(pager);
 
-        pager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                return true;
-            }
-        });
+
 
 
         /*if(savedInstanceState == null){
@@ -154,3 +156,4 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
 
 }
+
