@@ -17,155 +17,1184 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/_5sdp">
 
-            <TableLayout
-                android:layout_width="@dimen/_300sdp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal">
+            <androidx.cardview.widget.CardView
+                android:id="@+id/carViewFeatures"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="#75FFD7BA">
 
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
-
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
-
-                    </TableRow>
-
-                </TableRow>
-
-                <TableRow
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_5sdp">
 
-                    <TableRow
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@string/main_font"
+                        android:text="Features :"
+                        android:textColor="#642D04"
+                        android:textSize="@dimen/_15sdp" />
 
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_20sdp">
 
-                    </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewTL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
 
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/imageViewT"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toStartOf="@+id/imageViewTR"
+                            app:layout_constraintStart_toEndOf="@+id/imageViewTL"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_top" />
 
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/imageViewTR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
 
-                    </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewL"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBL"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTL"
+                            app:srcCompat="@drawable/stylized_border_right" />
 
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/imageViewR"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBR"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTR"
+                            app:srcCompat="@drawable/stylized_border_right" />
 
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/imageViewBL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
 
-                    </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewB"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/imageViewBR"
+                            app:layout_constraintStart_toEndOf="@id/imageViewBL"
+                            app:srcCompat="@drawable/stylized_border_top" />
 
-                </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewBR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
 
-                <TableRow
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@string/main_font"
+                                android:text="Choose 2 :" />
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Action Surge (1 use)"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="Starting at 2nd level, you can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action on top of your regular action and a possible bonus action. \nOnce you use this feature, you must finish a short or long rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Additional Magical Secrets"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="At 6th level, you learn two spells of your choice from any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you but don't count against the number of bard spells you know." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Arcane Recovery"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_20sdp">
+
+                        <ImageView
+                            android:id="@+id/imageViewTL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
+
+                        <ImageView
+                            android:id="@+id/imageViewT"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toStartOf="@+id/imageViewTR"
+                            app:layout_constraintStart_toEndOf="@+id/imageViewTL"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_top" />
+
+                        <ImageView
+                            android:id="@+id/imageViewTR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
+
+                        <ImageView
+                            android:id="@+id/imageViewL"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBL"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTL"
+                            app:srcCompat="@drawable/stylized_border_right" />
+
+                        <ImageView
+                            android:id="@+id/imageViewR"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBR"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTR"
+                            app:srcCompat="@drawable/stylized_border_right" />
+
+                        <ImageView
+                            android:id="@+id/imageViewBL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
+
+                        <ImageView
+                            android:id="@+id/imageViewB"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/imageViewBR"
+                            app:layout_constraintStart_toEndOf="@id/imageViewBL"
+                            app:srcCompat="@drawable/stylized_border_top" />
+
+                        <ImageView
+                            android:id="@+id/imageViewBR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@string/main_font"
+                                android:text="Choose 1 :" />
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Action Surge (1 use)"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="Starting at 2nd level, you can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action on top of your regular action and a possible bonus action. \nOnce you use this feature, you must finish a short or long rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Additional Magical Secrets"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="At 6th level, you learn two spells of your choice from any class. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. The chosen spells count as bard spells for you but don't count against the number of bard spells you know." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Arcane Recovery"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have a combined level that is equal to or less than half your wizard level (rounded up), and none of the slots can be 6th level or higher.\nFor example, if you're a 4th-level wizard, you can recover up to two levels worth of spell slots. You can recover either a 2nd-level spell slot or two 1st-level spell slots." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/carViewTraits"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_25sdp"
+                app:cardBackgroundColor="#75FFD7BA">
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/_5sdp">
 
-                    <TableRow
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@string/main_font"
+                        android:text="Traits :"
+                        android:textColor="#642D04"
+                        android:textSize="@dimen/_15sdp" />
 
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_20sdp">
 
-                    </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewTL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
 
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/imageViewT"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toStartOf="@+id/imageViewTR"
+                            app:layout_constraintStart_toEndOf="@+id/imageViewTL"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_top" />
 
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/imageViewTR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
 
-                    </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewL"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBL"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTL"
+                            app:srcCompat="@drawable/stylized_border_right" />
 
-                    <TableRow
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/imageViewR"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBR"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTR"
+                            app:srcCompat="@drawable/stylized_border_right" />
 
-                        <include
-                            layout="@layout/character_race_view"
-                            android:layout_width="@dimen/_100sdp"
-                            android:layout_height="@dimen/_150sdp"
-                            android:layout_weight="1" />
+                        <ImageView
+                            android:id="@+id/imageViewBL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
 
-                    </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewB"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/imageViewBR"
+                            app:layout_constraintStart_toEndOf="@id/imageViewBL"
+                            app:srcCompat="@drawable/stylized_border_top" />
 
-                </TableRow>
+                        <ImageView
+                            android:id="@+id/imageViewBR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
 
-            </TableLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@string/main_font"
+                                android:text="Choose 2 :" />
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Artificer's Lore"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Brave"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="You have advantage on saving throw against being frightened." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Breath Weapon"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 2d6 at 6th level, 3d6 at 11th level, and 5d6 at 16th level.\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/_20sdp">
+
+                        <ImageView
+                            android:id="@+id/imageViewTL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
+
+                        <ImageView
+                            android:id="@+id/imageViewT"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintEnd_toStartOf="@+id/imageViewTR"
+                            app:layout_constraintStart_toEndOf="@+id/imageViewTL"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border_top" />
+
+                        <ImageView
+                            android:id="@+id/imageViewTR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
+
+                        <ImageView
+                            android:id="@+id/imageViewL"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBL"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTL"
+                            app:srcCompat="@drawable/stylized_border_right" />
+
+                        <ImageView
+                            android:id="@+id/imageViewR"
+                            android:layout_width="@dimen/_9sdp"
+                            android:layout_height="0dp"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toTopOf="@id/imageViewBR"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/imageViewTR"
+                            app:srcCompat="@drawable/stylized_border_right" />
+
+                        <ImageView
+                            android:id="@+id/imageViewBL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:srcCompat="@drawable/stylized_border" />
+
+                        <ImageView
+                            android:id="@+id/imageViewB"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:rotation="180"
+                            android:scaleType="fitXY"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/imageViewBR"
+                            app:layout_constraintStart_toEndOf="@id/imageViewBL"
+                            app:srcCompat="@drawable/stylized_border_top" />
+
+                        <ImageView
+                            android:id="@+id/imageViewBR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:adjustViewBounds="true"
+                            android:rotation="180"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:srcCompat="@drawable/stylized_border_flip" />
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="@dimen/_10sdp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@string/main_font"
+                                android:text="Choose 2 :" />
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Artificer's Lore"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Brave"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="You have advantage on saving throw against being frightened." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                app:cardBackgroundColor="#75FFD7BA">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginTop="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:layout_marginBottom="@dimen/_10sdp"
+                                    android:orientation="horizontal">
+
+                                    <CheckBox
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@string/main_font"
+                                        android:minWidth="@dimen/_50sdp"
+                                        android:text="Breath Weapon"
+                                        android:textSize="12sp" />
+
+                                    <androidx.core.widget.NestedScrollView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="@dimen/_30sdp"
+                                        android:layout_marginStart="@dimen/_15sdp"
+                                        android:fillViewport="true">
+
+                                        <LinearLayout
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@string/main_font"
+                                                android:text="You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 2d6 at 6th level, 3d6 at 11th level, and 5d6 at 16th level.\nAfter you use your breath weapon, you cannot use it again until you complete a short or long rest." />
+
+                                        </LinearLayout>
+
+                                    </androidx.core.widget.NestedScrollView>
+
+                                </LinearLayout>
+
+                            </androidx.cardview.widget.CardView>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
 
     </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="@dimen/_30sdp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/background_wood" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_50sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:adjustViewBounds="false"
+            android:scaleType="centerCrop"
+            app:srcCompat="@drawable/dd_icon" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonBack"
+                style="@android:style/Widget.Holo.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:drawableStart="@drawable/ic_navigate_before_black_24dp"
+                android:drawableTint="#db3812"
+                android:onClick="onBackButtonClick"
+                android:text="Back"
+                android:textColor="#db3812"
+                android:textSize="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/buttonNext"
+                style="@android:style/Widget.Holo.Button.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:drawableEnd="@drawable/ic_navigate_next_black_24dp"
+                android:drawableTint="#db3812"
+                android:onClick="onNextButtonClick"
+                android:text="Next"
+                android:textColor="#db3812"
+                android:textSize="@dimen/_8sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </RelativeLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
