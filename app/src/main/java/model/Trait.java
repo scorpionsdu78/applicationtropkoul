@@ -14,12 +14,10 @@ public class Trait extends APIconnection {
     String Description;
 
     public Trait(String path, String _name) throws IOException, JSONException {
-        super("https://www.dnd5eapi.co"+path);
-
-
-
+        super(path);
 
         name = _name;
+        Log.i("nie",file.toString());
         Description = file.getString("desc");
     }
 

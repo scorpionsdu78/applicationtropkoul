@@ -1,20 +1,16 @@
 package com.example.ddprojet.fragment;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -27,9 +23,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
-import com.example.ddprojet.fonction.utile.RacesGet;
+import com.example.ddprojet.fonction.asyncFonc.RaceInfoGet;
+import com.example.ddprojet.fonction.asyncFonc.RacesGet;
 
-import java.io.Console;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
@@ -48,7 +44,7 @@ public class RaceFragment extends Fragment {
         popBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onButtonShowPopupWindowClick(view);
+                onButtonShowPopupWindowClick(view, "dwarf");
             }
         });
 
@@ -67,12 +63,13 @@ public class RaceFragment extends Fragment {
 
         protected TextView name;
         protected ImageView photo;
+        protected FrameLayout fr;
 
         public RaceHolder(@NonNull View itemView) {
             super(itemView);
             photo = (ImageView) itemView.findViewById(R.id.imageViewRace);
             name = (TextView) itemView.findViewById(R.id.textViewRace);
-            FrameLayout fr = (FrameLayout) itemView.findViewById(R.id.frameLayoutRace);
+            fr = (FrameLayout) itemView.findViewById(R.id.frameLayoutRace);
             fr.setPadding(5,5,5,5);
         }
 
@@ -82,6 +79,15 @@ public class RaceFragment extends Fragment {
 
         public void setPhoto(@DrawableRes int _photo){
             photo.setImageResource(_photo);
+        }
+
+        public void setOnclick(){
+            fr.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onButtonShowPopupWindowClick(view,name.getText().toString().toLowerCase());
+                }
+            });
         }
 
     }
@@ -124,6 +130,7 @@ public class RaceFragment extends Fragment {
             holder.setName(race);
             Log.d("error",race);
             holder.setPhoto(images.get(race).intValue());
+            holder.setOnclick();
 
 
         }
@@ -139,9 +146,15 @@ public class RaceFragment extends Fragment {
         }
     }
 
-    public void onButtonShowPopupWindowClick(View view){
+    public void onButtonShowPopupWindowClick(View view, String name){
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
         View PopupView = inflater.inflate(R.layout.race_info, null);
+
+
+        RaceInfoGet getter = new RaceInfoGet(PopupView,(TextView)PopupView.findViewById(R.id.name),(TextView)PopupView.findViewById(R.id.speed),(TextView)PopupView.findViewById(R.id.alignment),(TextView)PopupView.findViewById(R.id.age),
+                (TextView)PopupView.findViewById(R.id.size), (TextView)PopupView.findViewById(R.id.sizeDesc),(TextView)PopupView.findViewById(R.id.langDesc) ,(ListView)PopupView.findViewById(R.id.langauges),
+                (ListView)PopupView.findViewById(R.id.trait),(ListView)PopupView.findViewById(R.id.Bonus));
+        getter.execute(name);
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;

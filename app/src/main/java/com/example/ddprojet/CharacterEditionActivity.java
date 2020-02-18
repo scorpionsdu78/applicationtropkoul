@@ -11,8 +11,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.View;
 
 import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
@@ -23,13 +21,8 @@ import com.example.ddprojet.fragment.PersonnaliteFragment;
 import com.example.ddprojet.fragment.RaceFragment;
 import com.google.android.material.navigation.NavigationView;
 
-import org.json.JSONException;
-
-import java.io.IOException;
-
-import connection.SpellList;
-import model.CustomViewPager;
-import model.Spell;
+import util.CustomViewPager;
+import util.Adapter;
 
 
 /*import android.view.View;
@@ -72,7 +65,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         pager = (CustomViewPager) findViewById(R.id.fragment_container);
 
-        
+
 
 
 
