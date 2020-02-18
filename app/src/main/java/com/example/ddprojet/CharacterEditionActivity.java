@@ -27,7 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 import model.Character;
-import model.CustomViewPager;
+import util.CustomViewPager;
+import util.Adapter;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -109,7 +110,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         pager = (CustomViewPager) findViewById(R.id.fragment_container);
 
-        
+
 
 
 

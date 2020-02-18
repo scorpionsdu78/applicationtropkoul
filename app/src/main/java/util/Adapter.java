@@ -1,4 +1,4 @@
-package com.example.ddprojet;
+package util;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

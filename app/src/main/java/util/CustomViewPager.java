@@ -1,4 +1,4 @@
-package model;
+package util;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -16,7 +16,7 @@ import java.lang.String;
 public class APIconnection {
 
     protected JSONObject file;
-    protected final String basePath = "https://www.dnd5eapi.co/api/";
+    protected final String basePath = "https://www.dnd5eapi.co";
 
     public APIconnection(){
 

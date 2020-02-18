@@ -19,13 +19,17 @@ public class TraitList {
         traits.add(trait);
     }
 
+    public int getChoice() {
+        return choice;
+    }
+
     @Override
     public String toString() {
         String s ="";
 
         for (Trait t: traits) {
             Log.d("JTL", t.getName() + t.getDescription());
-            s = s + t.getName() + t.getDescription() + "\n";
+            s = s + t.getName()  + "\n";
         }
 
         return s;

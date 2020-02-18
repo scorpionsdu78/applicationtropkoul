@@ -1,5 +1,7 @@
 package connection;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +16,7 @@ import model.TraitList;
 
 public class Race extends APIconnection {
 
-    protected static final java.lang.String racePath = "races/";
+    protected static final java.lang.String racePath = "/api/races/";
 
     private List<Bonus>  bonuses;
     private TraitList traitList;
@@ -45,22 +47,37 @@ public class Race extends APIconnection {
             bonuses.add(new Bonus(tmp.getString("name"),tmp.getInt("bonus")));//on crer un nouveau bonus avec la charac + la valeur
         }
 
-        //on suit la meme logique qu'avec les proficiencies sauf qu'ici on stock le nom et la description
-        JSONObject traitOption = file.getJSONObject("trait_options");
-        traitList = new TraitList(traitOption.getInt("choose"));
+        Log.d("iii","balise1");
 
-        JSONArray listTraitTmp = traitOption.getJSONArray("from");
-        for (int i=0; i<listTraitTmp.length(); i++){
-            JSONObject tampon = listTraitTmp.getJSONObject(i);
-            traitList.add(new Trait(tampon.getString("url"),tampon.getString("name")));
+        //on suit la meme logique qu'avec les proficiencies sauf qu'ici on stock le nom et la description
+        if(file.optJSONObject("trait_options") !=null){
+            JSONObject traitOption = file.getJSONObject("trait_options");
+            traitList = new TraitList(traitOption.getInt("choose"));
+
+            Log.d("iii","balise2");
+
+            JSONArray listTraitTmp = traitOption.getJSONArray("from");
+            for (int i=0; i<listTraitTmp.length(); i++){
+                JSONObject tampon = listTraitTmp.getJSONObject(i);
+                traitList.add(new Trait(tampon.getString("url"),tampon.getString("name")));
+                Log.d("iii","balise3");
+
+            }
         }
+
+        Log.d("iii","balise4");
+
+
 
         //on recomance pour les traits globaux
         JSONArray traitglobaux = file.getJSONArray("traits");
         globalTrait = new TraitList(0);
 
+
+
         for (int i=0; i<traitglobaux.length(); i++){
             JSONObject tampon = traitglobaux.getJSONObject(i);
+            Log.d("debug", tampon.getString("url"));
             globalTrait.add(new Trait(tampon.getString("url"),tampon.getString("name")));
         }
 
