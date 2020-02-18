@@ -6,11 +6,16 @@ import android.graphics.drawable.BitmapDrawable;
 import android.icu.text.AlphabeticIndex;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
@@ -38,6 +43,14 @@ public class RaceFragment extends Fragment {
 
         RecyclerView rv = (v).findViewById(R.id.RaceRecyclerView);
         RaceDescriptionAdaptator adaptator = new RaceDescriptionAdaptator();
+
+        Button popBut = (Button) v.findViewById(R.id.popup);
+        popBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onButtonShowPopupWindowClick(view);
+            }
+        });
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3,LinearLayoutManager.VERTICAL,false);
 
@@ -126,7 +139,20 @@ public class RaceFragment extends Fragment {
         }
     }
 
+    public void onButtonShowPopupWindowClick(View view){
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+        View PopupView = inflater.inflate(R.layout.race_info, null);
 
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(PopupView, width, height, focusable);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+    }
 
 
 }
