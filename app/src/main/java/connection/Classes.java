@@ -13,7 +13,7 @@ import model.ProficienciesList;
 
 public class Classes extends APIconnection {
 
-    protected static final String classPath = "classes/";
+    protected static final String classPath = "/api/classes/";
 
     private List<ProficienciesList> ProficienciesChoice;
     private ProficienciesList BasicProficiencies;

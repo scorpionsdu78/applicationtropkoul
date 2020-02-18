@@ -14,12 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ddprojet.CustomComponent.CharacterSelectionView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 import model.Alignment;
@@ -64,7 +58,7 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             super(itemView);
 
             this.name = itemView.findViewById(R.id.textViewName);
-            this.race = itemView.findViewById(R.id.textViewRace);
+            this.race = itemView.findViewById(R.id.textViewClass);
             this.class_ = itemView.findViewById(R.id.textViewClass);
             this.alignment = itemView.findViewById(R.id.textViewAlignement);
             this.level = itemView.findViewById(R.id.textViewLevel);

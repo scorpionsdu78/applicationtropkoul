@@ -14,7 +14,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
-import com.example.ddprojet.fragment.Classes;
+import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
 import com.example.ddprojet.fragment.FragmentEnum;
 import com.example.ddprojet.fragment.PersonnaliteFragment;
@@ -130,7 +130,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private void SetFragment(ViewPager pager){
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.add(new RaceFragment());
-        adapter.add(new Classes());
+        adapter.add(new ClassesFragment());
         adapter.add(new CaracCompFragment());
         adapter.add(new CapaDonsFragment());
         adapter.add(new EquipSortsFragment());
