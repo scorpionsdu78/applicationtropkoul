@@ -1,4 +1,4 @@
-package com.example.ddprojet.fragment;
+package util;
 
 import androidx.fragment.app.Fragment;
 

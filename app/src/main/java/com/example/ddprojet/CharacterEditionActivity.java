@@ -16,7 +16,7 @@ import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
 import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
-import com.example.ddprojet.fragment.FragmentEnum;
+import util.FragmentEnum;
 import com.example.ddprojet.fragment.PersonnaliteFragment;
 import com.example.ddprojet.fragment.RaceFragment;
 import com.google.android.material.navigation.NavigationView;
@@ -29,6 +29,7 @@ import java.util.Map;
 import model.Character;
 import util.CustomViewPager;
 import util.Adapter;
+import util.Requirement;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -41,6 +42,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     private List<String> bonuses;
     private Map<String, Integer> classRequierement;
+    private Map<String, Integer> bonusCharac;
 
 
     public Character getCharacter() {
@@ -78,6 +80,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         this.bonuses = new ArrayList<>();
         this.classRequierement = new HashMap<>();
+        bonusCharac = new HashMap<>();
 
         this.bonuses.add("Strength");
         this.bonuses.add("Constitution");
@@ -94,8 +97,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.bonuses.add("Performance");
         this.bonuses.add("Persuasion");
 
-        this.classRequierement.put("Strength", 16);
-        this.classRequierement.put("Wisdom", 19);
 
 
         sectionAdapter = new Adapter(getSupportFragmentManager());
@@ -204,6 +205,64 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     public void onNextButtonClick(View v){
         this.ChangeFragment(pager.getCurrentItem() + 1);
     }
+
+    public void SetRequirement(String classe){
+        switch (classe){
+            case "Barbarian":
+                classRequierement.put(Requirement.Barbare.getStat1(),13);
+                break;
+
+            case "Bard":
+                classRequierement.put(Requirement.Barde.getStat1(),13);
+                break;
+
+            case "Cleric":
+                classRequierement.put(Requirement.Clerc.getStat1(),13);
+                break;
+
+            case "Druid":
+                classRequierement.put(Requirement.Druide.getStat1(),13);
+                break;
+
+            case "Fighter":
+                classRequierement.put(Requirement.Guerrier.getStat1(),13);
+                classRequierement.put(Requirement.Guerrier.getStat2(), 13);
+                break;
+
+            case "Monk":
+                classRequierement.put(Requirement.Moine.getStat1(), 13);
+                classRequierement.put(Requirement.Moine.getStat2(),13);
+                break;
+
+            case "Paladin":
+                classRequierement.put(Requirement.Paladin.getStat1(), 13);
+                classRequierement.put(Requirement.Paladin.getStat2(),13);
+                break;
+
+            case "Ranger":
+                classRequierement.put(Requirement.Rodeur.getStat1(),13);
+                classRequierement.put(Requirement.Rodeur.getStat2(),13);
+                break;
+
+            case "Rogue":
+                classRequierement.put(Requirement.Roublard.getStat1(),13);
+                break;
+
+            case "Sorcerer":
+                classRequierement.put(Requirement.Ensorceleur.getStat1(),13);
+                break;
+
+            case "Warlock":
+                classRequierement.put(Requirement.Sorcier.getStat1(),13);
+                break;
+
+            case "Wizard":
+                classRequierement.put(Requirement.Magicien.getStat1(), 13);
+                break;
+        }
+    }
+
+    
 
 
 }
