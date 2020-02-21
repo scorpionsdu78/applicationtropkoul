@@ -82,8 +82,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.classRequierement = new HashMap<>();
         bonusCharac = new HashMap<>();
 
-        this.bonuses.add("Strength");
-        this.bonuses.add("Constitution");
+        bonusCharac.put("STR", new Integer(2));
+        bonusCharac.put("CHA", new Integer(1));
+
 
         this.bonuses.add("Acrobatics");
         this.bonuses.add("Sleight of Hand");
@@ -262,7 +263,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         }
     }
 
-    
+
 
 
 }
