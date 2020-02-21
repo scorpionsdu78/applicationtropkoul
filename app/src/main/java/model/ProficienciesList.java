@@ -30,8 +30,12 @@ public class ProficienciesList {
     public String toString() {
         String s = "";
 
+        if(choice >0){
+            s += "choice: " + Integer.toString(choice);
+        }
+
         for (int i =0; i<list.size(); i++) {
-            s = s +"\n"+list.get(i).name+ " " + list.get(i).url + "\n";
+            s = s +"\n"+list.get(i).name+ " " +  "\n";
         }
         
         return s;

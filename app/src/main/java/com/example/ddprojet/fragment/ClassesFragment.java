@@ -1,11 +1,15 @@
 package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
@@ -18,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 import com.example.ddprojet.fonction.asyncFonc.ClassesGet;
+import com.example.ddprojet.fonction.asyncFonc.ClassesGetInfo;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -70,6 +75,7 @@ public class ClassesFragment extends Fragment {
             fr.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    ShowPopup(view, name.getText().toString().toLowerCase());
                 }
             });
         }
@@ -115,6 +121,7 @@ public class ClassesFragment extends Fragment {
 
             holder.setName(classe);
             holder.setPhoto(images.get(classe).intValue());
+            holder.setOnclick();
         }
 
         @Override
@@ -128,6 +135,30 @@ public class ClassesFragment extends Fragment {
         }
     }
 
+    public void ShowPopup(View view, String name){
+        LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
+        View popupView = inflater.inflate(R.layout.class_info, null);
 
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        boolean focusable = true; // lets taps outside the popup also dismiss it
+        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+
+        ClassesGetInfo update = new ClassesGetInfo(popupView);
+        update.execute(name);
+
+        // show the popup window
+        // which view you pass in doesn't matter, it is only used for the window tolken
+        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+
+        Button bt2 = (Button) popupView.findViewById(R.id.backButton);
+        bt2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+            }
+        });
+
+    }
 
 }
