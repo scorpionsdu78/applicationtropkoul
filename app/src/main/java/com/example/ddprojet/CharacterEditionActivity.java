@@ -40,7 +40,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     private Character character;
 
-    private List<String> bonuses;
+    private List<String> bonusSkill;
     private Map<String, Integer> classRequierement;
     private Map<String, Integer> bonusCharac;
 
@@ -49,8 +49,16 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         return character;
     }
 
-    public boolean containBonus(String key){
-        return this.bonuses.contains(key);
+    public boolean containBonusSkill(String key){
+        return this.bonusSkill.contains(key);
+    }
+    public int getBonusCharac(String key){
+
+        if(this.bonusCharac.containsKey(key))
+            return this.bonusCharac.get(key);
+        else
+            return 0;
+
     }
 
 
@@ -78,25 +86,28 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         this.character = new Character();
 
-        this.bonuses = new ArrayList<>();
+        this.bonusSkill = new ArrayList<>();
         this.classRequierement = new HashMap<>();
-        bonusCharac = new HashMap<>();
+        this.bonusCharac = new HashMap<>();
 
         bonusCharac.put("STR", new Integer(2));
         bonusCharac.put("CHA", new Integer(1));
 
 
-        this.bonuses.add("Acrobatics");
-        this.bonuses.add("Sleight of Hand");
-        this.bonuses.add("History");
-        this.bonuses.add("Investigation");
-        this.bonuses.add("Religion");
-        this.bonuses.add("Animal Handling");
-        this.bonuses.add("Medicine");
-        this.bonuses.add("Survival");
-        this.bonuses.add("Intimidation");
-        this.bonuses.add("Performance");
-        this.bonuses.add("Persuasion");
+        this.bonusSkill.add("Acrobatics");
+        this.bonusSkill.add("Sleight of Hand");
+        this.bonusSkill.add("History");
+        this.bonusSkill.add("Investigation");
+        this.bonusSkill.add("Religion");
+        this.bonusSkill.add("Animal Handling");
+        this.bonusSkill.add("Medicine");
+        this.bonusSkill.add("Survival");
+        this.bonusSkill.add("Intimidation");
+        this.bonusSkill.add("Performance");
+        this.bonusSkill.add("Persuasion");
+
+        this.classRequierement.put("DEX", 12);
+        this.classRequierement.put("CON", 18);
 
 
 

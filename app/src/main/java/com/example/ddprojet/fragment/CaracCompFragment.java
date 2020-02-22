@@ -1,6 +1,7 @@
 package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,66 +66,66 @@ public class CaracCompFragment extends Fragment {
 
 
         //Init of the spells checkbox
-        if(this.parent_activity.containBonus("Athletics"))
+        if(this.parent_activity.containBonusSkill("Athletics"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxAthletics)).setChecked(true);
 
 
 
-        if(this.parent_activity.containBonus("Acrobatics"))
+        if(this.parent_activity.containBonusSkill("Acrobatics"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxAcrobatics)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Sleight of Hand"))
+        if(this.parent_activity.containBonusSkill("Sleight of Hand"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxSleight_of_Hand)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Stealth"))
+        if(this.parent_activity.containBonusSkill("Stealth"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxStealth)).setChecked(true);
 
 
 
-        if(this.parent_activity.containBonus("Arcana"))
+        if(this.parent_activity.containBonusSkill("Arcana"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxArcana)).setChecked(true);
 
-        if(this.parent_activity.containBonus("History"))
+        if(this.parent_activity.containBonusSkill("History"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxHistory)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Investigation"))
+        if(this.parent_activity.containBonusSkill("Investigation"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxInvestigation)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Nature"))
+        if(this.parent_activity.containBonusSkill("Nature"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxNature)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Religion"))
+        if(this.parent_activity.containBonusSkill("Religion"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxReligion)).setChecked(true);
 
 
 
-        if(this.parent_activity.containBonus("Animal Handling"))
+        if(this.parent_activity.containBonusSkill("Animal Handling"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxAnimalHandling)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Insigth"))
+        if(this.parent_activity.containBonusSkill("Insigth"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxInsight)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Medicine"))
+        if(this.parent_activity.containBonusSkill("Medicine"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxMedicine)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Perception"))
+        if(this.parent_activity.containBonusSkill("Perception"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxPerception)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Survival"))
+        if(this.parent_activity.containBonusSkill("Survival"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxSurvival)).setChecked(true);
 
 
 
-        if(this.parent_activity.containBonus("Deception"))
+        if(this.parent_activity.containBonusSkill("Deception"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxDeception)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Intimidation"))
+        if(this.parent_activity.containBonusSkill("Intimidation"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxIntimidation)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Performance"))
+        if(this.parent_activity.containBonusSkill("Performance"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxPerformance)).setChecked(true);
 
-        if(this.parent_activity.containBonus("Persuasion"))
+        if(this.parent_activity.containBonusSkill("Persuasion"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxPersuasion)).setChecked(true);
 
 
@@ -138,14 +139,14 @@ public class CaracCompFragment extends Fragment {
         onClickPlus(parent);
         onClickMinus(parent);
 
-        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getText().toString();
+        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
         TextView textViewValue = (TextView)parent.findViewById(R.id.textViewValue);
 
         int initValue = 10;
+        initValue += this.parent_activity.getBonusCharac(characName);
 
-        if(this.parent_activity.containBonus(characName)) {
-            initValue += 2;
-
+        if( initValue > 10) {
+            Log.i("DulcheE", characName);
             CheckBox checkBoxSavingThrows = (CheckBox)parent.findViewById(R.id.checkBoxSavingThrows);
             checkBoxSavingThrows.setChecked(true);
         }
@@ -211,7 +212,7 @@ public class CaracCompFragment extends Fragment {
                 if(number_parsed <= 20) {
                     characTextView.setText(String.valueOf(number_parsed));
 
-                    String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getText().toString();
+                    String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
                     this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
 
                     this.characPoints--;
@@ -230,7 +231,7 @@ public class CaracCompFragment extends Fragment {
     protected void soustractValueCharacTextView(LinearLayout parent){
 
         TextView characTextView = (TextView)parent.findViewById(R.id.textViewValue);
-        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getText().toString();
+        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
         String number = characTextView.getText().toString();
 
         try{
@@ -239,7 +240,7 @@ public class CaracCompFragment extends Fragment {
 
             int min_limit = 1;
 
-            if(this.parent_activity.containBonus(characName)) min_limit += 2;
+            min_limit += this.parent_activity.getBonusCharac(characName);
 
             if(number_parsed >= min_limit && number_parsed >= this.parent_activity.getClassRequierement(characName)) {
                 characTextView.setText(String.valueOf(number_parsed));
@@ -259,13 +260,13 @@ public class CaracCompFragment extends Fragment {
 
     protected void updateSkillsValue(LinearLayout parent){
 
-        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getText().toString();
+        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
         TextView savingThrows = (TextView)parent.findViewById(R.id.textViewSavingThrows);
         updateSavingThrowsValue(savingThrows, parent);
 
         switch (characName){
 
-            case "Strength" :
+            case "STR" :
 
                 TextView textViewAthletics = (TextView)parent.findViewById(R.id.textViewAthletics);
                 updateSkillValue(textViewAthletics, "Athletics", parent);
@@ -273,7 +274,7 @@ public class CaracCompFragment extends Fragment {
                 break;
 
 
-            case "Dexterity" :
+            case "DEX" :
 
                 TextView textViewAcrobatics = (TextView)parent.findViewById(R.id.textViewAcrobatics);
                 updateSkillValue(textViewAcrobatics, "Acrobatics", parent);
@@ -287,12 +288,12 @@ public class CaracCompFragment extends Fragment {
                 break;
 
 
-            case "Constitution" :
+            case "CON" :
 
                 break;
 
 
-            case "Intelligence" :
+            case "INT" :
 
                 TextView textViewArcana = (TextView)parent.findViewById(R.id.textViewArcana);
                 updateSkillValue(textViewArcana, "Arcana", parent);
@@ -312,7 +313,7 @@ public class CaracCompFragment extends Fragment {
                 break;
 
 
-            case "Wisdom" :
+            case "WIS" :
 
                 TextView textViewAnimalHandling = (TextView)parent.findViewById(R.id.textViewAnimalHandling);
                 updateSkillValue(textViewAnimalHandling, "Animal Handling", parent);
@@ -332,7 +333,7 @@ public class CaracCompFragment extends Fragment {
                 break;
 
 
-            case "Charisma" :
+            case "CHA" :
 
                 TextView textViewDeception = (TextView)parent.findViewById(R.id.textViewDeception);
                 updateSkillValue(textViewDeception, "Deception", parent);
@@ -355,7 +356,7 @@ public class CaracCompFragment extends Fragment {
     protected void updateSavingThrowsValue(TextView textView, LinearLayout parent){
 
         String parent_value = ((TextView)parent.findViewById(R.id.textViewValue)).getText().toString();
-        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getText().toString();
+        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
 
 
         try{
@@ -377,7 +378,7 @@ public class CaracCompFragment extends Fragment {
         try{
             int value = (int)Math.floor((Float.parseFloat(parent_value) - 10) / 2);
 
-            if(this.parent_activity.containBonus(skillName))
+            if(this.parent_activity.containBonusSkill(skillName))
                 value += this.parent_activity.levelBonusSkill();
 
             textView.setText(String.valueOf(value));

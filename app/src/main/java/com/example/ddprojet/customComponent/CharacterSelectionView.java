@@ -1,4 +1,4 @@
-package com.example.ddprojet.CustomComponent;
+package com.example.ddprojet.customComponent;
 
 import android.content.Context;
 import android.content.res.TypedArray;
