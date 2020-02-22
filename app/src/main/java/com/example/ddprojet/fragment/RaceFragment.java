@@ -30,10 +30,15 @@ import com.example.ddprojet.fonction.asyncFonc.RacesGet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
+import connection.Race;
+import model.Character;
 import util.FragmentEnum;
 
 public class RaceFragment extends Fragment {
+
+    private Race choosed;
 
     @Nullable
     @Override
@@ -142,7 +147,8 @@ public class RaceFragment extends Fragment {
         }
     }
 
-    public void onButtonShowPopupWindowClick(View view, String name){
+    public void onButtonShowPopupWindowClick(View view, String name)  {
+
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
         View PopupView = inflater.inflate(R.layout.race_info, null);
 
@@ -152,6 +158,15 @@ public class RaceFragment extends Fragment {
                 (TextView)PopupView.findViewById(R.id.size), (TextView)PopupView.findViewById(R.id.sizeDesc),(TextView)PopupView.findViewById(R.id.langDesc) ,(ListView)PopupView.findViewById(R.id.langauges),
                 (ListView)PopupView.findViewById(R.id.trait),(ListView)PopupView.findViewById(R.id.Bonus));
         getter.execute(name);
+
+        try {
+            choosed = getter.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
@@ -183,7 +198,26 @@ public class RaceFragment extends Fragment {
     }
 
     public void onValidation(View v){
+
         CharacterEditionActivity activity = (CharacterEditionActivity)getActivity();
+
+        Character userCharacter = activity.getCharacter();
+
+        if(choosed != null){
+            userCharacter.setRace(choosed.getName());
+            userCharacter.setSpeed(choosed.getSpeed());
+            userCharacter.setProficiencies(choosed.getStartProf().getNames());
+            userCharacter.setLanguages(choosed.getLanguages());
+            activity.setBonusCharac(choosed.getBonuses());
+            activity.setTraits(choosed.getGlobalTrait(),choosed.getTraitList());
+            if(choosed.getStartProf().hasSkills() !=null){
+                for (String skill: choosed.getStartProf().hasSkills()) {
+                    activity.addSkill(skill);
+                }
+            }
+        }
+
+
 
         activity.ChangeFragment(FragmentEnum.Classe.getValue());
     }

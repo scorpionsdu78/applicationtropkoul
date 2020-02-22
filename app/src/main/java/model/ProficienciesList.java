@@ -26,6 +26,24 @@ public class ProficienciesList {
         return choice;
     }
 
+    public List<String> getNames(){
+        List<String> names = new ArrayList<>();
+        for (Proficiencies p: list) {
+            names.add(p.getName());
+        }
+        return names;
+    }
+
+    public List<String> hasSkills(){
+        List<String> retour = new ArrayList<>();
+        for (Proficiencies p: list) {
+            if(p.name.contains("Skill:")){
+                retour.add(p.name.split(" ")[1]);
+            }
+        }
+        return retour;
+    }
+
     @Override
     public String toString() {
         String s = "";

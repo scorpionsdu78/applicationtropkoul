@@ -16,6 +16,10 @@ public class Character {
     protected int level;
     protected @DrawableRes int avatar;
 
+    protected int life;
+    protected String hitDive;
+    protected int speed;
+
     protected Map<String, Integer> characteristic;
     protected Map<String, Integer> skills;
 
@@ -90,6 +94,22 @@ public class Character {
         this.bonds = bonds;
         this.flaws = flaws;
 
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
+    public String getHitDive() {
+        return hitDive;
+    }
+
+    public void setHitDive(String hitDive) {
+        this.hitDive = hitDive;
     }
 
     public String getName() {
@@ -226,5 +246,21 @@ public class Character {
 
     public void setFlaws(String flaws) {
         this.flaws = flaws;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public void addProficiencies(Proficiencies p){
+        this.proficiencies.add(p.getName());
+    }
+
+    public void addTrait(Trait t){
+        this.traits.add(t.name);
     }
 }

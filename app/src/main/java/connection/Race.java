@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Bonus;
+import model.Proficiencies;
+import model.ProficienciesList;
 import model.Trait;
 import model.TraitList;
 
@@ -29,6 +31,7 @@ public class Race extends APIconnection {
     private java.lang.String size;
     private java.lang.String size_desc;
     private java.lang.String langDesc;
+    private ProficienciesList startProf;
 
 
     public Race() throws IOException, JSONException {
@@ -88,6 +91,18 @@ public class Race extends APIconnection {
         for(int i=0; i<listLangue.length(); i++){
             JSONObject tampon = listLangue.getJSONObject(i);
             languages.add(tampon.getString("name"));
+        }
+
+        //on recupere les eventuel proficiencies de depart
+
+        startProf = new ProficienciesList(0);
+
+        JSONArray array = file.optJSONArray("starting_proficiencies");
+        if(array !=null) {
+            for (int i = 0; i < array.length(); i++){
+                JSONObject tmp = array.getJSONObject(i);
+                startProf.add(new Proficiencies(tmp.getString("url"),tmp.getString("name")));
+            }
         }
 
         //on récupère le nom
@@ -156,5 +171,17 @@ public class Race extends APIconnection {
 
     public List<java.lang.String> getLanguages() {
         return languages;
+    }
+
+
+    public ProficienciesList getStartProf() {
+        return startProf;
+    }
+
+    @Override
+    public String toString() {
+        return "Race{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

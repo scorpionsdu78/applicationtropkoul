@@ -16,6 +16,10 @@ import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
 import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
+
+import model.Bonus;
+import model.Trait;
+import model.TraitList;
 import util.FragmentEnum;
 import com.example.ddprojet.fragment.PersonnaliteFragment;
 import com.example.ddprojet.fragment.RaceFragment;
@@ -44,6 +48,8 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private Map<String, Integer> classRequierement;
     private Map<String, Integer> bonusCharac;
 
+    private TraitList traits;
+    private TraitList optionalTrait;
 
     public Character getCharacter() {
         return character;
@@ -86,7 +92,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         bonusCharac.put("CHA", new Integer(1));
 
 
-        this.bonuses.add("Acrobatics");
+        /*this.bonuses.add("Acrobatics");
         this.bonuses.add("Sleight of Hand");
         this.bonuses.add("History");
         this.bonuses.add("Investigation");
@@ -94,9 +100,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.bonuses.add("Animal Handling");
         this.bonuses.add("Medicine");
         this.bonuses.add("Survival");
-        this.bonuses.add("Intimidation");
+        //this.bonuses.add("Intimidation");
         this.bonuses.add("Performance");
-        this.bonuses.add("Persuasion");
+        this.bonuses.add("Persuasion");*/
 
 
 
@@ -263,8 +269,24 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         }
     }
 
+    public void setBonusCharac(List<Bonus> _bonusCharac) {
 
+        for (Bonus b: _bonusCharac) {
+            this.bonusCharac.put(b.getCharacteristic(), new Integer(b.getValue()));
+        }
 
+    }
+
+    public void setTraits(TraitList l1, TraitList l2){
+
+        this.traits = l1;
+        this.optionalTrait =l2;
+
+    }
+
+    public void addSkill(String skill){
+        bonuses.add(skill);
+    }
 
 }
 

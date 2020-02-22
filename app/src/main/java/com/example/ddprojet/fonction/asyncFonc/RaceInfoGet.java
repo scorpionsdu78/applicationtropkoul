@@ -160,6 +160,27 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
 
         Utility.setListViewHeightBasedOnChildren(list3);
 
+        //on get les proficiencies de la race
+
+        if(!race.getStartProf().getList().isEmpty()) {
+
+            ListView list4 = this.view.get().findViewById(R.id.prof);
+
+            List<String> profList = new ArrayList<>();
+
+            profList.add("PROFICIENCIES");
+
+            for (String s : race.getStartProf().getNames()) {
+                profList.add(s);
+            }
+
+            StringAdapter adapterp = new StringAdapter(view.get().getContext(), R.layout.util_list, profList);
+            list4.setAdapter(adapterp);
+
+            Utility.setListViewHeightBasedOnChildren(list4);
+        }
+
+
 
     }
 
