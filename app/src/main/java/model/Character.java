@@ -30,6 +30,8 @@ public class Character {
     protected List<String> aptitudes;
     protected List<String> traits;
 
+    protected List<String> savingThrow;
+
     protected String personality_traits;
     protected String ideals;
     protected String bonds;
@@ -96,6 +98,14 @@ public class Character {
         this.bonds = bonds;
         this.flaws = flaws;
 
+    }
+
+    public List<String> getSavingThrow() {
+        return savingThrow;
+    }
+
+    public void setSavingThrow(List<String> savingThrow) {
+        this.savingThrow = savingThrow;
     }
 
     public int getLife() {
