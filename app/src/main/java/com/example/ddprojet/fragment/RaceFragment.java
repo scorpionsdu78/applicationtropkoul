@@ -206,11 +206,11 @@ public class RaceFragment extends Fragment {
         if(choosed != null){
             userCharacter.setRace(choosed.getName());
             userCharacter.setSpeed(choosed.getSpeed());
-            userCharacter.setProficiencies(choosed.getStartProf().getNames());
             userCharacter.setLanguages(choosed.getLanguages());
             activity.setBonusCharac(choosed.getBonuses());
             activity.setTraits(choosed.getGlobalTrait(),choosed.getTraitList());
             if(choosed.getStartProf().hasSkills() !=null){
+                userCharacter.setProficiencies(choosed.getStartProf().getNames());
                 for (String skill: choosed.getStartProf().hasSkills()) {
                     activity.addSkill(skill);
                 }

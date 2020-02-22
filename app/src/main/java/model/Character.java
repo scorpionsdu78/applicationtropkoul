@@ -35,6 +35,8 @@ public class Character {
     protected String bonds;
     protected String flaws;
 
+    private boolean alreadySet = false;
+
     public Character(){
 
         this.characteristic = new HashMap<>();
@@ -189,7 +191,15 @@ public class Character {
     }
 
     public void setProficiencies(List<String> proficiencies) {
-        this.proficiencies = proficiencies;
+        if(!alreadySet) {
+            this.proficiencies = proficiencies;
+            alreadySet = true;
+        }
+        else {
+            for (String p: proficiencies) {
+                this.addProficiencies(new Proficiencies("",p));
+            }
+        }
     }
 
     public List<String> getLanguages() {
