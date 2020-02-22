@@ -16,6 +16,10 @@ import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
 import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
+
+import model.Bonus;
+import model.Trait;
+import model.TraitList;
 import util.FragmentEnum;
 import com.example.ddprojet.fragment.PersonnaliteFragment;
 import com.example.ddprojet.fragment.RaceFragment;
@@ -44,6 +48,8 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private Map<String, Integer> classRequierement;
     private Map<String, Integer> bonusCharac;
 
+    private TraitList traits;
+    private TraitList optionalTrait;
 
     public Character getCharacter() {
         return character;
@@ -90,24 +96,22 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.classRequierement = new HashMap<>();
         this.bonusCharac = new HashMap<>();
 
-        bonusCharac.put("STR", new Integer(2));
+        /*bonusCharac.put("STR", new Integer(2));
         bonusCharac.put("CHA", new Integer(1));
-
-
-        this.bonusSkill.add("Acrobatics");
-        this.bonusSkill.add("Sleight of Hand");
-        this.bonusSkill.add("History");
-        this.bonusSkill.add("Investigation");
-        this.bonusSkill.add("Religion");
-        this.bonusSkill.add("Animal Handling");
-        this.bonusSkill.add("Medicine");
-        this.bonusSkill.add("Survival");
-        this.bonusSkill.add("Intimidation");
-        this.bonusSkill.add("Performance");
-        this.bonusSkill.add("Persuasion");
 
         this.classRequierement.put("DEX", 12);
         this.classRequierement.put("CON", 18);
+        this.bonuses.add("Acrobatics");
+        this.bonuses.add("Sleight of Hand");
+        this.bonuses.add("History");
+        this.bonuses.add("Investigation");
+        this.bonuses.add("Religion");
+        this.bonuses.add("Animal Handling");
+        this.bonuses.add("Medicine");
+        this.bonuses.add("Survival");
+        this.bonuses.add("Intimidation");
+        this.bonuses.add("Performance");
+        this.bonuses.add("Persuasion");*/
 
 
 
@@ -274,8 +278,24 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         }
     }
 
+    public void setBonusCharac(List<Bonus> _bonusCharac) {
 
+        for (Bonus b: _bonusCharac) {
+            this.bonusCharac.put(b.getCharacteristic(), new Integer(b.getValue()));
+        }
 
+    }
+
+    public void setTraits(TraitList l1, TraitList l2){
+
+        this.traits = l1;
+        this.optionalTrait =l2;
+
+    }
+
+    public void addSkill(String skill){
+        bonuses.add(skill);
+    }
 
 }
 
