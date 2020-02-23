@@ -279,11 +279,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         }
     }
 
-    public void setBonusCharac(List<Bonus> _bonusCharac) {
+    public void setBonusCharac(HashMap<String,Integer> _bonusCharac) {
 
-        for (Bonus b: _bonusCharac) {
-            this.bonusCharac.put(b.getCharacteristic(), new Integer(b.getValue()));
-        }
+            this.bonusCharac = _bonusCharac;
 
     }
 
