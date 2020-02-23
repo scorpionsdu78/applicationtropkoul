@@ -1,6 +1,7 @@
 package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ddprojet.CharacterEditionActivity;
 import com.example.ddprojet.R;
 import com.example.ddprojet.fonction.asyncFonc.ClassesGet;
 import com.example.ddprojet.fonction.asyncFonc.ClassesGetInfo;
@@ -30,12 +32,28 @@ import java.util.Vector;
 
 public class ClassesFragment extends Fragment {
 
+    private View vue;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.class_layout, container, false);
 
-        RecyclerView rv = (v).findViewById(R.id.ClassRecyclerView);
+        vue = v;
+        return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("why",((CharacterEditionActivity)getActivity()).getCharacter().toString());
+        Log.d("why",((CharacterEditionActivity)getActivity()).getRace());
+
+
+        TextView title = vue.findViewById(R.id.RaceChoose);
+        title.setText(((CharacterEditionActivity)getActivity()).getCharacter().getRace());
+
+        RecyclerView rv = (vue).findViewById(R.id.ClassRecyclerView);
         ClassDescriptionAdaptator adaptator = new ClassDescriptionAdaptator();
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3, LinearLayoutManager.VERTICAL,false);
@@ -45,8 +63,6 @@ public class ClassesFragment extends Fragment {
 
         ClassesGet getClass = new ClassesGet(adaptator);
         getClass.execute("test");
-
-        return v;
     }
 
     public class classeHolder extends RecyclerView.ViewHolder{
@@ -158,6 +174,10 @@ public class ClassesFragment extends Fragment {
                 popupWindow.dismiss();
             }
         });
+
+    }
+
+    public void onEntering(View v){
 
     }
 

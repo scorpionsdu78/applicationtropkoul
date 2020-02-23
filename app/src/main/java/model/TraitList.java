@@ -23,6 +23,14 @@ public class TraitList {
         return choice;
     }
 
+    public List<String> getName(){
+        List<String> retour = new ArrayList<>();
+        for (Trait t: traits) {
+            retour.add(t.name);
+        }
+        return retour;
+    }
+
     @Override
     public String toString() {
         String s ="";

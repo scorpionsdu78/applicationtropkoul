@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Semaphore;
 
 import model.Character;
 import util.CustomViewPager;
@@ -36,6 +37,7 @@ import util.Adapter;
 import util.Requirement;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
 
     private DrawerLayout drawerLayout;
 
@@ -47,9 +49,19 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private List<String> bonusSkill;
     private Map<String, Integer> classRequierement;
     private Map<String, Integer> bonusCharac;
+    private String race;
 
     private TraitList traits;
     private TraitList optionalTrait;
+
+
+    public String getRace() {
+        return race;
+    }
+
+    public void setRace(String race) {
+        this.race = race;
+    }
 
     public Character getCharacter() {
         return character;
@@ -90,7 +102,10 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_edition);
 
+
         this.character = new Character();
+
+
 
         this.bonusSkill = new ArrayList<>();
         this.classRequierement = new HashMap<>();
@@ -133,9 +148,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         pager = (CustomViewPager) findViewById(R.id.fragment_container);
 
 
-
-
-
         SetFragment(pager);
 
 
@@ -161,7 +173,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     }
 
     public void ChangeFragment(int id){
+
         pager.setCurrentItem(id);
+
     }
 
     @Override
@@ -295,6 +309,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     public void addSkill(String skill){
         this.bonusSkill.add(skill);
     }
+
+
+
 
 }
 

@@ -204,28 +204,32 @@ public class RaceFragment extends Fragment {
 
         Character userCharacter = activity.getCharacter();
 
-        if(choosed != null){
-            userCharacter.setRace(choosed.getName());
-            userCharacter.setSpeed(choosed.getSpeed());
-            userCharacter.setLanguages(choosed.getLanguages());
-            HashMap<String, Integer> bonusCharac = new HashMap<>();
-            for (Bonus b: choosed.getBonuses()) {
-                bonusCharac.put(b.getCharacteristic(), new Integer(b.getValue()));
-            }
-            activity.setBonusCharac(bonusCharac);
-            activity.setTraits(choosed.getGlobalTrait(),choosed.getTraitList());
-            if(choosed.getStartProf().hasSkills() !=null){
-                userCharacter.setProficiencies(choosed.getStartProf().getNames());
-                for (String skill: choosed.getStartProf().hasSkills()) {
-                    activity.addSkill(skill);
-                }
+        Log.d("why",userCharacter.toString());
+
+
+        userCharacter.setRace(choosed.getName());
+        activity.setRace(choosed.getName());
+        Log.d("why",activity.getCharacter().getRace());
+        userCharacter.setSpeed(choosed.getSpeed());
+        userCharacter.setLanguages(choosed.getLanguages());
+        userCharacter.setTraits(choosed.getGlobalTrait().getName());
+        HashMap<String, Integer> bonusCharac = new HashMap<>();
+        for (Bonus b: choosed.getBonuses()) {
+            bonusCharac.put(b.getCharacteristic(), new Integer(b.getValue()));
+        }
+        activity.setBonusCharac(bonusCharac);
+        activity.setTraits(choosed.getGlobalTrait(),choosed.getTraitList());
+        if(choosed.getStartProf().hasSkills() !=null){
+            userCharacter.setProficiencies(choosed.getStartProf().getNames());
+            for (String skill: choosed.getStartProf().hasSkills()) {
+                activity.addSkill(skill);
             }
         }
 
-
-
         activity.ChangeFragment(FragmentEnum.Classe.getValue());
     }
+
+
 
 
 }

@@ -1,5 +1,7 @@
 package model;
 
+import android.util.Log;
+
 import androidx.annotation.DrawableRes;
 
 import java.util.ArrayList;
@@ -37,7 +39,8 @@ public class Character {
     protected String bonds;
     protected String flaws;
 
-    private boolean alreadySet = false;
+    private boolean alreadySetProf = false;
+    private boolean allreadySetTrait = false;
 
     public Character(){
 
@@ -132,6 +135,7 @@ public class Character {
     }
 
     public void setRace(String race) {
+        Log.d("why","entrez dans le set race");
         this.race = race;
     }
 
@@ -204,9 +208,9 @@ public class Character {
     }
 
     public void setProficiencies(List<String> proficiencies) {
-        if(!alreadySet) {
+        if(!alreadySetProf) {
             this.proficiencies = proficiencies;
-            alreadySet = true;
+            alreadySetProf = true;
         }
         else {
             for (String p: proficiencies) {
@@ -236,7 +240,14 @@ public class Character {
     }
 
     public void setTraits(List<String> traits) {
-        this.traits = traits;
+        if(!this.allreadySetTrait) {
+            this.traits = traits;
+            allreadySetTrait = true;
+        }else{
+            for (String s: traits) {
+                this.traits.add(s);
+            }
+        }
     }
 
     public String getPersonality_traits() {
