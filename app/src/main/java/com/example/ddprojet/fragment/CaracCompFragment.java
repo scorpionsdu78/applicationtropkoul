@@ -145,7 +145,7 @@ public class CaracCompFragment extends Fragment {
         int initValue = 10;
         initValue += this.parent_activity.getBonusCharac(characName);
 
-        if( initValue > 10) {
+        if(this.parent_activity.getCharacter().getSavingThrows().contains(characName)) {
             Log.i("DulcheE", characName);
             CheckBox checkBoxSavingThrows = (CheckBox)parent.findViewById(R.id.checkBoxSavingThrows);
             checkBoxSavingThrows.setChecked(true);

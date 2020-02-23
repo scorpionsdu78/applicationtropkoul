@@ -23,14 +23,14 @@ public class Character {
     protected Map<String, Integer> characteristic;
     protected Map<String, Integer> skills;
 
+    protected List<String> savingThrows;
+
     protected List<String> spells;
 
     protected List<String> proficiencies;
     protected List<String> languages;
     protected List<String> aptitudes;
     protected List<String> traits;
-
-    protected List<String> savingThrow;
 
     protected String personality_traits;
     protected String ideals;
@@ -43,6 +43,7 @@ public class Character {
 
         this.characteristic = new HashMap<>();
         this.skills = new HashMap<>();
+        this.savingThrows = new ArrayList<>();
 
         this.spells = new ArrayList<>();
         this.proficiencies = new ArrayList<>();
@@ -63,6 +64,7 @@ public class Character {
 
         this.characteristic = new HashMap<>();
         this.skills = new HashMap<>();
+        this.savingThrows = new ArrayList<>();
 
         this.spells = new ArrayList<>();
         this.proficiencies = new ArrayList<>();
@@ -73,7 +75,7 @@ public class Character {
     }
 
     public Character(String name, String race, String class_, Alignment alignment, int level, @DrawableRes int avatar,
-                     Map<String, Integer> characteristic, Map<String, Integer> skills, Map<String, Integer> savingThrows,
+                     Map<String, Integer> characteristic, Map<String, Integer> skills, List<String> savingThrows,
                      List<String> spells, List<String> proficiencies, List<String> languages, List<String> aptitudes, List<String> traits,
                      String personality_traits, String ideals, String bonds, String flaws) {
 
@@ -86,6 +88,7 @@ public class Character {
 
         this.characteristic = characteristic;
         this.skills = skills;
+        this.savingThrows = savingThrows;
 
         this.spells = spells;
         this.proficiencies = proficiencies;
@@ -98,14 +101,6 @@ public class Character {
         this.bonds = bonds;
         this.flaws = flaws;
 
-    }
-
-    public List<String> getSavingThrow() {
-        return savingThrow;
-    }
-
-    public void setSavingThrow(List<String> savingThrow) {
-        this.savingThrow = savingThrow;
     }
 
     public int getLife() {
@@ -186,6 +181,14 @@ public class Character {
 
     public void setSkills(Map<String, Integer> skills) {
         this.skills = skills;
+    }
+
+    public List<String> getSavingThrows() {
+        return savingThrows;
+    }
+
+    public void setSavingThrows(List<String> savingThrows) {
+        this.savingThrows = savingThrows;
     }
 
     public List<String> getSpells() {
