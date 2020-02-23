@@ -33,6 +33,7 @@ import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
 import connection.Race;
+import model.Bonus;
 import model.Character;
 import util.FragmentEnum;
 
@@ -207,7 +208,11 @@ public class RaceFragment extends Fragment {
             userCharacter.setRace(choosed.getName());
             userCharacter.setSpeed(choosed.getSpeed());
             userCharacter.setLanguages(choosed.getLanguages());
-            activity.setBonusCharac(choosed.getBonuses());
+            HashMap<String, Integer> bonusCharac = new HashMap<>();
+            for (Bonus b: choosed.getBonuses()) {
+                bonusCharac.put(b.getCharacteristic(), new Integer(b.getValue()));
+            }
+            activity.setBonusCharac(bonusCharac);
             activity.setTraits(choosed.getGlobalTrait(),choosed.getTraitList());
             if(choosed.getStartProf().hasSkills() !=null){
                 userCharacter.setProficiencies(choosed.getStartProf().getNames());
