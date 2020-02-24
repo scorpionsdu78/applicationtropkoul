@@ -9,9 +9,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 import model.Spell;
@@ -21,6 +23,7 @@ public class SpellList extends APIconnection {
     protected static final String spellListPath = "spells/";
 
     HashMap<String, String> spells;
+    List<Spell> spellList;
 
     public SpellList() throws IOException, JSONException {
         super(SpellList.spellListPath);
@@ -31,6 +34,7 @@ public class SpellList extends APIconnection {
         for(int i=0; i<tab.length(); i++){
             JSONObject tmp = tab.getJSONObject(i);
             spells.put(tmp.getString("index"),"https://www.dnd5eapi.co"+tmp.getString("url"));
+            spellList.add(new Spell("https://www.dnd5eapi.co"+tmp.getString("url")));
         }
     }
 
@@ -42,6 +46,16 @@ public class SpellList extends APIconnection {
         }
 
         return null;
+    }
+
+    public List<Spell> getSpellFor(String classe){
+        List<Spell> result = new ArrayList<>();
+        for (Spell s: spellList) {
+            if(s.isFor(classe)){
+                result.add(s);
+            }
+        }
+        return result;
     }
 
 

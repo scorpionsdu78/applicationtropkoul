@@ -108,6 +108,13 @@ public class Spell extends APIconnection {
 
     public boolean isFor(String classe){
 
+        for (String s: classes) {
+            if(s.equals(classe)){
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @NonNull
