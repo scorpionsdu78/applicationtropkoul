@@ -34,6 +34,11 @@ public enum ClassEnum {
     }
 
     public static @DrawableRes int getValue(String raceName){
+
+        if(raceName == null)
+            return Default.getValue();
+
+
         switch (raceName.toLowerCase()){
 
             case "barbarian" :
