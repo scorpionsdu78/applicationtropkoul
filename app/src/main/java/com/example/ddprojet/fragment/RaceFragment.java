@@ -226,7 +226,7 @@ public class RaceFragment extends Fragment {
             }
         }
 
-        activity.ChangeFragment(FragmentEnum.Classe.getValue());
+        activity.ChangeFragment(FragmentEnum.RaceClassSelection);
     }
 
 

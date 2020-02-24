@@ -2004,7 +2004,6 @@
                 android:layout_height="0dp"
                 android:drawableStart="@drawable/ic_navigate_before_black_24dp"
                 android:drawableTint="#db3812"
-                android:onClick="onBackButtonClick"
                 android:text="Back"
                 android:textColor="#db3812"
                 android:textSize="@dimen/_8sdp"

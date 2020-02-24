@@ -17,11 +17,10 @@ import com.example.ddprojet.fragment.CaracCompFragment;
 import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
 
-import model.Bonus;
-import model.Trait;
 import model.TraitList;
 import util.FragmentEnum;
 import com.example.ddprojet.fragment.PersonnaliteFragment;
+import com.example.ddprojet.fragment.RaceClassSelectionFragment;
 import com.example.ddprojet.fragment.RaceFragment;
 import com.google.android.material.navigation.NavigationView;
 
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Semaphore;
 
 import model.Character;
 import util.CustomViewPager;
@@ -41,7 +39,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     private DrawerLayout drawerLayout;
 
-    private Adapter sectionAdapter;
     private CustomViewPager pager;
 
     private Character character;
@@ -131,8 +128,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
 
 
-        sectionAdapter = new Adapter(getSupportFragmentManager());
-
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -163,6 +158,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     private void SetFragment(ViewPager pager){
         Adapter adapter = new Adapter(getSupportFragmentManager());
+        adapter.add(new RaceClassSelectionFragment());
         adapter.add(new RaceFragment());
         adapter.add(new ClassesFragment());
         adapter.add(new CaracCompFragment());
@@ -172,9 +168,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         pager.setAdapter(adapter);
     }
 
-    public void ChangeFragment(int id){
+    public void ChangeFragment(FragmentEnum fragment){
 
-        pager.setCurrentItem(id);
+        pager.setCurrentItem(fragment.getValue());
 
     }
 
@@ -184,31 +180,31 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         switch (item.getItemId()){
             case R.id.nav_description :
 
-                ChangeFragment(FragmentEnum.Race.getValue());
+                ChangeFragment(FragmentEnum.RaceClassSelection);
 
                 break;
 
             case R.id.nav_caracComp :
 
-                ChangeFragment(FragmentEnum.CaracComp.getValue());
+                ChangeFragment(FragmentEnum.CaracComp);
 
                 break;
 
             case R.id.nav_capaDons :
 
-                ChangeFragment(FragmentEnum.CapaDons.getValue());
+                ChangeFragment(FragmentEnum.CapaDons);
 
                 break;
 
             case R.id.nav_equipSorts :
 
-                ChangeFragment(FragmentEnum.Equip.getValue());
+                ChangeFragment(FragmentEnum.EquipSpell);
 
                 break;
 
             case R.id.nav_personnalité :
 
-                ChangeFragment(FragmentEnum.Personnaliter.getValue());
+                ChangeFragment(FragmentEnum.Personnalite);
 
                 break;
         }
@@ -230,11 +226,11 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
 
     public void onBackButtonClick(View v){
-        this.ChangeFragment(pager.getCurrentItem() - 1);
+        this.pager.setCurrentItem(this.pager.getCurrentItem() - 1);
     }
 
     public void onNextButtonClick(View v){
-        this.ChangeFragment(pager.getCurrentItem() + 1);
+        this.pager.setCurrentItem(this.pager.getCurrentItem() + 1);
     }
 
     public void SetRequirement(String classe){

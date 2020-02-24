@@ -47,7 +47,7 @@ public class ClassesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("why",((CharacterEditionActivity)getActivity()).getCharacter().toString());
-        Log.d("why",((CharacterEditionActivity)getActivity()).getRace());
+        Log.d("why",((CharacterEditionActivity)getActivity()).getRace() + "");
 
 
         TextView title = vue.findViewById(R.id.RaceChoose);

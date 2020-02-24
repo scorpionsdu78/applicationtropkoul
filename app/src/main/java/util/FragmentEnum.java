@@ -4,12 +4,13 @@ import androidx.fragment.app.Fragment;
 
 public enum FragmentEnum {
 
-    Race(0),
-    Classe(1),
-    CaracComp(2),
-    CapaDons(3),
-    Equip(4),
-    Personnaliter(5);
+    RaceClassSelection(0),
+    Race(1),
+    Class(2),
+    CaracComp(3),
+    CapaDons(4),
+    EquipSpell(5),
+    Personnalite(6);
 
 
 

@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment;
 import com.example.ddprojet.CharacterEditionActivity;
 import com.example.ddprojet.R;
 
+import util.FragmentEnum;
+
 public class CaracCompFragment extends Fragment {
 
     protected View view;
@@ -36,6 +38,15 @@ public class CaracCompFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         this.view = inflater.inflate(R.layout.carac_comp_layout, container, false);
+
+        Button buttonBack = this.view.findViewById(R.id.buttonBack);
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CaracCompFragment.this.parent_activity.ChangeFragment(FragmentEnum.RaceClassSelection);
+            }
+        });
 
         //Init of the parent activity
         this.parent_activity = (CharacterEditionActivity)this.getActivity();
