@@ -119,24 +119,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.classRequierement = new HashMap<>();
         this.bonusCharac = new HashMap<>();
 
-        this.bonusCharac.put("STR", new Integer(2));
-        this.bonusCharac.put("CHA", new Integer(1));
-
-        this.classRequierement.put("DEX", 12);
-        this.classRequierement.put("CON", 18);
-
-        this.bonusSkill.add("Acrobatics");
-        this.bonusSkill.add("Sleight of Hand");
-        this.bonusSkill.add("History");
-        this.bonusSkill.add("Investigation");
-        this.bonusSkill.add("Religion");
-        this.bonusSkill.add("Animal Handling");
-        this.bonusSkill.add("Medicine");
-        this.bonusSkill.add("Survival");
-        this.bonusSkill.add("Intimidation");
-        this.bonusSkill.add("Performance");
-        this.bonusSkill.add("Persuasion");
-
 
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);

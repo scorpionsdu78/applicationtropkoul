@@ -1,11 +1,13 @@
 package com.example.ddprojet.fragment;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,6 +26,7 @@ public class RaceClassSelectionFragment extends Fragment {
 
     protected CharacterEditionActivity parent_activity;
     protected View view;
+    protected View.OnClickListener buttonNextOnClickListener;
 
     @Nullable
     @Override
@@ -33,7 +36,6 @@ public class RaceClassSelectionFragment extends Fragment {
         this.parent_activity = (CharacterEditionActivity)this.getActivity();
 
         CardView cardViewRace = this.view.findViewById(R.id.cardViewRace);
-        CardView cardViewClass = this.view.findViewById(R.id.cardViewClass);
 
         cardViewRace.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,12 +43,7 @@ public class RaceClassSelectionFragment extends Fragment {
                 RaceClassSelectionFragment.this.parent_activity.ChangeFragment(FragmentEnum.Race);
             }
         });
-        cardViewClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RaceClassSelectionFragment.this.parent_activity.ChangeFragment(FragmentEnum.Class);
-            }
-        });
+
 
         Button buttonNext = this.view.findViewById(R.id.buttonNext);
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +52,7 @@ public class RaceClassSelectionFragment extends Fragment {
                 RaceClassSelectionFragment.this.parent_activity.ChangeFragment(FragmentEnum.CaracComp);
             }
         });
+
 
         update();
 
@@ -77,10 +75,53 @@ public class RaceClassSelectionFragment extends Fragment {
         imageViewRace.setImageResource(RaceEnum.getValue(race));
 
 
+        TextView textViewRace = this.view.findViewById(R.id.textViewRaceName);
+        CardView cardViewClass = this.view.findViewById(R.id.cardViewClass);
+
+        if(race != null){
+            textViewRace.setText(race);
+
+            cardViewClass.setCardBackgroundColor(0x34FFFFFF);
+            cardViewClass.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    RaceClassSelectionFragment.this.parent_activity.ChangeFragment(FragmentEnum.Class);
+                }
+            });
+        }
+        else{
+            textViewRace.setText("Select a race");
+
+            cardViewClass.setCardBackgroundColor(0xD5969696);
+            cardViewClass.setOnClickListener(null);
+        }
+
+
         String class_ = this.parent_activity.getCharacter().getClass_();
 
         ImageView imageViewClass = this.view.findViewById(R.id.imageViewClass);
         imageViewClass.setImageResource(ClassEnum.getValue(class_));
 
+
+        TextView textViewClass = this.view.findViewById(R.id.textViewClassName);
+
+        if(class_ != null){
+            textViewClass.setText(class_);
+        }
+        else{
+            textViewClass.setText("Select a class");
+        }
+
+
+        Button buttonNext = this.view.findViewById(R.id.buttonNext);
+
+        if(race != null && class_ != null){
+            buttonNext.setEnabled(true);
+        }
+        else{
+            buttonNext.setEnabled(false);
+        }
+
     }
+
 }
