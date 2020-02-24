@@ -16,4 +16,11 @@ public class Proficiencies {
     public String getName() {
         return name;
     }
+
+    public String isSkill(){
+        if(name.contains("Skill:")){
+            return (name.split(" ")[1]);
+        }
+        return null;
+    }
 }

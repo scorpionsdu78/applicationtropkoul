@@ -29,10 +29,15 @@ import com.example.ddprojet.fonction.asyncFonc.ClassesGetInfo;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
+
+import connection.Classes;
+import model.Character;
 
 public class ClassesFragment extends Fragment {
 
     private View vue;
+    private Classes choosed;
 
     @Nullable
     @Override
@@ -47,7 +52,13 @@ public class ClassesFragment extends Fragment {
     public void onResume() {
         super.onResume();
         Log.d("why",((CharacterEditionActivity)getActivity()).getCharacter().toString());
-        Log.d("why",((CharacterEditionActivity)getActivity()).getRace());
+        Log.d("why",((CharacterEditionActivity)getActivity()).getCharacter().getRace());
+
+
+        for (String s: ((CharacterEditionActivity)getActivity()).getCharacter().getTraits()) {
+            Log.d("transfert",s);
+        }
+
 
 
         TextView title = vue.findViewById(R.id.RaceChoose);
@@ -162,6 +173,13 @@ public class ClassesFragment extends Fragment {
 
         ClassesGetInfo update = new ClassesGetInfo(popupView);
         update.execute(name);
+        try {
+            choosed = update.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
@@ -177,7 +195,11 @@ public class ClassesFragment extends Fragment {
 
     }
 
-    public void onEntering(View v){
+    public void onValidation(View v){
+        CharacterEditionActivity activity = (CharacterEditionActivity)getActivity();
+
+        Character userCharacter = activity.getCharacter();
+
 
     }
 

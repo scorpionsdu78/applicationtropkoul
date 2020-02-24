@@ -39,6 +39,7 @@ public class ProficienciesList {
         for (Proficiencies p: list) {
             if(p.name.contains("Skill:")){
                 retour.add(p.name.split(" ")[1]);
+                list.remove(p);
             }
         }
         return retour;
