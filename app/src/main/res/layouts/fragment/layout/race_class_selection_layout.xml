@@ -79,8 +79,7 @@
                             android:id="@+id/imageViewRace"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_150sdp"
-                            android:adjustViewBounds="true"
-                            app:srcCompat="@drawable/race_dragonborn" />
+                            android:adjustViewBounds="true" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -133,8 +132,7 @@
                             android:id="@+id/imageViewClass"
                             android:layout_width="wrap_content"
                             android:layout_height="@dimen/_150sdp"
-                            android:adjustViewBounds="true"
-                            app:srcCompat="@drawable/class_druid" />
+                            android:adjustViewBounds="true" />
 
                     </androidx.cardview.widget.CardView>
 

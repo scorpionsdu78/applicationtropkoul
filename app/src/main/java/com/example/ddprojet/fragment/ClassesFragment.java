@@ -34,6 +34,7 @@ import java.util.concurrent.ExecutionException;
 import connection.Classes;
 import model.Character;
 import util.FragmentEnum;
+import util.ClassEnum;
 
 public class ClassesFragment extends Fragment {
 
@@ -113,23 +114,9 @@ public class ClassesFragment extends Fragment {
     public class ClassDescriptionAdaptator extends RecyclerView.Adapter<classeHolder>{
 
         Vector<String> Classes;
-        Map<String, Integer> images;
 
         public ClassDescriptionAdaptator() {
             Classes = new Vector<>();
-            images = new HashMap<>();
-            images.put("Barbarian", new Integer(R.drawable.class_barbarian));
-            images.put("Bard", new Integer(R.drawable.class_bard));
-            images.put("Cleric", new Integer(R.drawable.class_cleric));
-            images.put("Druid", new Integer(R.drawable.class_druid));
-            images.put("Fighter", new Integer(R.drawable.class_fighter));
-            images.put("Monk", new Integer(R.drawable.class_monk));
-            images.put("Paladin",new Integer(R.drawable.class_paladin));
-            images.put("Ranger", new Integer(R.drawable.class_ranger));
-            images.put("Rogue", new Integer(R.drawable.class_rogue));
-            images.put("Sorcerer", new Integer(R.drawable.class_sorcerer));
-            images.put("Warlock", new Integer(R.drawable.class_warlock));
-            images.put("Wizard", new Integer(R.drawable.class_wizard));
         }
 
         @NonNull
@@ -148,7 +135,7 @@ public class ClassesFragment extends Fragment {
             String classe = Classes.elementAt(position);
 
             holder.setName(classe);
-            holder.setPhoto(images.get(classe).intValue());
+            holder.setPhoto(ClassEnum.getValue(classe));
             holder.setOnclick();
         }
 
