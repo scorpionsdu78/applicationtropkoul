@@ -28,7 +28,6 @@ import com.example.ddprojet.fonction.asyncFonc.RaceInfoGet;
 import com.example.ddprojet.fonction.asyncFonc.RacesGet;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
@@ -36,6 +35,8 @@ import connection.Race;
 import model.Bonus;
 import model.Character;
 import util.FragmentEnum;
+import util.ClassEnum;
+import util.RaceEnum;
 
 public class RaceFragment extends Fragment {
 
@@ -97,21 +98,9 @@ public class RaceFragment extends Fragment {
     public class RaceDescriptionAdaptator extends RecyclerView.Adapter<RaceHolder>{
 
         Vector<String> races;
-        Map<String, Integer> images;
 
         RaceDescriptionAdaptator(){
             races = new Vector<>();
-            images = new HashMap<>();
-            images.put("Dragonborn", new Integer(R.drawable.race_dragonborn));
-            images.put("Dwarf", new Integer(R.drawable.race_dwarf));
-            images.put("Elf", new Integer(R.drawable.race_elf));
-            images.put("Gnome", new Integer(R.drawable.race_gnome));
-            images.put("Half-Elf", new Integer(R.drawable.race_half_elf));
-            images.put("Halfling", new Integer(R.drawable.race_halfling));
-            images.put("Half-Orc", new Integer(R.drawable.race_half_orc));
-            images.put("Human", new Integer(R.drawable.race_human));
-            images.put("Tiefling", new Integer(R.drawable.race_tiefling));
-
         }
 
         @NonNull
@@ -131,7 +120,7 @@ public class RaceFragment extends Fragment {
 
             holder.setName(race);
             Log.d("error",race);
-            holder.setPhoto(images.get(race).intValue());
+            holder.setPhoto(RaceEnum.getValue(race));
             holder.setOnclick();
 
 
