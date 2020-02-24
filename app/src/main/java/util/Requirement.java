@@ -6,18 +6,18 @@ public enum Requirement {
 
 
 
-    Barbare("Strength"),
-    Barde("Charisma"),
-    Clerc("Wisdom"),
-    Druide("Wisdom"),
-    Ensorceleur("Charisma"),
-    Guerrier("Strength","Dexterity"),
-    Magicien("Intelligence"),
-    Moine("Dexterity","Wisdom"),
-    Paladin("Strength", "Charisma"),
-    Rodeur("Dexterity","Wisdom"),
-    Roublard("Dexterity"),
-    Sorcier("Charisma");
+    Barbare("STR"),
+    Barde("CHA"),
+    Clerc("WIS"),
+    Druide("WIS"),
+    Ensorceleur("CHA"),
+    Guerrier("STR","DEX"),
+    Magicien("INT"),
+    Moine("DEX","WIS"),
+    Paladin("STR", "CHA"),
+    Rodeur("DEX","WIS"),
+    Roublard("DEX"),
+    Sorcier("CHA");
 
 
     private String stat1;
