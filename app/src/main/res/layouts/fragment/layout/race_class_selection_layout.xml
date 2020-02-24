@@ -178,21 +178,6 @@
             android:layout_height="match_parent">
 
             <Button
-                android:id="@+id/buttonBack"
-                style="@android:style/Widget.Holo.Button.Small"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:drawableStart="@drawable/ic_navigate_before_black_24dp"
-                android:drawableTint="#db3812"
-                android:onClick="onBackButtonClick"
-                android:text="Back"
-                android:textColor="#db3812"
-                android:textSize="@dimen/_8sdp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
                 android:id="@+id/buttonNext"
                 style="@android:style/Widget.Holo.Button.Small"
                 android:layout_width="wrap_content"
