@@ -33,6 +33,7 @@ import java.util.concurrent.ExecutionException;
 
 import connection.Classes;
 import model.Character;
+import util.FragmentEnum;
 
 public class ClassesFragment extends Fragment {
 
@@ -185,6 +186,17 @@ public class ClassesFragment extends Fragment {
         // which view you pass in doesn't matter, it is only used for the window tolken
         popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
+        Button bt1 = (Button) popupView.findViewById(R.id.selectClass);
+        bt1.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                popupWindow.dismiss();
+                onValidation(view);
+            }
+        });
+
+
         Button bt2 = (Button) popupView.findViewById(R.id.backButton);
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -199,6 +211,14 @@ public class ClassesFragment extends Fragment {
         CharacterEditionActivity activity = (CharacterEditionActivity)getActivity();
 
         Character userCharacter = activity.getCharacter();
+        userCharacter.setHitDice(choosed.getHitDice());
+        userCharacter.setClass_(choosed.getName());
+        userCharacter.setProficiencies(choosed.getBasicProficiencies().getNames());
+        userCharacter.setSavingThrows(choosed.getJetDeSauv());
+
+        activity.setListToChoseFrom(choosed.getProficienciesChoice());
+
+        activity.ChangeFragment(FragmentEnum.RaceClassSelection);
 
 
     }

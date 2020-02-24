@@ -106,6 +106,10 @@ public class Spell extends APIconnection {
         this.classes = classes;
     }
 
+    public boolean isFor(String classe){
+
+    }
+
     @NonNull
     @Override
     public String toString() {

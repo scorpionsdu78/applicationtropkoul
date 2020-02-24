@@ -17,6 +17,7 @@ import com.example.ddprojet.fragment.CaracCompFragment;
 import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
 
+import model.ProficienciesList;
 import model.TraitList;
 import util.FragmentEnum;
 import com.example.ddprojet.fragment.PersonnaliteFragment;
@@ -47,10 +48,20 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private Map<String, Integer> classRequierement;
     private Map<String, Integer> bonusCharac;
     private String race;
+    private String classe;
 
     private TraitList traits;
     private TraitList optionalTrait;
 
+    private List<ProficienciesList> listToChoseFrom;
+
+    public List<ProficienciesList> getListToChoseFrom() {
+        return listToChoseFrom;
+    }
+
+    public void setListToChoseFrom(List<ProficienciesList> listToChoseFrom) {
+        this.listToChoseFrom = listToChoseFrom;
+    }
 
     public String getRace() {
         return race;

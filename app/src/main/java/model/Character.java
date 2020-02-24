@@ -19,7 +19,7 @@ public class Character {
     protected @DrawableRes int avatar;
 
     protected int life;
-    protected String hitDive;
+    protected int hitDice;
     protected int speed;
 
     protected Map<String, Integer> characteristic;
@@ -114,12 +114,12 @@ public class Character {
         this.life = life;
     }
 
-    public String getHitDive() {
-        return hitDive;
+    public int getHitDice() {
+        return hitDice;
     }
 
-    public void setHitDive(String hitDive) {
-        this.hitDive = hitDive;
+    public void setHitDice(int hitDice) {
+        this.hitDice = hitDice;
     }
 
     public String getName() {
