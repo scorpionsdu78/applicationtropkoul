@@ -204,12 +204,9 @@ public class RaceFragment extends Fragment {
 
         Character userCharacter = activity.getCharacter();
 
-        Log.d("why",userCharacter.toString());
 
 
         userCharacter.setRace(choosed.getName());
-        activity.setRace(choosed.getName());
-        Log.d("why",activity.getCharacter().getRace());
         userCharacter.setSpeed(choosed.getSpeed());
         userCharacter.setLanguages(choosed.getLanguages());
         userCharacter.setTraits(choosed.getGlobalTrait().getName());
