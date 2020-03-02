@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -35,12 +34,14 @@ import connection.Race;
 import model.Bonus;
 import model.Character;
 import util.FragmentEnum;
-import util.ClassEnum;
 import util.RaceEnum;
 
 public class RaceFragment extends Fragment {
 
     private Race choosed;
+    private PopupWindow popupWindow;
+
+    //TODO saved states !
 
     @Nullable
     @Override
@@ -140,13 +141,14 @@ public class RaceFragment extends Fragment {
     public void onButtonShowPopupWindowClick(View view, String name)  {
 
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
-        View PopupView = inflater.inflate(R.layout.race_info, null);
+        View popupView = inflater.inflate(R.layout.race_info, null);
 
 
 
-        RaceInfoGet getter = new RaceInfoGet(PopupView,(TextView)PopupView.findViewById(R.id.name),(TextView)PopupView.findViewById(R.id.speed),(TextView)PopupView.findViewById(R.id.alignment),(TextView)PopupView.findViewById(R.id.age),
-                (TextView)PopupView.findViewById(R.id.size), (TextView)PopupView.findViewById(R.id.sizeDesc),(TextView)PopupView.findViewById(R.id.langDesc) ,(ListView)PopupView.findViewById(R.id.langauges),
-                (ListView)PopupView.findViewById(R.id.trait),(ListView)PopupView.findViewById(R.id.Bonus));
+        RaceInfoGet getter = new RaceInfoGet(popupView, (TextView)popupView.findViewById(R.id.name), (TextView)popupView.findViewById(R.id.speed), (TextView)popupView.findViewById(R.id.alignment),
+                (TextView)popupView.findViewById(R.id.age), (TextView)popupView.findViewById(R.id.size), (TextView)popupView.findViewById(R.id.sizeDesc),
+                (TextView)popupView.findViewById(R.id.langDesc) ,(RecyclerView)popupView.findViewById(R.id.languages), (RecyclerView)popupView.findViewById(R.id.trait),
+                (RecyclerView) popupView.findViewById(R.id.Bonus));
         getter.execute(name);
 
         try {
@@ -158,26 +160,28 @@ public class RaceFragment extends Fragment {
         }
 
 
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(PopupView, width, height, focusable);
+        if(this.popupWindow != null)
+            this.popupWindow.dismiss();
+        this.popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        this.popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
-        Button bt1 = (Button) PopupView.findViewById(R.id.selectRace);
+        Button bt1 = (Button) popupView.findViewById(R.id.selectRace);
         bt1.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view) {
-                popupWindow.dismiss();
+                RaceFragment.this.popupWindow.dismiss();
                 onValidation(view);
             }
         });
 
-        Button bt2 = (Button) PopupView.findViewById(R.id.backButton);
+        Button bt2 = (Button) popupView.findViewById(R.id.backButton);
         bt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,18 +197,19 @@ public class RaceFragment extends Fragment {
 
         Character userCharacter = activity.getCharacter();
 
-
-
         userCharacter.setRace(choosed.getName());
         userCharacter.setSpeed(choosed.getSpeed());
         userCharacter.setLanguages(choosed.getLanguages());
         userCharacter.setTraits(choosed.getGlobalTrait().getName());
         HashMap<String, Integer> bonusCharac = new HashMap<>();
+
         for (Bonus b: choosed.getBonuses()) {
             bonusCharac.put(b.getCharacteristic(), new Integer(b.getValue()));
         }
+
         activity.setBonusCharac(bonusCharac);
         activity.setTraits(choosed.getGlobalTrait(),choosed.getTraitList());
+
         if(choosed.getStartProf().hasSkills() !=null){
             userCharacter.setProficiencies(choosed.getStartProf().getNames());
             for (String skill: choosed.getStartProf().hasSkills()) {

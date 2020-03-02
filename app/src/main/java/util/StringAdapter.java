@@ -1,52 +1,69 @@
 package util;
 
-import android.content.Context;
-import android.graphics.Color;
-import android.util.TypedValue;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 
-import java.util.List;
+import java.util.Vector;
 
-public class StringAdapter extends ArrayAdapter<String> {
 
-    private Context mContext;
-    private int id;
-    private List <String>items ;
+public class StringAdapter extends RecyclerView.Adapter<StringAdapter.StringHolder> {
 
-    public StringAdapter(@NonNull Context context, int textViewResourceId , @NonNull List<String> list) {
-        super(context, textViewResourceId , list);
-        mContext = context;
-        id = textViewResourceId;
-        items = list;
+
+    public class StringHolder extends RecyclerView.ViewHolder{
+        private TextView textView;
+
+        public StringHolder(@NonNull View itemView) {
+            super(itemView);
+
+            this.textView = itemView.findViewById(R.id.textView);
+        }
+
+        public void setText(String str){
+            Log.i("DulcheE", str);
+            this.textView.setText(str);
+        }
+    }
+
+    private Vector<String> items;
+
+    public StringAdapter(){
+        this.items = new Vector<>();
+    }
+
+    public int getItemCount(){
+        return this.items.size();
+    }
+
+    public void addItem(String item){
+        this.items.add(item);
+        this.notifyItemInserted( this.items.size() - 1);
+    }
+
+    @NonNull
+    @Override
+    public StringHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater lf = LayoutInflater.from(parent.getContext());
+        View view = lf.inflate(R.layout.util_list, parent, false);
+
+        StringHolder sh = new StringHolder(view);
+
+
+        return sh;
     }
 
     @Override
-    public View getView(int position, View v, ViewGroup parent)
-    {
-        View mView = v ;
-        if(mView == null){
-            LayoutInflater vi = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            mView = vi.inflate(id, null);
-        }
+    public void onBindViewHolder(@NonNull StringHolder holder, int position) {
+        String item = this.items.elementAt(position);
 
-        TextView text = (TextView) mView.findViewById(R.id.textView);
-
-        if(items.get(position) != null )
-        {
-            text.setTextColor(Color.WHITE);
-            text.setText(items.get(position));
-            if(position == 0)
-                text.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-        }
-
-        return mView;
+        holder.setText(item);
     }
+
 }

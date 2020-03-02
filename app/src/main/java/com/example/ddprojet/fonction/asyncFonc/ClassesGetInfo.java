@@ -3,8 +3,10 @@ package com.example.ddprojet.fonction.asyncFonc;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 
@@ -12,15 +14,12 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import connection.Classes;
 import model.ProficienciesList;
 import util.StringAdapter;
-import util.Utility;
 
 public class ClassesGetInfo extends AsyncTask<String, String, Classes> {
 
@@ -79,31 +78,28 @@ public class ClassesGetInfo extends AsyncTask<String, String, Classes> {
         txt = vue.get().findViewById(R.id.proficiency);
         txt.setText(classes.getBasicProficiencies().toString());
 
-        List<String> ls = new ArrayList<>();
-        ls.add("Proficiencies choice");
+        RecyclerView recyclerViewProficiencies = vue.get().findViewById(R.id.proficienciesChoice);
+        StringAdapter adapterProficiencies = new StringAdapter();
+
+        adapterProficiencies.addItem("Proficiencies choice");
 
         for (ProficienciesList pl: classes.getProficienciesChoice()) {
-            ls.add(pl.toString() + "\n");
-
+            adapterProficiencies.addItem(pl.toString());
         }
 
-        ListView list = vue.get().findViewById(R.id.proficienciesChoice);
-        StringAdapter adapter = new StringAdapter(vue.get().getContext(), R.layout.util_list, ls);
+        recyclerViewProficiencies.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerViewProficiencies.setAdapter(adapterProficiencies);
 
-        list.setAdapter(adapter);
 
-        Utility.setListViewHeightBasedOnChildren(list);
+        RecyclerView recyclerViewSavingThrows = vue.get().findViewById(R.id.Saving);
+        StringAdapter adapterSavingThrows = new StringAdapter();
 
-        List<String> listBonus = classes.getJetDeSauv();
-        listBonus.add(0, "SAVING THROW:");
+        for(String bonus : classes.getJetDeSauv()){
+            adapterSavingThrows.addItem(bonus);
+        }
 
-        ListView list2 = vue.get().findViewById(R.id.Saving);
-
-        StringAdapter adapter2 = new StringAdapter(vue.get().getContext(), R.layout.util_list, listBonus);
-        list2.setAdapter(adapter2);
-
-        Utility.setListViewHeightBasedOnChildren(list2);
-
+        recyclerViewSavingThrows.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerViewSavingThrows.setAdapter(adapterSavingThrows);
 
     }
 }
