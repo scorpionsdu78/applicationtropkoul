@@ -54,7 +54,7 @@ public class ProficienciesList {
         }
 
         for (int i =0; i<list.size(); i++) {
-            s = s +"\n"+list.get(i).name+ " " +  "\n";
+            s += "\n" + list.get(i).name;
         }
         
         return s;

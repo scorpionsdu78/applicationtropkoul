@@ -145,7 +145,7 @@ public class RaceFragment extends Fragment {
 
 
 
-        RaceInfoGet getter = new RaceInfoGet(popupView, (TextView)popupView.findViewById(R.id.name), (TextView)popupView.findViewById(R.id.speed), (TextView)popupView.findViewById(R.id.alignment),
+        RaceInfoGet getter = new RaceInfoGet(popupView, (TextView)popupView.findViewById(R.id.name), (TextView)popupView.findViewById(R.id.speed), (TextView)popupView.findViewById(R.id.alignement),
                 (TextView)popupView.findViewById(R.id.age), (TextView)popupView.findViewById(R.id.size), (TextView)popupView.findViewById(R.id.sizeDesc),
                 (TextView)popupView.findViewById(R.id.langDesc) ,(RecyclerView)popupView.findViewById(R.id.languages), (RecyclerView)popupView.findViewById(R.id.trait),
                 (RecyclerView) popupView.findViewById(R.id.Bonus));

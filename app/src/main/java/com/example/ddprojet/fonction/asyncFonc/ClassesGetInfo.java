@@ -1,10 +1,12 @@
 package com.example.ddprojet.fonction.asyncFonc;
 
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import connection.Classes;
+import model.Feature;
 import model.ProficienciesList;
 import util.StringAdapter;
 
@@ -73,15 +76,13 @@ public class ClassesGetInfo extends AsyncTask<String, String, Classes> {
         image.setImageResource(images.get(classes.getName()).intValue());
 
         txt = vue.get().findViewById(R.id.hitDice);
-        txt.setText("hit dice: "+ Integer.toString(classes.getHitDice()));
+        txt.setText(Integer.toString(classes.getHitDice()));
 
         txt = vue.get().findViewById(R.id.proficiency);
         txt.setText(classes.getBasicProficiencies().toString());
 
         RecyclerView recyclerViewProficiencies = vue.get().findViewById(R.id.proficienciesChoice);
         StringAdapter adapterProficiencies = new StringAdapter();
-
-        adapterProficiencies.addItem("Proficiencies choice");
 
         for (ProficienciesList pl: classes.getProficienciesChoice()) {
             adapterProficiencies.addItem(pl.toString());
@@ -100,6 +101,41 @@ public class ClassesGetInfo extends AsyncTask<String, String, Classes> {
 
         recyclerViewSavingThrows.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewSavingThrows.setAdapter(adapterSavingThrows);
+
+
+        RecyclerView recyclerViewFeatures = vue.get().findViewById(R.id.features);
+        StringAdapter adapterFeatures = new StringAdapter();
+
+        for(Feature feature : classes.getFeatures()){
+            adapterFeatures.addItem(feature.toString());
+        }
+
+        recyclerViewFeatures.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerViewFeatures.setAdapter(adapterFeatures);
+
+        Log.i("DulcheE", "before");
+        if(classes.getFeatureChoose() != null) {
+            Log.i("DulcheE", "not null");
+
+            RecyclerView recyclerViewChooseFeatures = vue.get().findViewById(R.id.chooseFeatures);
+            StringAdapter adapterChooseFeatures = new StringAdapter();
+
+            for(Feature feature : classes.getFeatureChoose()){
+                Log.i("DulcheE", feature.toString());
+                adapterChooseFeatures.addItem("Choose 1 :\n" + feature.toString());
+            }
+
+            recyclerViewChooseFeatures.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
+            recyclerViewChooseFeatures.setAdapter(adapterChooseFeatures);
+
+            ConstraintLayout constraintLayoutChooseFeatures= this.vue.get().findViewById(R.id.constraintLayoutChooseFeatures);
+            constraintLayoutChooseFeatures.setVisibility(View.VISIBLE);
+        }else{
+            Log.i("DulcheE", "null");
+            ConstraintLayout constraintLayoutChooseFeatures= this.vue.get().findViewById(R.id.constraintLayoutChooseFeatures);
+            constraintLayoutChooseFeatures.setVisibility(View.INVISIBLE);
+            constraintLayoutChooseFeatures.setMaxHeight(0);
+        }
 
     }
 }

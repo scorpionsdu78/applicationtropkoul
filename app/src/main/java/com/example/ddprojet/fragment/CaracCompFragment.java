@@ -75,7 +75,7 @@ public class CaracCompFragment extends Fragment {
         this.strength_layout = (LinearLayout)this.view.findViewById(R.id.layoutStrength);
         init(this.strength_layout);
 
-        this.dexterity_layout = (LinearLayout)this.view.findViewById(R.id.layoutDexterity);
+        /*this.dexterity_layout = (LinearLayout)this.view.findViewById(R.id.layoutDexterity);
         init(this.dexterity_layout);
 
         this.constitution_layout = (LinearLayout)this.view.findViewById(R.id.layoutConstitution);
@@ -154,8 +154,10 @@ public class CaracCompFragment extends Fragment {
         if(this.parent_activity.containBonusSkill("Persuasion"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxPersuasion)).setChecked(true);
 
+
+
         CheckBox checkBoxSavingThrows = this.view.findViewById(R.id.checkBoxSavingThrows);
-        checkBoxSavingThrows.setChecked(true);
+        checkBoxSavingThrows.setChecked(true);*/
 
         return this.view;
     }
@@ -164,20 +166,23 @@ public class CaracCompFragment extends Fragment {
 
 
     protected void init(final LinearLayout parent){
-        onClickPlus(parent);
-        onClickMinus(parent);
+        /*onClickPlus(parent);
+        onClickMinus(parent);*/
 
         String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
         TextView textViewValue = (TextView)parent.findViewById(R.id.textViewValue);
-
+/*
         int initValue = 8;
         initValue += this.parent_activity.getBonusCharac(characName);
+         */
 
         if(this.parent_activity.getCharacter().getSavingThrows().contains(characName)) {
             Log.i("DulcheE", "Saving trows " + characName);
             CheckBox checkBoxSavingThrows = parent.findViewById(R.id.checkBoxSavingThrows);
             checkBoxSavingThrows.setChecked(true);
-        }
+            checkBoxSavingThrows.setText("I'm checked");
+            checkBoxSavingThrows.setText("I'm checked");
+        }/*
 
         int requierement = this.parent_activity.getClassRequierement(characName);
         while(initValue < requierement){
@@ -189,7 +194,7 @@ public class CaracCompFragment extends Fragment {
         textViewValue.setText(String.valueOf(initValue));
         this.parent_activity.getCharacter().getCharacteristic().put(characName, initValue);
 
-        updateSkillsValue(parent);
+        updateSkillsValue(parent);*/
     }
 
 

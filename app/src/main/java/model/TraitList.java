@@ -37,7 +37,10 @@ public class TraitList {
 
         for (Trait t: traits) {
             Log.d("JTL", t.getName() + t.getDescription());
-            s = s + t.getName()  + "\n";
+            s += t.getName();
+
+            if(t != traits.get(traits.size()-1))
+                s += "\n";
         }
 
         return s;

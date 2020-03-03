@@ -25,7 +25,7 @@ public class PersonnaliteFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.race_info, container, false);
 
-        RaceInfoGet getter = new RaceInfoGet(v,(TextView)v.findViewById(R.id.name),(TextView)v.findViewById(R.id.speed),(TextView)v.findViewById(R.id.alignment),(TextView)v.findViewById(R.id.age),
+        RaceInfoGet getter = new RaceInfoGet(v,(TextView)v.findViewById(R.id.name),(TextView)v.findViewById(R.id.speed),(TextView)v.findViewById(R.id.alignement),(TextView)v.findViewById(R.id.age),
                 (TextView)v.findViewById(R.id.size), (TextView)v.findViewById(R.id.sizeDesc),(TextView)v.findViewById(R.id.langDesc) ,(RecyclerView)v.findViewById(R.id.languages),
                 (RecyclerView)v.findViewById(R.id.trait),(RecyclerView)v.findViewById(R.id.Bonus));
 

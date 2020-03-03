@@ -1,5 +1,7 @@
 package connection;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -86,16 +88,19 @@ public class Classes extends APIconnection {
 
         APIconnection co = new APIconnection(file.getJSONObject("class_levels").getString("url") + "/1");
         JSONObject fichier = co.getFile();
-        if(fichier.optJSONObject("feature_choices")!=null){
-            if(name.toLowerCase() == "fighter"){
-                featureChoose = new ArrayList<>();
-                featureChoose.add(new Feature("/api/features/fighting-style-archery"));
-                featureChoose.add(new Feature("/api/features/fighting-style-defense"));
-                featureChoose.add(new Feature("/api/features/fighting-style-dueling"));
-                featureChoose.add(new Feature("/api/features/fighting-style-great-weapon-fighting"));
-                featureChoose.add(new Feature("/api/features/fighting-style-protection"));
-                featureChoose.add(new Feature("/api/features/fighting-style-two-weapon-fighting"));
-            }
+        Log.i("DulcheE", fichier.toString());
+        Log.i("DulcheE", "test on  " + name);
+        if(name.toLowerCase().equals("fighter")){
+            Log.i("DulcheE", "enter on fighter for " + name);
+            Log.i("DulcheE", (featureChoose == null) ? "null" : "nor null");
+            featureChoose = new ArrayList<>();
+            featureChoose.add(new Feature("/api/features/fighting-style-archery"));
+            featureChoose.add(new Feature("/api/features/fighting-style-defense"));
+            featureChoose.add(new Feature("/api/features/fighting-style-dueling"));
+            featureChoose.add(new Feature("/api/features/fighting-style-great-weapon-fighting"));
+            featureChoose.add(new Feature("/api/features/fighting-style-protection"));
+            featureChoose.add(new Feature("/api/features/fighting-style-two-weapon-fighting"));
+            Log.i("DulcheE", (featureChoose == null) ? "null" : "nor null");
         }
 
         JSONArray tmp = fichier.getJSONArray("features");
