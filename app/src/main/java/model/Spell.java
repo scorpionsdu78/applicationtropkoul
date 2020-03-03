@@ -56,7 +56,8 @@ public class Spell extends APIconnection {
         }
 
         //on recupere les materiaux du sort
-        material = file.getString("material");
+        if(file.optJSONObject("material") != null)
+            material = file.getString("material");
 
         //on recupere si il y a un ritual
         ritual = file.getBoolean("ritual");
@@ -115,6 +116,17 @@ public class Spell extends APIconnection {
         }
 
         return false;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getSchool(){
+        return school;
+    }
+    public int getLevel(){
+        return level;
     }
 
     @NonNull

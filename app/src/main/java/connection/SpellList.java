@@ -20,22 +20,37 @@ import model.Spell;
 
 public class SpellList extends APIconnection {
 
-    protected static final String spellListPath = "spells/";
+    protected static final String spellListPath = "/api/spells/";
 
     HashMap<String, String> spells;
     List<Spell> spellList;
 
     public SpellList() throws IOException, JSONException {
         super(SpellList.spellListPath);
+        Log.i("alerte","chelou");
 
         spells = new HashMap<String, String>();
+        spellList = new ArrayList<Spell>();
 
         JSONArray tab = file.getJSONArray("results");
+        if(file == null){
+            Log.i("alerte","chelou2");
+        }else if(file != null){
+            Log.i("alerte","chelou3");
+        }
+        Log.i("alerte","chelou 4");
+
         for(int i=0; i<tab.length(); i++){
             JSONObject tmp = tab.getJSONObject(i);
-            spells.put(tmp.getString("index"),"https://www.dnd5eapi.co"+tmp.getString("url"));
-            spellList.add(new Spell("https://www.dnd5eapi.co"+tmp.getString("url")));
+            Log.i("alerte",tmp.getString("url"));
+            Log.i("alerte",Integer.toString(tab.length()));
+            //spells.put(tmp.getString("index"),"https://www.dnd5eapi.co"+tmp.getString("url"));
+            spellList.add(new Spell(tmp.getString("url")));
         }
+    }
+
+    public List<Spell> getSpellList() {
+        return spellList;
     }
 
     public Spell getSpell(String name) throws IOException, JSONException {
@@ -56,6 +71,14 @@ public class SpellList extends APIconnection {
             }
         }
         return result;
+    }
+
+    public List<String> getSpellsName(){
+        List<String> ls = new ArrayList<>();
+        for(Spell s: spellList){
+            ls.add(s.getName());
+        }
+        return ls;
     }
 
 
