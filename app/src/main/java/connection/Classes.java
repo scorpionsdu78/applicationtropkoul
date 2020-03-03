@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Feature;
 import model.Proficiencies;
 import model.ProficienciesList;
 
@@ -20,6 +21,11 @@ public class Classes extends APIconnection {
     private String name;
     private int hitDice;
     private List<String> JetDeSauv;
+    private List<Feature> features;
+    private List<Feature> featureChoose;
+    private boolean hasSpellCasting;
+
+
 
     public Classes() throws IOException, JSONException{
         super(Classes.classPath);
@@ -78,6 +84,44 @@ public class Classes extends APIconnection {
             JetDeSauv.add(sauvegardeTmp.getString("name"));
         }
 
+        APIconnection co = new APIconnection(file.getJSONObject("class_levels").getString("url") + "/1");
+        JSONObject fichier = co.getFile();
+        if(fichier.optJSONObject("feature_choices")!=null){
+            if(name.toLowerCase() == "fighter"){
+                featureChoose = new ArrayList<>();
+                featureChoose.add(new Feature("/api/features/fighting-style-archery"));
+                featureChoose.add(new Feature("/api/features/fighting-style-defense"));
+                featureChoose.add(new Feature("/api/features/fighting-style-dueling"));
+                featureChoose.add(new Feature("/api/features/fighting-style-great-weapon-fighting"));
+                featureChoose.add(new Feature("/api/features/fighting-style-protection"));
+                featureChoose.add(new Feature("/api/features/fighting-style-two-weapon-fighting"));
+            }
+        }
+
+        JSONArray tmp = fichier.getJSONArray("features");
+        features = new ArrayList<>();
+
+        for (int i=0; i < tmp.length(); i++){
+            switch (tmp.getJSONObject(i).getString("name")){
+                case "Divine Domain":
+                    break;
+
+                case "Sorcerous Origin":
+                    break;
+
+                case "Otherworldly Patron":
+                    break;
+
+                default:
+                    features.add(new Feature(tmp.getJSONObject(i).getString("url")));
+            }
+        }
+
+        if(file.optJSONObject("spellcasting") != null){
+            hasSpellCasting = true;
+        }else {
+            hasSpellCasting = false;
+        }
 
     }
 
@@ -100,5 +144,13 @@ public class Classes extends APIconnection {
 
     public List<String> getJetDeSauv() {
         return JetDeSauv;
+    }
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
+
+    public List<Feature> getFeatureChoose() {
+        return featureChoose;
     }
 }

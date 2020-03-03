@@ -17,6 +17,7 @@ import com.example.ddprojet.fragment.CaracCompFragment;
 import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
 
+import model.Feature;
 import model.ProficienciesList;
 import model.TraitList;
 import util.FragmentEnum;
@@ -52,6 +53,8 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     private TraitList traits;
     private TraitList optionalTrait;
+
+    private List<Feature> featureToChoose;
 
     private List<ProficienciesList> listToChoseFrom;
 
@@ -299,8 +302,12 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.bonusSkill.add(skill);
     }
 
+    public List<Feature> getFeatureToChoose() {
+        return featureToChoose;
+    }
 
-
-
+    public void setFeatureToChoose(List<Feature> featureToChoose) {
+        this.featureToChoose = featureToChoose;
+    }
 }
 

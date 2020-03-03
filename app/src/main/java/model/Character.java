@@ -42,6 +42,9 @@ public class Character {
     private boolean alreadySetProf = false;
     private boolean allreadySetTrait = false;
 
+    private List<Feature> features;
+    private List<Feature> featureChoose;
+
     public Character(){
 
         this.characteristic = new HashMap<>();
@@ -296,5 +299,21 @@ public class Character {
 
     public void addTrait(Trait t){
         this.traits.add(t.name);
+    }
+
+    public List<Feature> getFeatures() {
+        return features;
+    }
+
+    public void setFeatures(List<Feature> features) {
+        this.features = features;
+    }
+
+    public List<Feature> getFeatureChoose() {
+        return featureChoose;
+    }
+
+    public void setFeatureChoose(List<Feature> featureChoose) {
+        this.featureChoose = featureChoose;
     }
 }
