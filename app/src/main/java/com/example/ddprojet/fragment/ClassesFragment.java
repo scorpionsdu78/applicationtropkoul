@@ -202,9 +202,11 @@ public class ClassesFragment extends Fragment {
         userCharacter.setClass_(choosed.getName());
         userCharacter.setProficiencies(choosed.getBasicProficiencies().getNames());
         userCharacter.setSavingThrows(choosed.getJetDeSauv());
+        userCharacter.setFeatures(choosed.getFeatures());
 
         activity.setListToChoseFrom(choosed.getProficienciesChoice());
         activity.SetRequirement(choosed.getName());
+        activity.setFeatureToChoose(choosed.getFeatureChoose());
 
         activity.ChangeFragment(FragmentEnum.RaceClassSelection);
 

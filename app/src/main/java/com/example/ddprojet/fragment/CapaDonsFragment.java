@@ -40,17 +40,17 @@ public class CapaDonsFragment extends Fragment {
 
         Feature f = new Feature();
         f.name = "Feature 1";
-        f.description = "Description of feature 1";
+        f.description = "Description of Feature 1";
         fl.features.add(f);
 
         f = new Feature();
         f.name = "Feature 2";
-        f.description = "Description of feature 2";
+        f.description = "Description of Feature 2";
         fl.features.add(f);
 
         f = new Feature();
         f.name = "Feature 3";
-        f.description = "Description of feature 3\n\nDAB !";
+        f.description = "Description of Feature 3\n\nDAB !";
         fl.features.add(f);
 
         this.featuresLists.add(fl);
@@ -62,12 +62,12 @@ public class CapaDonsFragment extends Fragment {
 
         f = new Feature();
         f.name = "Feature 2-1";
-        f.description = "Description of feature 2-1";
+        f.description = "Description of Feature 2-1";
         fl.features.add(f);
 
         f = new Feature();
         f.name = "Feature 2-2";
-        f.description = "Description of feature 2-2";
+        f.description = "Description of Feature 2-2";
         fl.features.add(f);
 
         this.featuresLists.add(fl);
