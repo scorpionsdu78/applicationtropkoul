@@ -17,6 +17,9 @@ import androidx.fragment.app.Fragment;
 import com.example.ddprojet.CharacterEditionActivity;
 import com.example.ddprojet.R;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import util.FragmentEnum;
 
 public class CaracCompFragment extends Fragment {
@@ -33,6 +36,7 @@ public class CaracCompFragment extends Fragment {
     protected LinearLayout charisma_layout;
 
     protected int characPoints;
+    protected Map<Integer, Integer> characPointsCosts;
 
     @Nullable
     @Override
@@ -52,8 +56,19 @@ public class CaracCompFragment extends Fragment {
         this.parent_activity = (CharacterEditionActivity)this.getActivity();
 
         //Init the number of point to attribute to the characs
-        this.characPoints = 20 + this.parent_activity.levelBonusCharac();
-        updateButtonNextState();
+        this.characPoints = 27 + this.parent_activity.levelBonusCharac();
+
+        this.characPointsCosts = new HashMap<>();
+        this.characPointsCosts.put(8, 0);
+        this.characPointsCosts.put(9, 1);
+        this.characPointsCosts.put(10, 2);
+        this.characPointsCosts.put(11, 3);
+        this.characPointsCosts.put(12, 4);
+        this.characPointsCosts.put(13, 5);
+        this.characPointsCosts.put(14, 7);
+        this.characPointsCosts.put(15, 9);
+
+        updateCharacPoints();
 
 
         //Init of the characs layout and values
@@ -139,6 +154,8 @@ public class CaracCompFragment extends Fragment {
         if(this.parent_activity.containBonusSkill("Persuasion"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxPersuasion)).setChecked(true);
 
+        CheckBox checkBoxSavingThrows = this.view.findViewById(R.id.checkBoxSavingThrows);
+        checkBoxSavingThrows.setChecked(true);
 
         return this.view;
     }
@@ -153,12 +170,12 @@ public class CaracCompFragment extends Fragment {
         String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
         TextView textViewValue = (TextView)parent.findViewById(R.id.textViewValue);
 
-        int initValue = 10;
+        int initValue = 8;
         initValue += this.parent_activity.getBonusCharac(characName);
 
         if(this.parent_activity.getCharacter().getSavingThrows().contains(characName)) {
-            Log.i("DulcheE", characName);
-            CheckBox checkBoxSavingThrows = (CheckBox)parent.findViewById(R.id.checkBoxSavingThrows);
+            Log.i("DulcheE", "Saving trows " + characName);
+            CheckBox checkBoxSavingThrows = parent.findViewById(R.id.checkBoxSavingThrows);
             checkBoxSavingThrows.setChecked(true);
         }
 
@@ -166,7 +183,7 @@ public class CaracCompFragment extends Fragment {
         while(initValue < requierement){
             initValue++;
             this.characPoints--;
-            this.updateButtonNextState();
+            this.updateCharacPoints();
         }
 
         textViewValue.setText(String.valueOf(initValue));
@@ -216,24 +233,32 @@ public class CaracCompFragment extends Fragment {
             TextView characTextView = (TextView)parent.findViewById(R.id.textViewValue);
             String number = characTextView.getText().toString();
 
+            int number_parsed = 0;
             try{
-                int number_parsed = Integer.parseInt(number);
-                number_parsed++;
+                number_parsed = Integer.parseInt(number);
 
-                if(number_parsed <= 20) {
-                    characTextView.setText(String.valueOf(number_parsed));
-
-                    String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
-                    this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
-
-                    this.characPoints--;
-                    this.updateButtonNextState();
-
-                    this.updateSkillsValue(parent);
-                }
             } catch (NumberFormatException e) {
                 return;
             }
+
+            number_parsed++;
+
+            if(number_parsed > 15)
+                return;
+
+            int cost = this.characPointsCosts.get(number_parsed);
+            if(this.characPoints < cost)
+                return;
+
+            characTextView.setText(String.valueOf(number_parsed));
+
+            String characName = ((TextView) parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
+            this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
+
+            this.characPoints -= cost;
+            this.updateCharacPoints();
+
+            this.updateSkillsValue(parent);
 
         }
 
@@ -245,26 +270,29 @@ public class CaracCompFragment extends Fragment {
         String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
         String number = characTextView.getText().toString();
 
+        int number_parsed = 0;
         try{
-            int number_parsed = Integer.parseInt(number);
-            number_parsed--;
-
-            int min_limit = 1;
-
-            min_limit += this.parent_activity.getBonusCharac(characName);
-
-            if(number_parsed >= min_limit && number_parsed >= this.parent_activity.getClassRequierement(characName)) {
-                characTextView.setText(String.valueOf(number_parsed));
-
-                this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
-
-                this.characPoints++;
-                updateButtonNextState();
-
-                this.updateSkillsValue(parent);
-            }
+            number_parsed = Integer.parseInt(number);
         } catch (NumberFormatException e) {
             return;
+        }
+
+        int cost = this.characPointsCosts.get(number_parsed);
+        number_parsed--;
+
+        int min_limit = 8;
+
+        min_limit += this.parent_activity.getBonusCharac(characName);
+
+        if(number_parsed >= min_limit && number_parsed >= this.parent_activity.getClassRequierement(characName)) {
+            characTextView.setText(String.valueOf(number_parsed));
+
+            this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
+
+            this.characPoints += cost;
+            this.updateCharacPoints();
+
+            this.updateSkillsValue(parent);
         }
     }
 
@@ -367,11 +395,13 @@ public class CaracCompFragment extends Fragment {
     protected void updateSavingThrowsValue(TextView textView, LinearLayout parent){
 
         String parent_value = ((TextView)parent.findViewById(R.id.textViewValue)).getText().toString();
-        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
-
+        String SavingThrown_value = ((CheckBox)parent.findViewById(R.id.checkBoxSavingThrows)).getText().toString();
 
         try{
             int value = (int)Math.floor((Float.parseFloat(parent_value) - 10) / 2);
+
+            if(this.parent_activity.getCharacter().ContainsSavingThrows(SavingThrown_value))
+                value += this.parent_activity.levelBonusSkill();
 
             textView.setText(String.valueOf(value));
 
@@ -402,9 +432,11 @@ public class CaracCompFragment extends Fragment {
     }
 
 
-    protected void updateButtonNextState(){
+    protected void updateCharacPoints(){
 
-        if(this.characPoints == 0){
+        ((TextView)this.view.findViewById(R.id.textViewCharacPoints)).setText(String.valueOf(this.characPoints));
+
+        if(this.characPoints <= 4){
             this.view.findViewById(R.id.buttonNext).setEnabled(true);
         }
         else{

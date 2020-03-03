@@ -553,26 +553,42 @@
                         android:layout_marginBottom="@dimen/_20sdp"
                         android:background="#68D3947E" />
 
-                    <TextView
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintLayoutProficiencies"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_marginBottom="@dimen/_5sdp"
-                        android:fontFamily="@string/main_font"
-                        android:text="Proficiencies"
-                        android:textColor="#642D04"
-                        android:textSize="@dimen/_15sdp" />
+                        android:layout_height="wrap_content">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/prof"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_70sdp"
-                        android:layout_marginStart="@dimen/_20sdp"
-                        android:layout_marginEnd="@dimen/_20sdp"
-                        android:layout_marginBottom="@dimen/_20sdp"
-                        android:background="#68D3947E" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:layout_marginBottom="@dimen/_5sdp"
+                                android:fontFamily="@string/main_font"
+                                android:text="Proficiencies"
+                                android:textColor="#642D04"
+                                android:textSize="@dimen/_15sdp" />
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/prof"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_70sdp"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:layout_marginBottom="@dimen/_20sdp"
+                                android:background="#68D3947E" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 

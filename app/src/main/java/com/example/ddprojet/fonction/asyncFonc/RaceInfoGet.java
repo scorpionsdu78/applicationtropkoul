@@ -3,8 +3,10 @@ package com.example.ddprojet.fonction.asyncFonc;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -140,6 +142,10 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
             recyclerViewProficiencies.setLayoutManager(new LinearLayoutManager(view.get().getContext(), LinearLayoutManager.VERTICAL, false));
             recyclerViewProficiencies.setAdapter(adapterProficiencies);
 
+        }else{
+            ConstraintLayout constraintLayoutProficiencies = this.view.get().findViewById(R.id.constraintLayoutProficiencies);
+            constraintLayoutProficiencies.setVisibility(View.INVISIBLE);
+            constraintLayoutProficiencies.setMaxHeight(0);
         }
 
     }

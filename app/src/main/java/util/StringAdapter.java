@@ -27,7 +27,6 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.StringHold
         }
 
         public void setText(String str){
-            Log.i("DulcheE", str);
             this.textView.setText(str);
         }
     }

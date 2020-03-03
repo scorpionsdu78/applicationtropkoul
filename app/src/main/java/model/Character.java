@@ -195,6 +195,10 @@ public class Character {
         this.savingThrows = savingThrows;
     }
 
+    public boolean ContainsSavingThrows(String savingThrow) {
+        return this.savingThrows.contains(savingThrow);
+    }
+
     public List<String> getSpells() {
         return spells;
     }
