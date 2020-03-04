@@ -9,16 +9,16 @@
 
             <group android:checkableBehavior="single">
 
+                <item android:id="@+id/nav_raceClass"
+                    android:title="Race and Class" />
+                <item android:id="@+id/nav_bonusesSelection"
+                    android:title="Bonuses selection" />
+                <item android:id="@+id/nav_characSkills"
+                    android:title="Characteristics and Skills" />
+                <item android:id="@+id/nav_Spells"
+                    android:title="Spells list" />
                 <item android:id="@+id/nav_description"
-                    android:title="Description" />
-                <item android:id="@+id/nav_caracComp"
-                    android:title="Caractéristiques et Compétences" />
-                <item android:id="@+id/nav_capaDons"
-                    android:title="Capacités et Dons" />
-                <item android:id="@+id/nav_equipSorts"
-                    android:title="Equipements et Sorts" />
-                <item android:id="@+id/nav_personnalité"
-                    android:title="Personnalité" />
+                    android:title="Character description" />
 
             </group>
 

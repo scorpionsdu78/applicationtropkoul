@@ -2,7 +2,7 @@ package com.example.ddprojet.fonction.asyncFonc;
 
 import android.os.AsyncTask;
 
-import com.example.ddprojet.fragment.ClassesFragment;
+import com.example.ddprojet.fragment.ClassFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,13 +10,13 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-import connection.Classes;
+import com.example.ddprojet.connection.Class;
 
 public class ClassesGet extends AsyncTask<String, String, String> {
 
-    private ClassesFragment.ClassDescriptionAdaptator adaptator;
+    private ClassFragment.ClassDescriptionAdaptator adaptator;
 
-    public ClassesGet(ClassesFragment.ClassDescriptionAdaptator adaptator) {
+    public ClassesGet(ClassFragment.ClassDescriptionAdaptator adaptator) {
         this.adaptator = adaptator;
     }
 
@@ -24,7 +24,7 @@ public class ClassesGet extends AsyncTask<String, String, String> {
     protected String doInBackground(String... strings) {
 
         try {
-            Classes characterClass = new Classes();
+            Class characterClass = new Class();
             JSONObject file = characterClass.getFile();
             JSONArray array = file.getJSONArray("results");
             for (String s: strings) {

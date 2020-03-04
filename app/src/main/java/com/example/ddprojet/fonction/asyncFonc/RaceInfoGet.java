@@ -3,7 +3,6 @@ package com.example.ddprojet.fonction.asyncFonc;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -18,10 +17,10 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-import connection.Race;
-import model.Bonus;
-import util.RaceEnum;
-import util.StringAdapter;
+import com.example.ddprojet.connection.Race;
+import com.example.ddprojet.model.Bonus;
+import com.example.ddprojet.util.RaceEnum;
+import com.example.ddprojet.util.StringAdapter;
 
 public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
 
@@ -119,7 +118,7 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
         RecyclerView recyclerViewBonus = this.Bonus.get();
         StringAdapter adapterBonus = new StringAdapter();
 
-        List<model.Bonus> bonuses = race.getBonuses();
+        List<com.example.ddprojet.model.Bonus> bonuses = race.getBonuses();
 
         for (Bonus b: bonuses) {
             adapterBonus.addItem(b.getCharacteristic() + ":" + Integer.toString(b.getValue()));

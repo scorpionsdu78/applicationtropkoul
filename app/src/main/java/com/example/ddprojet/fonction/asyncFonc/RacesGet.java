@@ -11,7 +11,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.lang.String;
 
-import connection.Race;
+import com.example.ddprojet.connection.Race;
 
 public class RacesGet extends AsyncTask<String, String, String> {
 

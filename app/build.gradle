@@ -28,7 +28,11 @@ android {
                             'src/main/res/layouts/activity',
                             'src/main/res/layouts/fragment',
                             'src/main/res/layouts/view',
-                            'src/main/res/layouts/adapter'
+                            'src/main/res/layouts/adapter',
+                            'src/main/res/drawables',
+                            'src/main/res/drawables/race',
+                            'src/main/res/drawables/class',
+                            'src/main/res/drawables/border'
                     ]
         }
     }

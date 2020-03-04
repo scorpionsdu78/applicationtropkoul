@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".CharacterSelectionActivity"
+        <activity android:name=".activity.CharacterSelectionActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
         </activity>
 
         <activity
-            android:name=".CharacterEditionActivity"
+            android:name=".activity.CharacterEditionActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
