@@ -64,4 +64,6 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.StringHold
         holder.setText(item);
     }
 
+
+
 }

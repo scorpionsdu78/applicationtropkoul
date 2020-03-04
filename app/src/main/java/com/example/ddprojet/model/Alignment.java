@@ -4,22 +4,11 @@ import androidx.annotation.NonNull;
 
 public class Alignment {
 
-    public enum LawfulChaoticAxis {
-        LAWFUL,
-        NEUTRAL,
-        CHAOTIC
-    }
 
-    public enum GoodEvilAxis {
-        GOOD,
-        NEUTRAL,
-        EVIL
-    }
+    private String lawfulChaoticAxis;
+    private String goodEvilAxis;
 
-    public LawfulChaoticAxis lawfulChaoticAxis;
-    public GoodEvilAxis goodEvilAxis;
-
-    public Alignment(LawfulChaoticAxis lawfulChaoticAxis, GoodEvilAxis goodEvilAxis){
+    public Alignment(String lawfulChaoticAxis, String goodEvilAxis){
         this.lawfulChaoticAxis = lawfulChaoticAxis;
         this.goodEvilAxis = goodEvilAxis;
     }

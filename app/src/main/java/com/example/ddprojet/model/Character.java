@@ -30,7 +30,7 @@ public class Character {
 
     protected List<String> savingThrows;
 
-    protected List<String> spells;
+    protected transient List<String> spells;
 
     protected List<String> proficiencies;
     protected List<String> languages;
@@ -38,12 +38,10 @@ public class Character {
     protected List<String> traits;
 
     protected String personality_traits;
-    protected String ideals;
-    protected String bonds;
-    protected String flaws;
+    protected String background;
 
-    private boolean alreadySetProf = false;
-    private boolean allreadySetTrait = false;
+    private transient boolean alreadySetProf = false;
+    private transient boolean allreadySetTrait = false;
     private boolean hasSpellCasting = false;
 
     private List<Feature> features;
@@ -107,9 +105,6 @@ public class Character {
         this.traits = traits;
 
         this.personality_traits = personality_traits;
-        this.ideals = ideals;
-        this.bonds = bonds;
-        this.flaws = flaws;
 
     }
 
@@ -269,28 +264,12 @@ public class Character {
         this.personality_traits = personality_traits;
     }
 
-    public String getIdeals() {
-        return ideals;
+    public String getBackground() {
+        return background;
     }
 
-    public void setIdeals(String ideals) {
-        this.ideals = ideals;
-    }
-
-    public String getBonds() {
-        return bonds;
-    }
-
-    public void setBonds(String bonds) {
-        this.bonds = bonds;
-    }
-
-    public String getFlaws() {
-        return flaws;
-    }
-
-    public void setFlaws(String flaws) {
-        this.flaws = flaws;
+    public void setBackground(String background) {
+        this.background = background;
     }
 
     public int getSpeed() {
