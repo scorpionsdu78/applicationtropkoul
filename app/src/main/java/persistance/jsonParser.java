@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
-import model.Character;
+import com.example.ddprojet.model.Character;
 
 public class jsonParser {
 

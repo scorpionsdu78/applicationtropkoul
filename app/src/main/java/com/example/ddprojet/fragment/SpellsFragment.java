@@ -12,14 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ddprojet.CharacterEditionActivity;
 import com.example.ddprojet.R;
+import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.fonction.asyncFonc.SpellsGet;
+import com.example.ddprojet.model.Spell;
 
 import java.lang.ref.WeakReference;
 import java.util.Vector;
-
-import com.example.ddprojet.model.Spell;
 
 public class SpellsFragment extends Fragment {
 
@@ -48,7 +47,7 @@ public class SpellsFragment extends Fragment {
         rv.setAdapter(adaptor);
 
         CharacterEditionActivity activity = (CharacterEditionActivity)getActivity();
-        spellsGet get = new spellsGet(new WeakReference<SpellAdapteur>(adaptor));
+        SpellsGet get = new SpellsGet(new WeakReference<SpellAdapteur>(adaptor));
 
         if(activity.getCharacter().isHasSpellCasting()) {
             get.execute(activity.getCharacter().getClass_());

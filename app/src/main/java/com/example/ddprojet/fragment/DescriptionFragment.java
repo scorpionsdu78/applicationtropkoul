@@ -12,33 +12,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.ddprojet.R;
-import com.example.ddprojet.fonction.asyncFonc.RaceInfoGet;
-
-import java.util.concurrent.ExecutionException;
-
-import com.example.ddprojet.connection.Race;
 
 public class DescriptionFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.race_info, container, false);
+        View v = inflater.inflate(R.layout.description_layout, container, false);
 
-        RaceInfoGet getter = new RaceInfoGet(v,(TextView)v.findViewById(R.id.name),(TextView)v.findViewById(R.id.speed),(TextView)v.findViewById(R.id.alignement),(TextView)v.findViewById(R.id.age),
-                (TextView)v.findViewById(R.id.size), (TextView)v.findViewById(R.id.sizeDesc),(TextView)v.findViewById(R.id.langDesc) ,(RecyclerView)v.findViewById(R.id.languages),
-                (RecyclerView)v.findViewById(R.id.trait),(RecyclerView)v.findViewById(R.id.Bonus));
+        Spinner ali1 = v.findViewById(R.id.al1);
+        Spinner ali2 = v.findViewById(R.id.al2);
 
-        getter.execute("dwarf");
-        Race race;
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(v.getContext(),
+                R.array.array_1, android.R.layout.simple_spinner_item);
+        ali1.setAdapter(adapter);
 
-        try {
-            race = getter.get();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(v.getContext(),R.array.array_2, android.R.layout.simple_spinner_item);
+        ali2.setAdapter(adapter1);
 
         return v;
     }

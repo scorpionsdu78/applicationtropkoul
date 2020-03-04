@@ -18,15 +18,18 @@ import com.example.ddprojet.R;
 import com.example.ddprojet.fragment.BonusesSelectionFragment;
 import com.example.ddprojet.fragment.CharacSkillsFragment;
 import com.example.ddprojet.fragment.ClassFragment;
-import com.example.ddprojet.fragment.SpellsFragment;
-
-import com.example.ddprojet.model.Feature;
-import com.example.ddprojet.model.ProficienciesList;
-import com.example.ddprojet.model.TraitList;
-import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.fragment.DescriptionFragment;
 import com.example.ddprojet.fragment.RaceClassSelectionFragment;
 import com.example.ddprojet.fragment.RaceFragment;
+import com.example.ddprojet.fragment.SpellsFragment;
+import com.example.ddprojet.model.Character;
+import com.example.ddprojet.model.Feature;
+import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.model.TraitList;
+import com.example.ddprojet.util.Adapter;
+import com.example.ddprojet.util.CustomViewPager;
+import com.example.ddprojet.util.FragmentEnum;
+import com.example.ddprojet.util.Requirement;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -34,10 +37,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.ddprojet.model.Character;
-import com.example.ddprojet.util.CustomViewPager;
-import com.example.ddprojet.util.Adapter;
-import com.example.ddprojet.util.Requirement;
+import persistance.fileJson;
+import persistance.jsonParser;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

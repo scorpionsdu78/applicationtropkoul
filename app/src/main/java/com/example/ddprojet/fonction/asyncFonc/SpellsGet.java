@@ -3,7 +3,9 @@ package com.example.ddprojet.fonction.asyncFonc;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.ddprojet.connection.SpellList;
 import com.example.ddprojet.fragment.SpellsFragment;
+import com.example.ddprojet.model.Spell;
 
 import org.json.JSONException;
 
@@ -12,10 +14,7 @@ import java.lang.ref.WeakReference;
 import java.util.Collections;
 import java.util.List;
 
-import com.example.ddprojet.connection.SpellList;
-import com.example.ddprojet.model.Spell;
-
-public class SpellsGet extends AsyncTask<String,String, SpellList> {
+public class SpellsGet extends AsyncTask<String,String, List<Spell>> {
     WeakReference<SpellsFragment.SpellAdapteur> adaptor;
 
     public SpellsGet(WeakReference<SpellsFragment.SpellAdapteur> frv) {
@@ -42,7 +41,7 @@ public class SpellsGet extends AsyncTask<String,String, SpellList> {
     }
 
     @Override
-    protected void onPostExecute(SpellList spellList) {
+    protected void onPostExecute(List<Spell> spellList) {
         SpellsFragment.SpellAdapteur adapteur = adaptor.get();
         if(spellList == null){
             Log.i("alerte","chelou pi");
