@@ -1,6 +1,5 @@
 package com.example.ddprojet.fragment;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +13,12 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.ddprojet.CharacterEditionActivity;
+import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
 
-import util.ClassEnum;
-import util.CustomViewPager;
-import util.FragmentEnum;
-import util.RaceEnum;
+import com.example.ddprojet.util.ClassEnum;
+import com.example.ddprojet.util.FragmentEnum;
+import com.example.ddprojet.util.RaceEnum;
 
 public class RaceClassSelectionFragment extends Fragment {
 
@@ -49,7 +47,7 @@ public class RaceClassSelectionFragment extends Fragment {
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RaceClassSelectionFragment.this.parent_activity.ChangeFragment(FragmentEnum.CaracComp);
+                RaceClassSelectionFragment.this.parent_activity.ChangeFragment(FragmentEnum.BonusesSelection);
             }
         });
 
