@@ -61,10 +61,12 @@ public class ClassesFragment extends Fragment {
             Log.d("transfert",s);
         }
 
-
-
-        TextView title = vue.findViewById(R.id.RaceChoose);
-        title.setText(((CharacterEditionActivity)getActivity()).getCharacter().getRace());
+        this.vue.findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CharacterEditionActivity)ClassesFragment.this.getActivity()).ChangeFragment(FragmentEnum.RaceClassSelection);
+            }
+        });
 
         RecyclerView rv = (vue).findViewById(R.id.ClassRecyclerView);
         ClassDescriptionAdaptator adaptator = new ClassDescriptionAdaptator();

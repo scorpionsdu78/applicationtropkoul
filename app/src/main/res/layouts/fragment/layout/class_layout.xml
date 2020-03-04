@@ -16,46 +16,159 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/background_scroll" />
 
-    <ScrollView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RaceChoose"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|center_vertical"
+                android:text="Retour"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textViewRaceName"
+                android:id="@+id/textViewClassName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_5sdp"
-                android:text="les Class"
+                android:text="Classes :"
                 android:textAlignment="center"
                 android:textSize="@dimen/_30sdp" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/ClassRecyclerView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-    </ScrollView>
+        </FrameLayout>
 
-    <TextView
-        android:id="@+id/RaceChoose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="race"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageViewTL"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/stylized_border_2_top_corner" />
+
+                <ImageView
+                    android:id="@+id/imageViewT"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_11sdp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintEnd_toStartOf="@+id/imageViewTR"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewTL"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/stylized_border_2_top" />
+
+                <ImageView
+                    android:id="@+id/imageViewTR"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleX="-1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/stylized_border_2_top_corner" />
+
+                <ImageView
+                    android:id="@+id/imageViewL"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toTopOf="@id/imageViewBL"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageViewTL"
+                    app:srcCompat="@drawable/stylized_border_2_left" />
+
+                <ImageView
+                    android:id="@+id/imageViewR"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    android:scaleX="-1"
+                    app:layout_constraintBottom_toTopOf="@id/imageViewBR"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageViewTR"
+                    app:srcCompat="@drawable/stylized_border_2_left" />
+
+                <ImageView
+                    android:id="@+id/imageViewBL"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/stylized_border_2_bottom_corner" />
+
+                <ImageView
+                    android:id="@+id/imageViewB"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_11sdp"
+                    android:scaleType="fitXY"
+                    android:scaleY="-1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/imageViewBR"
+                    app:layout_constraintStart_toEndOf="@id/imageViewBL"
+                    app:srcCompat="@drawable/stylized_border_2_top" />
+
+                <ImageView
+                    android:id="@+id/imageViewBR"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:scaleX="-1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:srcCompat="@drawable/stylized_border_2_bottom_corner" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/ClassRecyclerView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_2sdp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

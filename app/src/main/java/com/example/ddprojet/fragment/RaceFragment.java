@@ -60,6 +60,13 @@ public class RaceFragment extends Fragment {
         RacesGet getter = new RacesGet(adaptator);
         getter.execute("test");
 
+        ((Button)v.findViewById(R.id.backButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((CharacterEditionActivity)RaceFragment.this.getActivity()).ChangeFragment(FragmentEnum.RaceClassSelection);
+            }
+        });
+
          return v;
     }
 
