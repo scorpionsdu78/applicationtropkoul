@@ -1,4 +1,4 @@
-package persistance;
+package com.example.ddprojet.persistance;
 
 import android.content.Context;
 import android.util.Log;

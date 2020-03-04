@@ -36,8 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import persistance.FileJson;
-import persistance.JsonParser;
+import com.example.ddprojet.persistance.FileJson;
+import com.example.ddprojet.persistance.JsonParser;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
