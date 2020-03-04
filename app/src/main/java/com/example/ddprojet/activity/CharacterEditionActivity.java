@@ -39,6 +39,9 @@ import com.example.ddprojet.util.CustomViewPager;
 import com.example.ddprojet.util.Adapter;
 import com.example.ddprojet.util.Requirement;
 
+import persistance.fileJson;
+import persistance.jsonParser;
+
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
 
@@ -138,10 +141,11 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, this.drawerLayout, toolbar, R.string.open_actionBar, R.string.close_actionBar);
         this.drawerLayout.addDrawerListener(toggle);
 
-        SubMenu subMenu = this.navigationView.getMenu().getItem(0).getSubMenu();
+        // rend inaccessible les étapes non validés dans le drawer
+        /*SubMenu subMenu = this.navigationView.getMenu().getItem(0).getSubMenu();
         for(int i = 1; i < subMenu.size(); i++){
             subMenu.getItem(i).setCheckable(false);
-        }
+        }*/
 
         toggle.syncState();
 
