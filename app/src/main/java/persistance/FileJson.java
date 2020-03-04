@@ -11,13 +11,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class fileJson {
+public class FileJson {
 
-    jsonParser parsed;
+    JsonParser parsed;
     Context context;
     String filename;
 
-    public fileJson(jsonParser parsed, Context context, String filename) {
+    public FileJson(JsonParser parsed, Context context, String filename) {
         this.parsed = parsed;
         this.context = context;
         this.filename = filename;

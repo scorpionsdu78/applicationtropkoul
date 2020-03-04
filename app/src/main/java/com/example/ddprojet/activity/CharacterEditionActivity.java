@@ -3,7 +3,6 @@ package com.example.ddprojet.activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -37,11 +36,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import persistance.fileJson;
-import persistance.jsonParser;
-
-import persistance.fileJson;
-import persistance.jsonParser;
+import persistance.FileJson;
+import persistance.JsonParser;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -329,10 +325,10 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     }
 
     public void submit(View v){
-        jsonParser parser = new jsonParser(this.character);
+        JsonParser parser = new JsonParser(this.character);
         parser.printJson();
 
-        fileJson test = new fileJson(parser,v.getContext(),"test.json");
+        FileJson test = new FileJson(parser,v.getContext(),"test.json");
         test.save();
         Log.i("testJason",Boolean.toString(test.isFilePresent()));
         /*try {

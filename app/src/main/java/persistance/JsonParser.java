@@ -6,13 +6,13 @@ import com.google.gson.Gson;
 
 import com.example.ddprojet.model.Character;
 
-public class jsonParser {
+public class JsonParser {
 
     private Character character;
     private String json;
     private Gson converter;
 
-    public jsonParser(Character character) {
+    public JsonParser(Character character) {
         this.character = character;
         converter = new Gson();
         json = converter.toJson(character);
