@@ -153,4 +153,8 @@ public class Classes extends APIconnection {
     public List<Feature> getFeatureChoose() {
         return featureChoose;
     }
+
+    public boolean getHasSpellCastin(){
+        return hasSpellCasting;
+    }
 }

@@ -26,15 +26,13 @@ import com.example.ddprojet.R;
 import com.example.ddprojet.fonction.asyncFonc.ClassesGet;
 import com.example.ddprojet.fonction.asyncFonc.ClassesGetInfo;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
 
 import connection.Classes;
 import model.Character;
-import util.FragmentEnum;
 import util.ClassEnum;
+import util.FragmentEnum;
 
 public class ClassesFragment extends Fragment {
 
@@ -203,6 +201,7 @@ public class ClassesFragment extends Fragment {
         userCharacter.setProficiencies(choosed.getBasicProficiencies().getNames());
         userCharacter.setSavingThrows(choosed.getJetDeSauv());
         userCharacter.setFeatures(choosed.getFeatures());
+        userCharacter.setHasSpellCasting(choosed.getHasSpellCastin());
 
         activity.setListToChoseFrom(choosed.getProficienciesChoice());
         activity.SetRequirement(choosed.getName());

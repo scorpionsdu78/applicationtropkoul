@@ -9,14 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.lang.String;
 
 public class APIconnection {
 
-    protected JSONObject file;
-    protected final String basePath = "https://www.dnd5eapi.co";
+    protected transient JSONObject file;
+    protected transient final String basePath = "https://www.dnd5eapi.co";
 
     public APIconnection(){
 

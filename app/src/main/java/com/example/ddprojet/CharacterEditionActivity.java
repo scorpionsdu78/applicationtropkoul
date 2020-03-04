@@ -1,6 +1,7 @@
 package com.example.ddprojet;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -16,11 +17,6 @@ import com.example.ddprojet.fragment.CapaDonsFragment;
 import com.example.ddprojet.fragment.CaracCompFragment;
 import com.example.ddprojet.fragment.ClassesFragment;
 import com.example.ddprojet.fragment.EquipSortsFragment;
-
-import model.Feature;
-import model.ProficienciesList;
-import model.TraitList;
-import util.FragmentEnum;
 import com.example.ddprojet.fragment.PersonnaliteFragment;
 import com.example.ddprojet.fragment.RaceClassSelectionFragment;
 import com.example.ddprojet.fragment.RaceFragment;
@@ -32,8 +28,14 @@ import java.util.List;
 import java.util.Map;
 
 import model.Character;
-import util.CustomViewPager;
+import model.Feature;
+import model.ProficienciesList;
+import model.TraitList;
+import persistance.fileJson;
+import persistance.jsonParser;
 import util.Adapter;
+import util.CustomViewPager;
+import util.FragmentEnum;
 import util.Requirement;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -309,5 +311,24 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     public void setFeatureToChoose(List<Feature> featureToChoose) {
         this.featureToChoose = featureToChoose;
     }
+
+    public void submit(View v){
+        jsonParser parser = new jsonParser(this.character);
+        parser.printJson();
+
+        fileJson test = new fileJson(parser,v.getContext(),"test.json");
+        test.save();
+        Log.i("testJason",Boolean.toString(test.isFilePresent()));
+        /*try {
+            Log.i("testJason",Boolean.toString(test.delete()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        Log.i("testJason",Boolean.toString(test.isFilePresent()));
+        Log.i("testJason",test.read());
+
+    }
+
+
 }
 

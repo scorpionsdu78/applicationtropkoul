@@ -4,15 +4,18 @@ import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Character {
 
     protected String name;
     protected String race;
+    @SerializedName("class")
     protected String class_;
     protected Alignment alignment;
     protected int level;
@@ -41,6 +44,7 @@ public class Character {
 
     private boolean alreadySetProf = false;
     private boolean allreadySetTrait = false;
+    private boolean hasSpellCasting = false;
 
     private List<Feature> features;
     private List<Feature> featureChoose;
@@ -315,5 +319,13 @@ public class Character {
 
     public void setFeatureChoose(List<Feature> featureChoose) {
         this.featureChoose = featureChoose;
+    }
+
+    public boolean isHasSpellCasting() {
+        return hasSpellCasting;
+    }
+
+    public void setHasSpellCasting(boolean hasSpellCasting) {
+        this.hasSpellCasting = hasSpellCasting;
     }
 }

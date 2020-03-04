@@ -1,5 +1,7 @@
 package model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 import org.json.JSONArray;
@@ -12,7 +14,7 @@ import java.util.Vector;
 
 import connection.APIconnection;
 
-public class Spell extends APIconnection {
+public class Spell extends APIconnection implements Comparable<Spell>{
 
 
     String name;
@@ -81,7 +83,7 @@ public class Spell extends APIconnection {
         classes = new ArrayList<>();
         list = file.getJSONArray("classes");
         for (int i = 0; i<list.length(); i++) {
-            components.add(list.getJSONObject(i).getString("name"));
+            classes.add(list.getJSONObject(i).getString("name"));
         }
 
 
@@ -110,7 +112,10 @@ public class Spell extends APIconnection {
     public boolean isFor(String classe){
 
         for (String s: classes) {
-            if(s.equals(classe)){
+            Log.i("alerte","entrez dans le for de isfor");
+
+            if(s.toLowerCase().equals(classe.toLowerCase())){
+                Log.i("alerte","le sort est pour la classe1");
                 return true;
             }
         }
@@ -150,4 +155,9 @@ public class Spell extends APIconnection {
     }
 
 
+    @Override
+    public int compareTo(Spell spell) {
+        return Integer.compare(this.level,spell.getLevel());
+
+    }
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ddprojet.CharacterEditionActivity;
 import com.example.ddprojet.R;
 import com.example.ddprojet.fonction.asyncFonc.spellsGet;
 
@@ -46,9 +47,15 @@ public class EquipSortsFragment extends Fragment {
 
         rv.setAdapter(adaptor);
 
-
+        CharacterEditionActivity activity = (CharacterEditionActivity)getActivity();
         spellsGet get = new spellsGet(new WeakReference<SpellAdapteur>(adaptor));
-        get.execute("launch");
+
+        if(activity.getCharacter().isHasSpellCasting()) {
+            get.execute(activity.getCharacter().getClass_());
+        }else {
+            TextView titre = vue.findViewById(R.id.SpellTitle);
+            titre.setText("no spell for this classe");
+        }
     }
 
     public class SpellHolder extends RecyclerView.ViewHolder{

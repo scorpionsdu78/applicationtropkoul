@@ -66,7 +66,10 @@ public class SpellList extends APIconnection {
     public List<Spell> getSpellFor(String classe){
         List<Spell> result = new ArrayList<>();
         for (Spell s: spellList) {
+            Log.i("alerte","entrez le fort de getSepllFor");
+
             if(s.isFor(classe)){
+                Log.i("alerte","le sort est pour la classe2");
                 result.add(s);
             }
         }

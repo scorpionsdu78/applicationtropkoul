@@ -8,4 +8,18 @@
 
     <string name="main_font">@font/balthazar</string>
 
+
+    <string-array name="array_1">
+        <item>chaotic</item>
+        <item>neutral</item>
+        <item>lawfull</item>
+    </string-array>
+
+    <string-array name="array_2">
+        <item>evil</item>
+        <item>neutral</item>
+        <item>good</item>
+    </string-array>
+
+
 </resources>
