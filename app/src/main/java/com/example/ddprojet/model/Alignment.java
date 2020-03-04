@@ -5,15 +5,35 @@ import androidx.annotation.NonNull;
 public class Alignment {
 
     public enum LawfulChaoticAxis {
-        LAWFUL,
-        NEUTRAL,
-        CHAOTIC
+        LAWFUL("Lawful"),
+        NEUTRAL("Neutral"),
+        CHAOTIC("Chaotic");
+
+        private String value;
+
+        LawfulChaoticAxis(String value){
+            this.value = value;
+        }
+
+        public String getValue(){
+            return this.value;
+        }
     }
 
     public enum GoodEvilAxis {
-        GOOD,
-        NEUTRAL,
-        EVIL
+        GOOD("Good"),
+        NEUTRAL("Neutral"),
+        EVIL("Evil");
+
+        private String value;
+
+        GoodEvilAxis(String value){
+            this.value = value;
+        }
+
+        public String getValue(){
+            return this.value;
+        }
     }
 
     public LawfulChaoticAxis lawfulChaoticAxis;
@@ -28,6 +48,6 @@ public class Alignment {
     @NonNull
     @Override
     public String toString() {
-        return this.lawfulChaoticAxis + " - " + this.goodEvilAxis;
+        return this.lawfulChaoticAxis.getValue() + " - " + this.goodEvilAxis.toString();
     }
 }
