@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -107,11 +108,15 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
         protected class FeaturesAdapter extends RecyclerView.Adapter<FeaturesAdapter.FeaturesHolder>{
 
-            protected int tagCount = 0;
+            protected List<CheckBox> checkBoxes;
+            protected List<CheckBox> checkBoxesChecked;
 
             protected List<Feature> features;
 
             public FeaturesAdapter(){
+                this.checkBoxes = new ArrayList<>();
+                this.checkBoxesChecked = new ArrayList<>();
+
                 this.features = new ArrayList<>();
             }
 
@@ -132,7 +137,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                         .from(parent.getContext())
                         .inflate(R.layout.feature_item_layout, parent, false);
 
-                return new FeaturesHolder(frameLayout, ++this.tagCount);
+                return new FeaturesHolder(frameLayout, this.checkBoxes);
             }
 
             @Override
@@ -141,6 +146,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
                 holder.setName(feature.getName());
                 holder.setDescription(feature.getDesc());
+                holder.setCheckBoxOnClick(this.checkBoxesChecked, 1);
             }
 
             @Override
@@ -153,25 +159,53 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
             protected class FeaturesHolder extends RecyclerView.ViewHolder{
 
-                protected CheckBox checkBoxFeatureName;
+                protected List<CheckBox> checkBoxes;
+
+                protected CheckBox checkBoxFeature;
                 protected TextView textViewDescription;
 
-                public FeaturesHolder(@NonNull View itemView, int tag) {
+                public FeaturesHolder(@NonNull View itemView, List<CheckBox> checkBoxes) {
                     super(itemView);
-                    itemView.setTag(tag);
 
-                    this.checkBoxFeatureName = (CheckBox) itemView.findViewById(R.id.checkBoxFeatureName);
+                    this.checkBoxFeature = (CheckBox) itemView.findViewById(R.id.checkBoxFeatureName);
                     this.textViewDescription = (TextView)itemView.findViewById(R.id.textViewFeatureDescription);
+
+                    this.checkBoxes = checkBoxes;
+                    this.checkBoxes.add(this.checkBoxFeature);
                 }
 
 
                 public void setName(String name){
-                    this.checkBoxFeatureName.setText(name);
+                    this.checkBoxFeature.setText(name);
                 }
 
 
                 public void setDescription(String description){
                     this.textViewDescription.setText(description);
+                }
+
+                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count){
+                    this.checkBoxFeature.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (FeaturesHolder.this.checkBoxFeature.isChecked()) {
+                                if (checkBoxesChecked.size() < count) {
+                                    checkBoxesChecked.add(FeaturesHolder.this.checkBoxFeature);
+
+                                    if (checkBoxesChecked.size() == count)
+                                        for(CheckBox checkBox : FeaturesHolder.this.checkBoxes)
+                                            if (!checkBox.isChecked())
+                                                checkBox.setClickable(false);
+                                }
+                            }else {
+                                if (checkBoxesChecked.contains(FeaturesHolder.this.checkBoxFeature)) {
+                                    checkBoxesChecked.remove(FeaturesHolder.this.checkBoxFeature);
+                                }
+                                for(CheckBox checkBox : FeaturesHolder.this.checkBoxes)
+                                    checkBox.setClickable(true);
+                            }
+                        }
+                    });
                 }
             }
 

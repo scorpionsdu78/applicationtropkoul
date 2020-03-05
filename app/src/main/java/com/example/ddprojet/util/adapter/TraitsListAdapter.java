@@ -45,7 +45,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
     @Override
     public void onBindViewHolder(@NonNull TraitsListHolder holder, int position) {
         holder.setChoose();
-        holder.setRecyclerViewTraits(traitsList);
+        holder.setRecyclerViewTraits(this.traitsList);
     }
 
     @Override
@@ -100,11 +100,15 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
 
         protected class TraitsAdapter extends RecyclerView.Adapter<TraitsAdapter.TraitsHolder>{
 
-            protected int tagCount = 0;
+            protected List<CheckBox> checkBoxes;
+            protected List<CheckBox> checkBoxesChecked;
 
             protected List<Trait> traits;
 
             public TraitsAdapter(){
+                this.checkBoxes = new ArrayList<>();
+                this.checkBoxesChecked = new ArrayList<>();
+
                 this.traits = new ArrayList<>();
             }
 
@@ -125,7 +129,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
                         .from(parent.getContext())
                         .inflate(R.layout.feature_item_layout, parent, false);
 
-                return new TraitsHolder(frameLayout, ++this.tagCount);
+                return new TraitsHolder(frameLayout, this.checkBoxes);
             }
 
             @Override
@@ -134,6 +138,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
 
                 holder.setName(trait.getName());
                 holder.setDescription(trait.getDescription());
+                holder.setCheckBoxOnClick(this.checkBoxesChecked, 1);
             }
 
             @Override
@@ -146,25 +151,53 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
 
             protected class TraitsHolder extends RecyclerView.ViewHolder{
 
-                protected CheckBox checkBoxTraitName;
+                protected List<CheckBox> checkBoxes;
+
+                protected CheckBox checkBoxTrait;
                 protected TextView textViewDescription;
 
-                public TraitsHolder(@NonNull View itemView, int tag) {
+                public TraitsHolder(@NonNull View itemView, List<CheckBox> checkBoxes) {
                     super(itemView);
-                    itemView.setTag(tag);
 
-                    this.checkBoxTraitName = itemView.findViewById(R.id.checkBoxFeatureName);
+                    this.checkBoxTrait = itemView.findViewById(R.id.checkBoxFeatureName);
                     this.textViewDescription = itemView.findViewById(R.id.textViewFeatureDescription);
+
+                    this.checkBoxes = checkBoxes;
+                    this.checkBoxes.add(this.checkBoxTrait);
                 }
 
 
                 public void setName(String name){
-                    this.checkBoxTraitName.setText(name);
+                    this.checkBoxTrait.setText(name);
                 }
 
 
                 public void setDescription(String description){
                     this.textViewDescription.setText(description);
+                }
+
+                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count){
+                    this.checkBoxTrait.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (TraitsHolder.this.checkBoxTrait.isChecked()) {
+                                if (checkBoxesChecked.size() < count) {
+                                    checkBoxesChecked.add(TraitsHolder.this.checkBoxTrait);
+
+                                    if (checkBoxesChecked.size() == count)
+                                        for(CheckBox checkBox : TraitsHolder.this.checkBoxes)
+                                            if (!checkBox.isChecked())
+                                                checkBox.setClickable(false);
+                                }
+                            }else {
+                                if (checkBoxesChecked.contains(TraitsHolder.this.checkBoxTrait)) {
+                                    checkBoxesChecked.remove(TraitsHolder.this.checkBoxTrait);
+                                }
+                                for(CheckBox checkBox : TraitsHolder.this.checkBoxes)
+                                    checkBox.setClickable(true);
+                            }
+                        }
+                    });
                 }
             }
 

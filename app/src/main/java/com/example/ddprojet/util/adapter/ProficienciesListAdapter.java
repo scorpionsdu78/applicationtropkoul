@@ -56,7 +56,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
         ProficienciesList proficienciesList = this.proficienciesLists.get(position);
 
         holder.setChoose(proficienciesList.getChoice());
-        holder.setRecyclerViewProficiencies(proficienciesList.getProficiencies());
+        holder.setRecyclerViewProficiencies(proficienciesList);
     }
 
     @Override
@@ -86,13 +86,13 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
         }
 
 
-        public void setRecyclerViewProficiencies(List<Proficiencies> proficiencies){
+        public void setRecyclerViewProficiencies(ProficienciesList proficiencies){
             RecyclerView.LayoutManager manager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
             ProficienciesAdapter adapter = new ProficienciesAdapter();
 
             this.recyclerViewProficiencies.setLayoutManager(manager);
             this.recyclerViewProficiencies.setAdapter(adapter);
-            adapter.addItems(proficiencies.toArray(new Proficiencies[0]));
+            adapter.setProficiencies(proficiencies);
 
             /*int count = adapter.getItemCount();
             Log.i("DulcheE", "" + count);
@@ -111,21 +111,18 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
         protected class ProficienciesAdapter extends RecyclerView.Adapter<ProficienciesAdapter.ProficienciesHolder>{
 
-            protected int tagCount = 0;
+            protected List<CheckBox> checkBoxes;
+            protected List<CheckBox> checkBoxesChecked;
 
-            protected List<Proficiencies> proficiencies;
+            protected ProficienciesList proficiencies;
 
             public ProficienciesAdapter(){
-                this.proficiencies = new ArrayList<>();
+                this.checkBoxes = new ArrayList<>();
+                this.checkBoxesChecked = new ArrayList<>();
             }
 
-            public void addItem(Proficiencies proficiencie){
-                this.proficiencies.add(proficiencie);
-            }
-
-            public void addItems(Proficiencies ...proficiencies){
-                for(Proficiencies proficiencie : proficiencies)
-                    this.addItem(proficiencie);
+            public void setProficiencies(ProficienciesList proficiencies) {
+                this.proficiencies = proficiencies;
             }
 
             @NonNull
@@ -136,19 +133,20 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                         .from(parent.getContext())
                         .inflate(R.layout.feature_item_layout, parent, false);
 
-                return new ProficienciesHolder(frameLayout, ++this.tagCount);
+                return new ProficienciesHolder(frameLayout, this.checkBoxes);
             }
 
             @Override
             public void onBindViewHolder(@NonNull ProficienciesHolder holder, int position) {
-                Proficiencies proficiencie = this.proficiencies.get(position);
+                Proficiencies proficiencie = this.proficiencies.getProficiencies().get(position);
 
                 holder.setName(proficiencie.getName());
+                holder.setCheckBoxOnClick(this.checkBoxesChecked, this.proficiencies.getChoice());
             }
 
             @Override
             public int getItemCount() {
-                return this.proficiencies.size();
+                return this.proficiencies.getList().size();
             }
 
 
@@ -156,25 +154,46 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
             protected class ProficienciesHolder extends RecyclerView.ViewHolder{
 
-                protected CheckBox checkBoxProficienciesName;
-                protected TextView textViewDescription;
+                protected List<CheckBox> checkBoxes;
 
-                public ProficienciesHolder(@NonNull View itemView, int tag) {
+                protected CheckBox checkBoxProficiencies;
+
+                public ProficienciesHolder(@NonNull View itemView, List<CheckBox> checkBoxes) {
                     super(itemView);
-                    itemView.setTag(tag);
 
-                    this.checkBoxProficienciesName = itemView.findViewById(R.id.checkBoxFeatureName);
-                    this.textViewDescription = itemView.findViewById(R.id.textViewFeatureDescription);
+                    this.checkBoxProficiencies = itemView.findViewById(R.id.checkBoxFeatureName);
+
+                    this.checkBoxes = checkBoxes;
+                    this.checkBoxes.add(this.checkBoxProficiencies);
                 }
 
 
                 public void setName(String name){
-                    this.checkBoxProficienciesName.setText(name);
+                    this.checkBoxProficiencies.setText(name);
                 }
 
+                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count){
+                    this.checkBoxProficiencies.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (ProficienciesHolder.this.checkBoxProficiencies.isChecked()) {
+                                if (checkBoxesChecked.size() < count) {
+                                    checkBoxesChecked.add(ProficienciesHolder.this.checkBoxProficiencies);
 
-                public void setDescription(String description){
-                    this.textViewDescription.setText(description);
+                                    if (checkBoxesChecked.size() == count)
+                                        for(CheckBox checkBox : ProficienciesHolder.this.checkBoxes)
+                                            if (!checkBox.isChecked())
+                                                checkBox.setClickable(false);
+                                }
+                            }else {
+                                if (checkBoxesChecked.contains(ProficienciesHolder.this.checkBoxProficiencies)) {
+                                    checkBoxesChecked.remove(ProficienciesHolder.this.checkBoxProficiencies);
+                                }
+                                for(CheckBox checkBox : ProficienciesHolder.this.checkBoxes)
+                                    checkBox.setClickable(true);
+                            }
+                        }
+                    });
                 }
             }
 

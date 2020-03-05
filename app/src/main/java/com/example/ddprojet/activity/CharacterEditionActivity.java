@@ -117,15 +117,11 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character_edition);
 
-
         this.character = new Character();
-
-
 
         this.bonusSkill = new ArrayList<>();
         this.classRequierement = new HashMap<>();
         this.bonusCharac = new HashMap<>();
-
 
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);

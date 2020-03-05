@@ -93,11 +93,12 @@ public class BonusesSelectionFragment extends Fragment {
 
         RecyclerView.LayoutManager managerTraits = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
         TraitsListAdapter adapterTraits = new TraitsListAdapter();
-        if(this.traitsList != null)
+        if(this.traitsList != null) {
             adapterTraits.setTraitsList(this.traitsList);
+            recyclerViewTraitsList.setLayoutManager(managerTraits);
+            recyclerViewTraitsList.setAdapter(adapterTraits);
+        }
 
-        recyclerViewTraitsList.setLayoutManager(managerTraits);
-        recyclerViewTraitsList.setAdapter(adapterTraits);
 
 
         TextView textViewLabelProficiencies = this.view.findViewById(R.id.layoutProficiencies).findViewById(R.id.textViewLabel);
