@@ -3,6 +3,8 @@ package com.example.ddprojet.persistance;
 import android.content.Context;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -84,6 +86,14 @@ public class FileJson {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public Character getCharacter(){
+        Gson gson = new Gson();
+        String content = read();
+        Log.i("test jason", content);
+        Character character = gson.fromJson(content, Character.class);
+        return character;
     }
 
 }

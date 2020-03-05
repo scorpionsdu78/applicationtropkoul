@@ -9,6 +9,7 @@ public class TraitsList {
 
     protected List<Trait> traits;
     protected int choice;
+    protected String name;
 
     public TraitsList(int choice) {
         this.choice = choice;
@@ -16,6 +17,9 @@ public class TraitsList {
     }
 
     public void add(Trait trait){
+        if(trait.getSubName() != null){
+            name = trait.getName();
+        }
         traits.add(trait);
     }
 
@@ -39,13 +43,25 @@ public class TraitsList {
     public String toString() {
         String s ="";
 
-        for (Trait t: traits) {
-            Log.d("JTL", t.getName() + t.getDescription());
-            s += t.getName();
+        if(name == null){
+            for (Trait t: traits) {
+                Log.d("JTL", t.getName() + t.getDescription());
+                s += t.getName();
 
-            if(t != traits.get(traits.size()-1))
-                s += "\n";
+                if(t != traits.get(traits.size()-1))
+                    s += "\n";
+            }
+        }else {
+            s += name + ": \n";
+            for (Trait t: traits) {
+                Log.d("JTL", t.getName() + t.getDescription());
+                s += t.getSubName();
+
+                if(t != traits.get(traits.size()-1))
+                    s += "\n";
+            }
         }
+
 
         return s;
     }
