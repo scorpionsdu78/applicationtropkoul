@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
+import com.example.ddprojet.util.FragmentEnum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,6 +44,13 @@ public class CharacSkillsFragment extends Fragment {
 
         //Init of the parent activity
         this.parent_activity = (CharacterEditionActivity)this.getActivity();
+
+        this.view.findViewById(R.id.buttonNext).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CharacSkillsFragment.this.parent_activity.ChangeFragment(FragmentEnum.Spells);
+            }
+        });
 
         //Init the number of point to attribute to the characs
         this.characPoints = 27 + this.parent_activity.levelBonusCharac();
@@ -144,10 +152,6 @@ public class CharacSkillsFragment extends Fragment {
             ((CheckBox)this.view.findViewById(R.id.checkBoxPersuasion)).setChecked(true);
 
 
-
-        CheckBox checkBoxSavingThrows = this.view.findViewById(R.id.checkBoxSavingThrows);
-        checkBoxSavingThrows.setChecked(true);
-
         return this.view;
     }
 
@@ -169,8 +173,6 @@ public class CharacSkillsFragment extends Fragment {
             Log.i("DulcheE", "Saving trows " + characName);
             CheckBox checkBoxSavingThrows = parent.findViewById(R.id.checkBoxSavingThrows);
             checkBoxSavingThrows.setChecked(true);
-            checkBoxSavingThrows.setText("I'm checked");
-            checkBoxSavingThrows.setText("I'm checked");
         }
 
         int requierement = this.parent_activity.getClassRequierement(characName);
