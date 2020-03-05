@@ -1,24 +1,26 @@
 package com.example.ddprojet.activity;
 
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Vector;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 import com.example.ddprojet.model.Alignment;
 import com.example.ddprojet.model.CharacterDescription;
+
+import java.io.File;
+import java.util.Vector;
 
 public class CharacterSelectionActivity extends AppCompatActivity {
 
@@ -33,11 +35,23 @@ public class CharacterSelectionActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         rv.setAdapter(characterDescriptionViewAdapter);
 
-        characterDescriptionViewAdapter.add(new CharacterDescription("Eozen Thelir Daragon", "Elf des sables", "Paladin", new Alignment(Alignment.LawfulChaoticAxis.LAWFUL, Alignment.GoodEvilAxis.GOOD), 12, R.drawable.avatar_barbarian));
+        String path = "/data/user/0/com.example.ddprojet/files/";
+
+        Log.d("Files", "Path: " + path);
+
+        File directory = new File(path);
+        File[] files = directory.listFiles();
+        Log.d("Files", "Size: "+ files.length);
+        for (int i = 0; i < files.length; i++)
+        {
+            Log.d("Files", "FileName:" + files[i].getName());
+        }
+
+/*        characterDescriptionViewAdapter.add(new CharacterDescription("Eozen Thelir Daragon", "Elf des sables", "Paladin", new Alignment(Alignment.LawfulChaoticAxis.LAWFUL, Alignment.GoodEvilAxis.GOOD), 12, R.drawable.avatar_barbarian));
         characterDescriptionViewAdapter.add(new CharacterDescription("Edgar", "Margull", "Necromancien", new Alignment(Alignment.LawfulChaoticAxis.CHAOTIC, Alignment.GoodEvilAxis.NEUTRAL), 9000, R.drawable.avatar_dark_wizard));
         characterDescriptionViewAdapter.add(new CharacterDescription("Eude", "Elf", "Mandiant", new Alignment(Alignment.LawfulChaoticAxis.NEUTRAL, Alignment.GoodEvilAxis.NEUTRAL), 0, R.drawable.race_half_elf));
         characterDescriptionViewAdapter.add(new CharacterDescription("Ielle", "Non raciste", "Social Justice Warrior", new Alignment(Alignment.LawfulChaoticAxis.CHAOTIC, Alignment.GoodEvilAxis.NEUTRAL), 666, R.drawable.race_dwarf));
-
+*/
     }
 
 

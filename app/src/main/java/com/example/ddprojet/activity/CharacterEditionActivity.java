@@ -25,6 +25,8 @@ import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
 import com.example.ddprojet.model.TraitList;
+import com.example.ddprojet.persistance.FileJson;
+import com.example.ddprojet.persistance.JsonParser;
 import com.example.ddprojet.util.Adapter;
 import com.example.ddprojet.util.CustomViewPager;
 import com.example.ddprojet.util.FragmentEnum;
@@ -35,9 +37,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.example.ddprojet.persistance.FileJson;
-import com.example.ddprojet.persistance.JsonParser;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -328,7 +327,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         JsonParser parser = new JsonParser(this.character);
         parser.printJson();
 
-        FileJson test = new FileJson(parser,v.getContext(),"test.json");
+        FileJson test = new FileJson(parser,v.getContext(),character.getName()+".json");
         test.save();
         Log.i("testJason",Boolean.toString(test.isFilePresent()));
         /*try {

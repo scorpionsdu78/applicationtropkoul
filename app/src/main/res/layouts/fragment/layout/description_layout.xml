@@ -41,7 +41,7 @@
                 android:textSize="@dimen/_20sdp" />
 
             <EditText
-                android:id="@+id/editText4"
+                android:id="@+id/namePerso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -109,10 +109,9 @@
                 android:inputType="textMultiLine" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/validation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="submit"
                 android:text="submit" />
 
         </LinearLayout>
