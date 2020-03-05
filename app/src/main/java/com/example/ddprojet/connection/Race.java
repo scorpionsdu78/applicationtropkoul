@@ -14,15 +14,15 @@ import com.example.ddprojet.model.Bonus;
 import com.example.ddprojet.model.Proficiencies;
 import com.example.ddprojet.model.ProficienciesList;
 import com.example.ddprojet.model.Trait;
-import com.example.ddprojet.model.TraitList;
+import com.example.ddprojet.model.TraitsList;
 
 public class Race extends APIconnection {
 
     protected static final java.lang.String racePath = "/api/races/";
 
     private List<Bonus>  bonuses;
-    private TraitList traitList;
-    private TraitList globalTrait;
+    private TraitsList traitsList;
+    private TraitsList globalTrait;
     private List<java.lang.String> languages;
     private java.lang.String name;
     private int speed;
@@ -55,14 +55,14 @@ public class Race extends APIconnection {
         //on suit la meme logique qu'avec les proficiencies sauf qu'ici on stock le nom et la description
         if(file.optJSONObject("trait_options") !=null){
             JSONObject traitOption = file.getJSONObject("trait_options");
-            traitList = new TraitList(traitOption.getInt("choose"));
+            traitsList = new TraitsList(traitOption.getInt("choose"));
 
             Log.d("iii","balise2");
 
             JSONArray listTraitTmp = traitOption.getJSONArray("from");
             for (int i=0; i<listTraitTmp.length(); i++){
                 JSONObject tampon = listTraitTmp.getJSONObject(i);
-                traitList.add(new Trait(tampon.getString("url"),tampon.getString("name")));
+                traitsList.add(new Trait(tampon.getString("url"),tampon.getString("name")));
                 Log.d("iii","balise3");
 
             }
@@ -74,7 +74,7 @@ public class Race extends APIconnection {
 
         //on recomance pour les traits globaux
         JSONArray traitglobaux = file.getJSONArray("traits");
-        globalTrait = new TraitList(0);
+        globalTrait = new TraitsList(0);
 
 
 
@@ -129,11 +129,11 @@ public class Race extends APIconnection {
 
     }
 
-    public TraitList getTraitList() {
-        return traitList;
+    public TraitsList getTraitsList() {
+        return traitsList;
     }
 
-    public TraitList getGlobalTrait() {
+    public TraitsList getGlobalTrait() {
         return globalTrait;
     }
 

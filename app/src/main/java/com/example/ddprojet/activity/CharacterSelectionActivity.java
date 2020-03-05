@@ -41,10 +41,12 @@ public class CharacterSelectionActivity extends AppCompatActivity {
 
         File directory = new File(path);
         File[] files = directory.listFiles();
-        Log.d("Files", "Size: "+ files.length);
-        for (int i = 0; i < files.length; i++)
-        {
-            Log.d("Files", "FileName:" + files[i].getName());
+        if(files != null){
+            Log.d("Files", "Size: " + files.length); // GOT AN ERROR EXCEPTION !
+            for (int i = 0; i < files.length; i++)
+            {
+                Log.d("Files", "FileName:" + files[i].getName());
+            }
         }
 
 /*        characterDescriptionViewAdapter.add(new CharacterDescription("Eozen Thelir Daragon", "Elf des sables", "Paladin", new Alignment(Alignment.LawfulChaoticAxis.LAWFUL, Alignment.GoodEvilAxis.GOOD), 12, R.drawable.avatar_barbarian));

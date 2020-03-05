@@ -17,6 +17,6 @@ public class Alignment {
     @NonNull
     @Override
     public String toString() {
-        return this.lawfulChaoticAxis.getValue() + " - " + this.goodEvilAxis.toString();
+        return this.lawfulChaoticAxis.toString() + " - " + this.goodEvilAxis.toString();
     }
 }

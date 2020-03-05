@@ -12,6 +12,10 @@ public class ProficienciesList {
         list = new ArrayList<Proficiencies>();
     }
 
+    public List<Proficiencies> getProficiencies(){
+        return list;
+    }
+
     public void add(Proficiencies p){
         list.add(p);
     }

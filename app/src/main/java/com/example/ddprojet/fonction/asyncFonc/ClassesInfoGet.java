@@ -22,7 +22,7 @@ import java.util.Map;
 import com.example.ddprojet.connection.Class;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
-import com.example.ddprojet.util.StringAdapter;
+import com.example.ddprojet.util.adapter.StringAdapter;
 
 public class ClassesInfoGet extends AsyncTask<String, String, Class> {
 

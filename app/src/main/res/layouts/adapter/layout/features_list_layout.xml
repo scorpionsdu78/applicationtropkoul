@@ -1,95 +1,108 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_20sdp">
 
-    <ImageView
-        android:id="@+id/imageViewTL"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_30sdp"
-        android:adjustViewBounds="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/stylized_border_flip" />
-
-    <ImageView
-        android:id="@+id/imageViewT"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="@dimen/_30sdp"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toStartOf="@+id/imageViewTR"
-        app:layout_constraintStart_toEndOf="@+id/imageViewTL"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/stylized_border_top" />
-
-    <ImageView
-        android:id="@+id/imageViewTR"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_30sdp"
-        android:adjustViewBounds="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/stylized_border" />
-
-    <ImageView
-        android:id="@+id/imageViewL"
-        android:layout_width="@dimen/_9sdp"
         android:layout_height="0dp"
-        android:rotation="180"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@id/imageViewBL"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewTL"
-        app:srcCompat="@drawable/stylized_border_right" />
-
-    <ImageView
-        android:id="@+id/imageViewR"
-        android:layout_width="@dimen/_9sdp"
-        android:layout_height="0dp"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@id/imageViewBR"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imageViewTR"
-        app:srcCompat="@drawable/stylized_border_right" />
-
-    <ImageView
-        android:id="@+id/imageViewBL"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_30sdp"
-        android:adjustViewBounds="true"
-        android:rotation="180"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/stylized_border" />
-
-    <ImageView
-        android:id="@+id/imageViewB"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_30sdp"
-        android:rotation="180"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/imageViewBR"
-        app:layout_constraintStart_toEndOf="@id/imageViewBL"
-        app:srcCompat="@drawable/stylized_border_top" />
-
-    <ImageView
-        android:id="@+id/imageViewBR"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_30sdp"
-        android:adjustViewBounds="true"
-        android:rotation="180"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/stylized_border_flip" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
+
+        <ImageView
+            android:id="@+id/imageViewTL"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleX="-1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/stylized_border" />
+
+        <ImageView
+            android:id="@+id/imageViewT"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toStartOf="@+id/imageViewTR"
+            app:layout_constraintStart_toEndOf="@+id/imageViewTL"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/stylized_border_top" />
+
+        <ImageView
+            android:id="@+id/imageViewTR"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/stylized_border" />
+
+        <ImageView
+            android:id="@+id/imageViewL"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="0dp"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@id/imageViewBL"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewTL"
+            app:srcCompat="@drawable/stylized_border_right" />
+
+        <ImageView
+            android:id="@+id/imageViewR"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toTopOf="@id/imageViewBR"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewTR"
+            app:srcCompat="@drawable/stylized_border_right" />
+
+        <ImageView
+            android:id="@+id/imageViewBL"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/stylized_border" />
+
+        <ImageView
+            android:id="@+id/imageViewB"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_35sdp"
+            android:rotation="180"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/imageViewBR"
+            app:layout_constraintStart_toEndOf="@id/imageViewBL"
+            app:srcCompat="@drawable/stylized_border_top" />
+
+        <ImageView
+            android:id="@+id/imageViewBR"
+            android:layout_width="@dimen/_10sdp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:rotation="180"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/stylized_border_flip" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/_10sdp"
+        android:paddingStart="@dimen/_20sdp"
+        android:paddingEnd="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +111,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
             android:orientation="horizontal">
 
             <TextView
@@ -113,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@string/main_font"
-                android:text="2" />
+                tools:text="2" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -131,5 +146,6 @@
             android:layout_height="match_parent" />
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

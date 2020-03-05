@@ -5,12 +5,12 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TraitList {
+public class TraitsList {
 
-    List<Trait> traits;
-    int choice;
+    protected List<Trait> traits;
+    protected int choice;
 
-    public TraitList(int choice) {
+    public TraitsList(int choice) {
         this.choice = choice;
         traits = new ArrayList<Trait>();
     }
@@ -29,6 +29,10 @@ public class TraitList {
             retour.add(t.name);
         }
         return retour;
+    }
+
+    public List<Trait> getTraits(){
+        return this.traits;
     }
 
     @Override

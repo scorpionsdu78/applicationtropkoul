@@ -215,7 +215,7 @@ public class RaceFragment extends Fragment {
         }
 
         activity.setBonusCharac(bonusCharac);
-        activity.setTraits(choosed.getGlobalTrait(),choosed.getTraitList());
+        activity.setTraits(choosed.getGlobalTrait().getTraits(), choosed.getTraitsList());
 
         if(choosed.getStartProf().hasSkills() !=null){
             userCharacter.setProficiencies(choosed.getStartProf().getNames());

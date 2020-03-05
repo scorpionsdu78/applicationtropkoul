@@ -18,7 +18,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
+import com.example.ddprojet.model.Feature;
+import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.model.Trait;
+import com.example.ddprojet.model.TraitsList;
 import com.example.ddprojet.util.FragmentEnum;
+import com.example.ddprojet.util.adapter.FeaturesListAdapter;
+import com.example.ddprojet.util.adapter.ProficienciesListAdapter;
+import com.example.ddprojet.util.adapter.TraitsListAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,18 +33,21 @@ import java.util.List;
 public class BonusesSelectionFragment extends Fragment {
 
     private CharacterEditionActivity parent_activity;
+    private View view;
 
-    public List<FeaturesList> featuresLists;
+    public List<Feature> featuresList;
+    public TraitsList traitsList;
+    public List<ProficienciesList> proficienciesList;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.bonuses_selection_layout, container, false);
+        this.view = inflater.inflate(R.layout.bonuses_selection_layout, container, false);
 
         //Init of the parent activity
         this.parent_activity = (CharacterEditionActivity)this.getActivity();
 
-        Button buttonNext = v.findViewById(R.id.buttonNext);
+        Button buttonNext = this.view.findViewById(R.id.buttonNext);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +56,7 @@ public class BonusesSelectionFragment extends Fragment {
             }
         });
 
-        Button buttonBack = v.findViewById(R.id.buttonBack);
+        Button buttonBack = this.view.findViewById(R.id.buttonBack);
 
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,203 +65,53 @@ public class BonusesSelectionFragment extends Fragment {
             }
         });
 
-        this.featuresLists = new ArrayList<FeaturesList>();
-
-        FeaturesList fl = new FeaturesList();
-        fl.features = new ArrayList<Feature>();
-
-        fl.choose = 2;
-
-        Feature f = new Feature();
-        f.name = "Feature 1";
-        f.description = "Description of Feature 1";
-        fl.features.add(f);
-
-        f = new Feature();
-        f.name = "Feature 2";
-        f.description = "Description of Feature 2";
-        fl.features.add(f);
-
-        f = new Feature();
-        f.name = "Feature 3";
-        f.description = "Description of Feature 3\n\nDAB !";
-        fl.features.add(f);
-
-        this.featuresLists.add(fl);
-
-        fl = new FeaturesList();
-        fl.features = new ArrayList<Feature>();
-
-        fl.choose = 1;
-
-        f = new Feature();
-        f.name = "Feature 2-1";
-        f.description = "Description of Feature 2-1";
-        fl.features.add(f);
-
-        f = new Feature();
-        f.name = "Feature 2-2";
-        f.description = "Description of Feature 2-2";
-        fl.features.add(f);
-
-        this.featuresLists.add(fl);
-
-        RecyclerView recyclerViewFeaturesListList = (RecyclerView)v.findViewById(R.id.recyclerViewFeaturesLists);
-
-        RecyclerView.LayoutManager manager = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
-        FeaturesListAdapter adapter = new FeaturesListAdapter(this.featuresLists);
-
-        recyclerViewFeaturesListList.setLayoutManager(manager);
-        recyclerViewFeaturesListList.setAdapter(adapter);
-
-
-
-        return v;
+        return view;
     }
 
-    public class Feature{
-        public String name;
-        public String description;
-    }
-    public class FeaturesList{
-        public int choose;
-        public List<Feature> features;
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        this.featuresList = this.parent_activity.getFeatureToChoose();
+        this.traitsList = this.parent_activity.getOptionalTraits();
+        this.proficienciesList = this.parent_activity.getListToChoseFrom();
+
+        RecyclerView recyclerViewFeaturesList = this.view.findViewById(R.id.layoutFeatures).findViewById(R.id.recyclerViewFeaturesLists);
+
+        RecyclerView.LayoutManager managerFeatures = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
+        FeaturesListAdapter adapterFeatures = new FeaturesListAdapter();
+        if(this.featuresList != null)
+            adapterFeatures.addItems(this.featuresList.toArray(new Feature[0]));
+
+        recyclerViewFeaturesList.setLayoutManager(managerFeatures);
+        recyclerViewFeaturesList.setAdapter(adapterFeatures);
+
+
+        TextView textViewLabelTraits = this.view.findViewById(R.id.layoutTraits).findViewById(R.id.textViewLabel);
+        textViewLabelTraits.setText("Traits :");
+        RecyclerView recyclerViewTraitsList = this.view.findViewById(R.id.layoutTraits).findViewById(R.id.recyclerViewFeaturesLists);
+
+        RecyclerView.LayoutManager managerTraits = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
+        TraitsListAdapter adapterTraits = new TraitsListAdapter();
+        if(this.traitsList != null)
+            adapterTraits.setTraitsList(this.traitsList);
+
+        recyclerViewTraitsList.setLayoutManager(managerTraits);
+        recyclerViewTraitsList.setAdapter(adapterTraits);
+
+
+        TextView textViewLabelProficiencies = this.view.findViewById(R.id.layoutProficiencies).findViewById(R.id.textViewLabel);
+        textViewLabelProficiencies.setText("Proficiencies :");
+        RecyclerView recyclerViewProficienciesList = this.view.findViewById(R.id.layoutProficiencies).findViewById(R.id.recyclerViewFeaturesLists);
+
+        RecyclerView.LayoutManager managerProficiencies = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
+        ProficienciesListAdapter adapterProficiencies = new ProficienciesListAdapter();
+        if(this.proficienciesList != null)
+            adapterProficiencies.addItems(this.proficienciesList.toArray(new ProficienciesList[0]));
+
+        recyclerViewProficienciesList.setLayoutManager(managerProficiencies);
+        recyclerViewProficienciesList.setAdapter(adapterProficiencies);
     }
 
 
-
-
-    protected class FeaturesListHolder extends RecyclerView.ViewHolder{
-
-        protected TextView textViewChoose;
-        protected RecyclerView recyclerViewFeatures;
-
-        public FeaturesListHolder(@NonNull View itemView) {
-            super(itemView);
-            this.textViewChoose = (TextView)itemView.findViewById(R.id.textViewChoose);
-            this.recyclerViewFeatures = (RecyclerView)itemView.findViewById(R.id.recyclerViewFeatures);
-        }
-
-
-        public void setChoose(int choose){
-            this.textViewChoose.setText(Integer.toString(choose));
-        }
-
-
-        public void setRecyclerViewFeatures(List<Feature> features){
-            RecyclerView.LayoutManager manager = new LinearLayoutManager(BonusesSelectionFragment.this.getActivity(), LinearLayoutManager.VERTICAL, false);
-            FeaturesAdapter adapter = new FeaturesAdapter(features);
-
-            this.recyclerViewFeatures.setLayoutManager(manager);
-            this.recyclerViewFeatures.setAdapter(adapter);
-
-            /*int count = adapter.getItemCount();
-            Log.i("DulcheE", "" + count);
-
-            for(int i = 0; i < count; i++){
-                Log.i("DulcheE", "" + i);
-                View v = manager.findViewByPosition(i);
-
-                ((CheckBox)v.findViewById(R.id.checkBoxFeatureName)).setChecked(true);
-            }*/
-        }
-    }
-
-
-    protected class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListHolder>{
-
-        protected List<FeaturesList> featuresLists;
-
-        public FeaturesListAdapter(List<FeaturesList> featuresLists){
-            this.featuresLists = featuresLists;
-        }
-
-        @NonNull
-        @Override
-        public FeaturesListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-            ConstraintLayout constraintLayout = (ConstraintLayout)LayoutInflater
-                    .from(parent.getContext())
-                    .inflate(R.layout.features_list_layout, parent, false);
-
-            return new FeaturesListHolder(constraintLayout);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull FeaturesListHolder holder, int position) {
-            FeaturesList featuresList = this.featuresLists.get(position);
-
-            holder.setChoose(featuresList.choose);
-            holder.setRecyclerViewFeatures(featuresList.features);
-        }
-
-        @Override
-        public int getItemCount() {
-            return this.featuresLists.size();
-        }
-
-    }
-
-
-
-
-    protected class FeaturesHolder extends RecyclerView.ViewHolder{
-
-        protected CheckBox checkBoxFeatureName;
-        protected TextView textViewDescription;
-
-        public FeaturesHolder(@NonNull View itemView, int tag) {
-            super(itemView);
-            itemView.setTag(tag);
-
-            this.checkBoxFeatureName = (CheckBox) itemView.findViewById(R.id.checkBoxFeatureName);
-            this.textViewDescription = (TextView)itemView.findViewById(R.id.textViewFeatureDescription);
-        }
-
-
-        public void setName(String name){
-            this.checkBoxFeatureName.setText(name);
-        }
-
-
-        public void setDescription(String description){
-            this.textViewDescription.setText(description);
-        }
-    }
-
-
-    protected class FeaturesAdapter extends RecyclerView.Adapter<FeaturesHolder>{
-
-        protected int tagCount = 0;
-
-        protected List<Feature> features;
-
-        public FeaturesAdapter(List<Feature> features){
-            this.features = features;
-        }
-
-        @NonNull
-        @Override
-        public FeaturesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-            FrameLayout frameLayout = (FrameLayout) LayoutInflater
-                    .from(parent.getContext())
-                    .inflate(R.layout.feature_item_layout, parent, false);
-
-            return new FeaturesHolder(frameLayout, ++this.tagCount);
-        }
-
-        @Override
-        public void onBindViewHolder(@NonNull FeaturesHolder holder, int position) {
-            Feature feature = this.features.get(position);
-
-            holder.setName(feature.name);
-            holder.setDescription(feature.description);
-        }
-
-        @Override
-        public int getItemCount() {
-            return this.features.size();
-        }
-    }
 }

@@ -20,7 +20,7 @@ import java.util.List;
 import com.example.ddprojet.connection.Race;
 import com.example.ddprojet.model.Bonus;
 import com.example.ddprojet.util.RaceEnum;
-import com.example.ddprojet.util.StringAdapter;
+import com.example.ddprojet.util.adapter.StringAdapter;
 
 public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
 
@@ -105,8 +105,8 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
         RecyclerView recyclerViewTraits = this.trait.get();
         StringAdapter adapterTraits = new StringAdapter();
 
-        if(race.getTraitList() != null){
-            adapterTraits.addItem("Choose " + Integer.toString(race.getTraitList().getChoice()) + " :\n" + race.getTraitList().toString());
+        if(race.getTraitsList() != null){
+            adapterTraits.addItem("Choose " + Integer.toString(race.getTraitsList().getChoice()) + " :\n" + race.getTraitsList().toString());
         }
 
         adapterTraits.addItem(race.getGlobalTrait().toString());

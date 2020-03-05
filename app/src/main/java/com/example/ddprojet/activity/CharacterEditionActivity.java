@@ -24,10 +24,11 @@ import com.example.ddprojet.fragment.SpellsFragment;
 import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
-import com.example.ddprojet.model.TraitList;
+import com.example.ddprojet.model.Trait;
+import com.example.ddprojet.model.TraitsList;
 import com.example.ddprojet.persistance.FileJson;
 import com.example.ddprojet.persistance.JsonParser;
-import com.example.ddprojet.util.Adapter;
+import com.example.ddprojet.util.adapter.Adapter;
 import com.example.ddprojet.util.CustomViewPager;
 import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.Requirement;
@@ -54,8 +55,8 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private String race;
     private String classe;
 
-    private TraitList traits;
-    private TraitList optionalTrait;
+    private List<Trait> traits;
+    private TraitsList optionalTraits;
 
     private List<Feature> featureToChoose;
 
@@ -304,12 +305,21 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     }
 
-    public void setTraits(TraitList l1, TraitList l2){
+    public void setTraits(List<Trait> traits, TraitsList optionalTraits){
 
-        this.traits = l1;
-        this.optionalTrait =l2;
+        this.traits = traits;
+        this.optionalTraits = optionalTraits;
 
     }
+
+    public List<Trait> getTraits(){
+        return this.traits;
+    }
+
+    public TraitsList getOptionalTraits(){
+        return this.optionalTraits;
+    }
+
 
     public void addSkill(String skill){
         this.bonusSkill.add(skill);

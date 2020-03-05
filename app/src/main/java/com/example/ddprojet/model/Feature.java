@@ -15,7 +15,7 @@ public class Feature extends APIconnection {
     public Feature(String path) throws IOException, JSONException {
         super(path);
         name = file.getString("name");
-        Desc = file.getString("desc");
+        Desc = file.getJSONArray("desc").getString(0);
     }
 
     public String getName() {
