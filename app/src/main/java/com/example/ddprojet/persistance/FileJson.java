@@ -3,7 +3,11 @@ package com.example.ddprojet.persistance;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.ddprojet.model.Character;
 import com.google.gson.Gson;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,6 +25,11 @@ public class FileJson {
 
     public FileJson(JsonParser parsed, Context context, String filename) {
         this.parsed = parsed;
+        this.context = context;
+        this.filename = filename;
+    }
+
+    public FileJson(Context context, String filename) {
         this.context = context;
         this.filename = filename;
     }
@@ -91,8 +100,17 @@ public class FileJson {
     public Character getCharacter(){
         Gson gson = new Gson();
         String content = read();
-        Log.i("test jason", content);
-        Character character = gson.fromJson(content, Character.class);
+        Log.i("test json->class", content);
+        Character character = null;
+        try {
+            JSONObject obj = new JSONObject(content);
+            character = new Character(obj);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Log.i("test json->class", character.toString());
         return character;
     }
 

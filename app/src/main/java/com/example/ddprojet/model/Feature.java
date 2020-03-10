@@ -25,6 +25,11 @@ public class Feature extends APIconnection {
         Desc = file.getJSONArray("desc").getString(0);
     }
 
+    public Feature(String name, String desc) {
+        this.name = name;
+        Desc = desc;
+    }
+
     public String getName() {
         return name;
     }

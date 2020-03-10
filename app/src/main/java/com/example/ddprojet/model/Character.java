@@ -6,6 +6,11 @@ import androidx.annotation.DrawableRes;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -79,6 +84,101 @@ public class Character {
         this.languages = new ArrayList<>();
         this.aptitudes = new ArrayList<>();
         this.traits = new ArrayList<>();
+
+    }
+
+    public Character(JSONObject file) throws JSONException, IOException {
+
+        JSONObject tmp = file.getJSONObject("alignment");
+        this.alignment = new Alignment(tmp.getString("goodEvilAxis"),tmp.getString("lawfulChaoticAxis"));
+
+        JSONArray array = file.getJSONArray("aptitudes");
+        this.aptitudes = new ArrayList<>();
+        for (int i=0; i<array.length(); i++) {
+            this.aptitudes.add(array.getString(i));
+        }
+
+        this.avatar = file.getInt("avatar");
+
+        this.background = file.getString("background");
+
+        this.characteristic = new HashMap<>();
+        tmp = file.getJSONObject("characteristic");
+        this.characteristic.put("CON",new Integer(tmp.getInt("CON")));
+        this.characteristic.put("CHA",new Integer(tmp.getInt("CHA")));
+        this.characteristic.put("WIS",new Integer(tmp.getInt("WIS")));
+        this.characteristic.put("STR",new Integer(tmp.getInt("STR")));
+        this.characteristic.put("DEX",new Integer(tmp.getInt("DEX")));
+        this.characteristic.put("INT",new Integer(tmp.getInt("INT")));
+
+        this.class_ = file.getString("class");
+
+        array = file.getJSONArray("features");
+        this.features = new ArrayList<Feature>();
+        for(int i=0; i<array.length(); i++){
+            JSONObject obj = array.getJSONObject(i);
+            this.features.add(new Feature(obj.getString("name"),obj.getString("Desc")));
+        }
+
+        this.hitDice = file.getInt("hitDice");
+
+        this.languages = new ArrayList<>();
+        array = file.getJSONArray("languages");
+        for(int i=0; i<array.length(); i++){
+            languages.add(array.getString(i));
+        }
+
+        this.level = file.getInt("level");
+
+        this.life = file.getInt("life");
+
+        this.personality_traits = file.getString("personality_traits");
+
+        this.proficiencies = new ArrayList<>();
+        array = file.getJSONArray("proficiencies");
+        for (int i=0; i<array.length(); i++)
+        {
+            proficiencies.add(array.getString(i));
+        }
+
+        this.race = file.getString("race");
+
+        this.savingThrows = new ArrayList<>();
+        array = file.getJSONArray("savingThrows");
+        for(int i =0; i<array.length(); i++){
+            savingThrows.add(array.getString(i));
+        }
+
+        this.skills = new HashMap<String, Integer>();
+        tmp = file.getJSONObject("skills");
+        skills.put("Nature",new Integer(tmp.getInt("Nature")));
+        skills.put("Medicine", new Integer(tmp.getInt("Medicine")));
+        skills.put("Survival", new Integer(tmp.getInt("Survival")));
+        skills.put("Perception", new Integer(tmp.getInt("Perception")));
+        skills.put("Stealth ", new Integer(tmp.getInt("Stealth ")));
+        skills.put("Insight", new Integer( tmp.getInt("Insight")));
+        skills.put("Deception", new Integer(tmp.getInt("Deception")));
+        skills.put("Sleight of Hand", new Integer(tmp.getInt("Sleight of Hand")));
+        skills.put("Investigation", new Integer(tmp.getInt( "Investigation")));
+        skills.put("Performance", new Integer(tmp.getInt("Performance")));
+        skills.put("Acrobatics", new Integer(tmp.getInt("Acrobatics")));
+        skills.put("Religion", new Integer(tmp.getInt("Religion")));
+        skills.put("Arcana", new Integer(tmp.getInt("Arcana")));
+        skills.put("Athletics", new Integer(tmp.getInt("Athletics")));
+        skills.put("Animal Handling", new Integer(tmp.getInt("Animal Handling")));
+        skills.put("Persuasion", new Integer(tmp.getInt("Persuasion")));
+        skills.put("Intimidation", new Integer(tmp.getInt( "Intimidation")));
+        skills.put("History", new Integer(tmp.getInt("History")));
+
+        this.speed = file.getInt("speed");
+
+        this.traits = new ArrayList<>();
+        array = file.getJSONArray("traits");
+        for(int i =0; i<array.length(); i++){
+            traits.add(array.getString(i));
+        }
+
+        this.name = file.getString("name");
 
     }
 
@@ -310,5 +410,16 @@ public class Character {
 
     public void setHasSpellCasting(boolean hasSpellCasting) {
         this.hasSpellCasting = hasSpellCasting;
+    }
+
+    @Override
+    public String toString() {
+        return "Character{" +
+                "name='" + name + '\'' +
+                ", race='" + race + '\'' +
+                ", class_='" + class_ + '\'' +
+                ", level=" + level +
+                ", hitDice=" + hitDice +
+                '}';
     }
 }

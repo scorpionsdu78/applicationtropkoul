@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 import com.example.ddprojet.model.Alignment;
+import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.CharacterDescription;
+import com.example.ddprojet.persistance.FileJson;
 
 import java.io.File;
 import java.util.Vector;
@@ -46,6 +48,12 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             for (int i = 0; i < files.length; i++)
             {
                 Log.d("Files", "FileName:" + files[i].getName());
+                FileJson fj = new FileJson(this.getApplicationContext(),files[i].getName());
+
+                Character character =  fj.getCharacter();
+                Log.d("file test", "character:" + character.getClass_());
+                characterDescriptionViewAdapter.add(new CharacterDescription(character.getName(), character.getRace(), character.getClass_(),character.getAlignment(),character.getLevel(),R.drawable.avatar_barbarian));
+
             }
         }
 
