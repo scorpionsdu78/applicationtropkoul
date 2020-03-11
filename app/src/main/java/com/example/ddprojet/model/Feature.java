@@ -5,8 +5,9 @@ import com.example.ddprojet.connection.APIconnection;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.io.Serializable;
 
-public class Feature extends APIconnection {
+public class Feature extends APIconnection implements Serializable {
 
 
     String name;

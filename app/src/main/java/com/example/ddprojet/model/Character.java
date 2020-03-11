@@ -11,12 +11,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Character {
+public class Character implements Serializable {
 
     protected String name;
     protected String race;
@@ -410,6 +411,14 @@ public class Character {
 
     public void setHasSpellCasting(boolean hasSpellCasting) {
         this.hasSpellCasting = hasSpellCasting;
+    }
+
+    public List<String> skillsHasStrings(){
+        List<String> result = new ArrayList<>();
+        for(Map.Entry mapEntry : this.skills.entrySet()){
+            result.add(mapEntry.getKey() + " " + mapEntry.getValue().toString());
+        }
+        return result;
     }
 
     @Override

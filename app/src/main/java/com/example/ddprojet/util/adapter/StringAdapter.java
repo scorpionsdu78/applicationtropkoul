@@ -1,5 +1,6 @@
 package com.example.ddprojet.util.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.StringHold
     }
 
     public void addItem(String item){
+        Log.i("adapter",item);
+
         this.items.add(item);
         this.notifyItemInserted( this.items.size() - 1);
     }

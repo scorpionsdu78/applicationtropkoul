@@ -10,6 +10,7 @@ public class CharacterDescription {
     protected Alignment alignment;
     protected int level;
     protected @DrawableRes int avatar;
+    protected Character character;
 
 
     public CharacterDescription() {}
@@ -23,6 +24,16 @@ public class CharacterDescription {
         this.avatar = avatar;
     }
 
+    public CharacterDescription(Character character, @DrawableRes int avatar) {
+        this.character = character;
+        this.name = character.getName();
+        this.race = character.getRace();
+        this.class_ = character.getClass_();
+        this.alignment = character.getAlignment();
+        this.level = character.getLevel();
+        this.avatar = avatar;
+
+    }
 
     public String getName() {
         return name;
@@ -70,5 +81,13 @@ public class CharacterDescription {
 
     public void setAvatar(@DrawableRes int avatar) {
         this.avatar = avatar;
+    }
+
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
     }
 }

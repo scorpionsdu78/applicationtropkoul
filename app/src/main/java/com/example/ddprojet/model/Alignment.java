@@ -2,7 +2,9 @@ package com.example.ddprojet.model;
 
 import androidx.annotation.NonNull;
 
-public class Alignment {
+import java.io.Serializable;
+
+public class Alignment implements Serializable {
 
 
     private String lawfulChaoticAxis;

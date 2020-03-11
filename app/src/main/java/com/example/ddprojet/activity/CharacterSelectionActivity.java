@@ -52,7 +52,8 @@ public class CharacterSelectionActivity extends AppCompatActivity {
 
                 Character character =  fj.getCharacter();
                 Log.d("file test", "character:" + character.getClass_());
-                characterDescriptionViewAdapter.add(new CharacterDescription(character.getName(), character.getRace(), character.getClass_(),character.getAlignment(),character.getLevel(),R.drawable.avatar_barbarian));
+                //characterDescriptionViewAdapter.add(new CharacterDescription(character.getName(), character.getRace(), character.getClass_(),character.getAlignment(),character.getLevel(),R.drawable.avatar_barbarian));
+                characterDescriptionViewAdapter.add(new CharacterDescription(character,R.drawable.avatar_barbarian));
 
             }
         }
@@ -77,10 +78,13 @@ public class CharacterSelectionActivity extends AppCompatActivity {
         protected TextView alignment;
         protected TextView level;
         protected ImageView avatar;
+        protected View itemView;
 
 
         public CharacterDescriptionHolder(@NonNull View itemView) {
             super(itemView);
+
+            this.itemView = itemView;
 
             this.name = itemView.findViewById(R.id.textViewName);
             this.race = itemView.findViewById(R.id.textViewClass);
@@ -112,6 +116,15 @@ public class CharacterSelectionActivity extends AppCompatActivity {
 
         public void setAvatar(@DrawableRes int avatar){
             this.avatar.setImageResource(avatar);
+        }
+
+        public void setOnclick(final Character character){
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    seeCharacter(view, character);
+                }
+            });
         }
 
     }
@@ -151,6 +164,7 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             holder.setAlignment(characterDescription.getAlignment());
             holder.setLevel(characterDescription.getLevel());
             holder.setAvatar(characterDescription.getAvatar());
+            holder.setOnclick(characterDescription.getCharacter());
 
         }
 
@@ -158,6 +172,16 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             this.characters.add(characterDescription);
             this.notifyItemChanged(this.characters.size() - 1);
         }
+    }
+
+    public void seeCharacter(View v, Character character){
+
+
+
+
+        Intent callActivity = new Intent(getApplicationContext(), CharactereDisplayActivity.class);
+        callActivity.putExtra("value", character);
+        startActivity(callActivity);
     }
 
 }
