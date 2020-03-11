@@ -25,13 +25,31 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
     //TODO tester avec le context de l'activité
 
     protected List<ProficienciesList> proficienciesLists;
+    protected List<ProficienciesListHolder> holders;
 
     public ProficienciesListAdapter(){
         this.proficienciesLists = new ArrayList<>();
+        this.holders = new ArrayList<>();
     }
+
+
+    public boolean getValidation() {
+        boolean validation = true;
+        for (ProficienciesListHolder holder : this.holders){
+            if(!holder.getValidation()){
+                validation = false;
+                break;
+            }
+        }
+
+
+        return validation;
+    }
+
 
     public void addItem(ProficienciesList proficienciesList){
         this.proficienciesLists.add(proficienciesList);
+        this.notifyItemInserted( this.proficienciesLists.size() - 1);
     }
 
     public void addItems(ProficienciesList... proficienciesLists){
@@ -48,7 +66,11 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        return new ProficienciesListHolder(constraintLayout);
+        ProficienciesListHolder holder = new ProficienciesListHolder(constraintLayout);
+        this.holders.add(holder);
+
+
+        return holder;
     }
 
     @Override
@@ -78,6 +100,10 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
             this.context = itemView.getContext();
             this.textViewChoose = itemView.findViewById(R.id.textViewChoose);
             this.recyclerViewProficiencies = itemView.findViewById(R.id.recyclerViewFeatures);
+        }
+
+        public boolean getValidation(){
+            return ((ProficienciesAdapter)this.recyclerViewProficiencies.getAdapter()).getValidation();
         }
 
 
@@ -121,8 +147,13 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                 this.checkBoxesChecked = new ArrayList<>();
             }
 
+            public boolean getValidation(){
+                return (this.checkBoxesChecked.size() == this.proficiencies.getChoice());
+            }
+
             public void setProficiencies(ProficienciesList proficiencies) {
                 this.proficiencies = proficiencies;
+                this.notifyDataSetChanged();
             }
 
             @NonNull

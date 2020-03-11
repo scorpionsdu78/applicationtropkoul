@@ -22,30 +22,17 @@ import java.util.Map;
 import com.example.ddprojet.connection.Class;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.util.ClassEnum;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
 public class ClassesInfoGet extends AsyncTask<String, String, Class> {
 
     WeakReference<View> vue;
-    Map<String, Integer> images;
 
 
 
     public ClassesInfoGet(View _vue) {
         this.vue = new WeakReference<>(_vue);
-        images = new HashMap<String, Integer>();
-        images.put("Barbarian", new Integer(R.drawable.class_barbarian));
-        images.put("Bard", new Integer(R.drawable.class_bard));
-        images.put("Cleric", new Integer(R.drawable.class_cleric));
-        images.put("Druid", new Integer(R.drawable.class_druid));
-        images.put("Fighter", new Integer(R.drawable.class_fighter));
-        images.put("Monk", new Integer(R.drawable.class_monk));
-        images.put("Paladin",new Integer(R.drawable.class_paladin));
-        images.put("Ranger", new Integer(R.drawable.class_ranger));
-        images.put("Rogue", new Integer(R.drawable.class_rogue));
-        images.put("Sorcerer", new Integer(R.drawable.class_sorcerer));
-        images.put("Warlock", new Integer(R.drawable.class_warlock));
-        images.put("Wizard", new Integer(R.drawable.class_wizard));
     }
 
     @Override
@@ -73,7 +60,7 @@ public class ClassesInfoGet extends AsyncTask<String, String, Class> {
         txt.setText(_class.getName());
 
         ImageView image = vue.get().findViewById(R.id.RaceimageView3);
-        image.setImageResource(images.get(_class.getName()).intValue());
+        image.setImageResource(ClassEnum.valueOf(_class.getName()).getValue());
 
         txt = vue.get().findViewById(R.id.hitDice);
         txt.setText(Integer.toString(_class.getHitDice()));
@@ -107,23 +94,23 @@ public class ClassesInfoGet extends AsyncTask<String, String, Class> {
         StringAdapter adapterFeatures = new StringAdapter();
 
         for(Feature feature : _class.getFeatures()){
-            adapterFeatures.addItem(feature.toString());
+            adapterFeatures.addItem(feature.getName());
         }
 
         recyclerViewFeatures.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewFeatures.setAdapter(adapterFeatures);
 
-        Log.i("DulcheE", "before");
         if(_class.getFeatureChoose() != null) {
-            Log.i("DulcheE", "not null");
 
             RecyclerView recyclerViewChooseFeatures = vue.get().findViewById(R.id.chooseFeatures);
             StringAdapter adapterChooseFeatures = new StringAdapter();
 
+            String item = "Choose " + ((_class.getFeatureChoose().get(0).getSubName() != null) ? _class.getFeatureChoose().get(0).getName() : "1") + " :";
             for(Feature feature : _class.getFeatureChoose()){
-                Log.i("DulcheE", feature.toString());
-                adapterChooseFeatures.addItem("Choose 1 :\n" + feature.toString());
+                item += ("\n" + ((feature.getSubName() != null) ? feature.getSubName() : feature.getName()));
             }
+            
+            adapterChooseFeatures.addItem(item);
 
             recyclerViewChooseFeatures.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
             recyclerViewChooseFeatures.setAdapter(adapterChooseFeatures);

@@ -24,13 +24,29 @@ import java.util.List;
 public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapter.FeaturesListHolder>{
 
     protected List<Feature> features;
+    protected List<FeaturesListHolder> holders;
 
     public FeaturesListAdapter(){
         this.features = new ArrayList<>();
+        this.holders = new ArrayList<>();
+    }
+
+    public boolean getValidation () {
+        boolean validation = true;
+        for (FeaturesListHolder holder : this.holders){
+            if(!holder.getValidation()){
+                validation = false;
+                break;
+            }
+        }
+
+
+        return validation;
     }
 
     public void addItem(Feature feature){
         this.features.add(feature);
+        this.notifyItemInserted( this.features.size() - 1);
     }
 
     public void addItems(Feature ...features){
@@ -47,12 +63,16 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        return new FeaturesListHolder(constraintLayout);
+        FeaturesListHolder holder = new FeaturesListHolder(constraintLayout);
+        this.holders.add(holder);
+
+
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull FeaturesListHolder holder, int position) {
-        holder.setChoose();
+        holder.setChoose((this.features.get(0).getSubName() != null) ? this.features.get(0).getName() : null);
         holder.setRecyclerViewFeatures(this.features);
     }
 
@@ -77,9 +97,13 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
             this.recyclerViewFeatures = itemView.findViewById(R.id.recyclerViewFeatures);
         }
 
+        public boolean getValidation() {
+            return ((FeaturesAdapter)this.recyclerViewFeatures.getAdapter()).getValidation();
+        }
 
-        public void setChoose(){
-            this.textViewChoose.setText("1");
+
+        public void setChoose(String name){
+            this.textViewChoose.setText((name != null) ? name : "1");
         }
 
 
@@ -120,8 +144,13 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                 this.features = new ArrayList<>();
             }
 
+            public boolean getValidation(){
+                return (this.checkBoxesChecked.size() == 1);
+            }
+
             public void addItem(Feature feature){
                 this.features.add(feature);
+                this.notifyItemInserted( this.features.size() - 1);
             }
 
             public void addItems(Feature ...features){
@@ -144,7 +173,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
             public void onBindViewHolder(@NonNull FeaturesHolder holder, int position) {
                 Feature feature = this.features.get(position);
 
-                holder.setName(feature.getName());
+                holder.setName((feature.getSubName() != null) ? feature.getSubName() : feature.getName());
                 holder.setDescription(feature.getDesc());
                 holder.setCheckBoxOnClick(this.checkBoxesChecked, 1);
             }

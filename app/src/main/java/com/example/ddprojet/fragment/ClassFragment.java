@@ -38,6 +38,7 @@ public class ClassFragment extends Fragment {
 
     private View vue;
     private Class choosed;
+    private PopupWindow popupWindow;
 
     @Nullable
     @Override
@@ -154,10 +155,12 @@ public class ClassFragment extends Fragment {
         LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService(getActivity().LAYOUT_INFLATER_SERVICE);
         View popupView = inflater.inflate(R.layout.class_info, null);
 
-        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
+        int width = LinearLayout.LayoutParams.MATCH_PARENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
         boolean focusable = true; // lets taps outside the popup also dismiss it
-        final PopupWindow popupWindow = new PopupWindow(popupView, width, height, focusable);
+        if(this.popupWindow != null)
+            this.popupWindow.dismiss();
+        this.popupWindow = new PopupWindow(popupView, width, height, focusable);
 
         ClassesInfoGet update = new ClassesInfoGet(popupView);
         update.execute(name);
@@ -171,7 +174,7 @@ public class ClassFragment extends Fragment {
 
         // show the popup window
         // which view you pass in doesn't matter, it is only used for the window tolken
-        popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
+        this.popupWindow.showAtLocation(view, Gravity.CENTER, 0, 0);
 
         Button bt1 = (Button) popupView.findViewById(R.id.selectClass);
         bt1.setOnClickListener(new View.OnClickListener(){
