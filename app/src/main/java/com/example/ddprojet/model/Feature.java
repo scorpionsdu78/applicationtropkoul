@@ -1,5 +1,7 @@
 package com.example.ddprojet.model;
 
+import android.util.Log;
+
 import com.example.ddprojet.connection.APIconnection;
 
 import org.json.JSONException;
@@ -17,11 +19,11 @@ public class Feature extends APIconnection implements Serializable {
     public Feature(String path) throws IOException, JSONException {
         super(path);
         name = file.getString("name");
-        if(name.contains("Fighting Style:")){
-            name = "Fighting Style:";
-            for (String s: name.split("Fighting Style:")) {
-                subName = s;
-            }
+
+        String regex = "Fighting Style: ";
+        if(name.contains(regex)){
+            this.subName = name.split(regex)[1];
+            name = name.split(":")[0];
         }
         Desc = file.getJSONArray("desc").getString(0);
     }

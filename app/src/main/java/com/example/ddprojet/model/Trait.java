@@ -18,16 +18,15 @@ public class Trait extends APIconnection {
         super(path);
 
         name = _name;
-        if(name.contains("Breath Weapon")){
-            name = "Breath Weapon";
-            Log.i("testregex",_name);
-            for (String s: _name.split("Breath Weapon")) {
-                Log.i("testregex",s);
-                subName = s;
-            }
+
+        String regex = "Breath Weapon ";
+        if(name.contains(regex)){
+            this.subName = name.split(regex)[1];
+            this.subName = this.subName.split("\\(")[1];
+            this.subName = this.subName.split("\\)")[0];
+            name = name.split(" \\(")[0];
         }
 
-        Log.i("nie",file.toString());
         Description = file.getString("desc");
     }
 

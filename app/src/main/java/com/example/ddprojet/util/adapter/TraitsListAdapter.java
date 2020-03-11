@@ -23,12 +23,29 @@ import java.util.List;
 public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.TraitsListHolder>{
 
     protected TraitsList traitsList;
+    protected List<TraitsListHolder> holders;
 
     public TraitsListAdapter(){
+        this.holders = new ArrayList<>();
     }
+
+    public boolean getValidation() {
+        boolean validation = true;
+        for (TraitsListHolder holder : this.holders){
+            if(!holder.getValidation()){
+                validation = false;
+                break;
+            }
+        }
+
+
+        return validation;
+    }
+
 
     public void setTraitsList(TraitsList traitsList){
         this.traitsList = traitsList;
+        this.notifyDataSetChanged();
     }
 
     @NonNull
@@ -39,12 +56,16 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        return new TraitsListHolder(constraintLayout);
+        TraitsListHolder holder = new TraitsListHolder(constraintLayout);
+        this.holders.add(holder);
+
+
+        return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull TraitsListHolder holder, int position) {
-        holder.setChoose();
+        holder.setChoose((this.traitsList.getTraits().get(0).getSubName() != null) ? this.traitsList.getTraits().get(0).getName() : null);
         holder.setRecyclerViewTraits(this.traitsList);
     }
 
@@ -69,9 +90,13 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
             this.recyclerViewTraits = itemView.findViewById(R.id.recyclerViewFeatures);
         }
 
+        public boolean getValidation(){
+            return ((TraitsAdapter)this.recyclerViewTraits.getAdapter()).getValidation();
+        }
 
-        public void setChoose(){
-            this.textViewChoose.setText("1");
+
+        public void setChoose(String name){
+            this.textViewChoose.setText((name != null) ? name : "1");
         }
 
 
@@ -112,8 +137,13 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
                 this.traits = new ArrayList<>();
             }
 
+            public boolean getValidation(){
+                return (this.checkBoxesChecked.size() == 1);
+            }
+
             public void addItem(Trait trait){
                 this.traits.add(trait);
+                this.notifyItemInserted( this.traits.size() - 1);
             }
 
             public void addItems(Trait ...traits){
@@ -136,7 +166,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
             public void onBindViewHolder(@NonNull TraitsHolder holder, int position) {
                 Trait trait = this.traits.get(position);
 
-                holder.setName(trait.getName());
+                holder.setName((trait.getSubName() != null) ? trait.getSubName() : trait.getName());
                 holder.setDescription(trait.getDescription());
                 holder.setCheckBoxOnClick(this.checkBoxesChecked, 1);
             }
