@@ -1,6 +1,7 @@
 package com.example.ddprojet.util.adapter;
 
 import android.content.Context;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,15 +21,19 @@ import com.example.ddprojet.model.Feature;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapter.FeaturesListHolder>{
 
     protected List<Feature> features;
     protected List<FeaturesListHolder> holders;
+    protected Callable<Boolean> updateValidation;
 
-    public FeaturesListAdapter(){
+    public FeaturesListAdapter(Callable<Boolean> updateValidation){
         this.features = new ArrayList<>();
         this.holders = new ArrayList<>();
+
+        this.updateValidation = updateValidation;
     }
 
     public boolean getValidation () {
@@ -63,7 +68,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        FeaturesListHolder holder = new FeaturesListHolder(constraintLayout);
+        FeaturesListHolder holder = new FeaturesListHolder(constraintLayout, this.updateValidation);
         this.holders.add(holder);
 
 
@@ -72,7 +77,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
     @Override
     public void onBindViewHolder(@NonNull FeaturesListHolder holder, int position) {
-        holder.setChoose((this.features.get(0).getSubName() != null) ? this.features.get(0).getName() : null);
+        holder.setChoose(((this.features.size() > 0 ) ? this.features.get(0).getSubName() != null : false) ? this.features.get(0).getName() : null);
         holder.setRecyclerViewFeatures(this.features);
     }
 
@@ -89,12 +94,15 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
         protected TextView textViewChoose;
         protected RecyclerView recyclerViewFeatures;
         protected Context context;
+        protected Callable<Boolean> updateValidation;
 
-        public FeaturesListHolder(@NonNull View itemView) {
+        public FeaturesListHolder(@NonNull View itemView, Callable<Boolean> updateValidation) {
             super(itemView);
+
             this.context = itemView.getContext();
             this.textViewChoose = itemView.findViewById(R.id.textViewChoose);
             this.recyclerViewFeatures = itemView.findViewById(R.id.recyclerViewFeatures);
+            this.updateValidation = updateValidation;
         }
 
         public boolean getValidation() {
@@ -109,7 +117,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
         public void setRecyclerViewFeatures(List<Feature> features){
             RecyclerView.LayoutManager manager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            FeaturesAdapter adapter = new FeaturesAdapter();
+            FeaturesAdapter adapter = new FeaturesAdapter(this.updateValidation);
 
             this.recyclerViewFeatures.setLayoutManager(manager);
             this.recyclerViewFeatures.setAdapter(adapter);
@@ -136,12 +144,14 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
             protected List<CheckBox> checkBoxesChecked;
 
             protected List<Feature> features;
+            protected Callable<Boolean> updateValidation;
 
-            public FeaturesAdapter(){
+            public FeaturesAdapter(Callable<Boolean> updateValidation){
                 this.checkBoxes = new ArrayList<>();
                 this.checkBoxesChecked = new ArrayList<>();
 
                 this.features = new ArrayList<>();
+                this.updateValidation = updateValidation;
             }
 
             public boolean getValidation(){
@@ -175,7 +185,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
                 holder.setName((feature.getSubName() != null) ? feature.getSubName() : feature.getName());
                 holder.setDescription(feature.getDesc());
-                holder.setCheckBoxOnClick(this.checkBoxesChecked, 1);
+                holder.setCheckBoxOnClick(this.checkBoxesChecked, 1, this.updateValidation);
             }
 
             @Override
@@ -213,7 +223,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                     this.textViewDescription.setText(description);
                 }
 
-                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count){
+                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count, final Callable<Boolean> updateValidation){
                     this.checkBoxFeature.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -225,10 +235,22 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                                         for(CheckBox checkBox : FeaturesHolder.this.checkBoxes)
                                             if (!checkBox.isChecked())
                                                 checkBox.setClickable(false);
+
+                                    try {
+                                        updateValidation.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             }else {
                                 if (checkBoxesChecked.contains(FeaturesHolder.this.checkBoxFeature)) {
                                     checkBoxesChecked.remove(FeaturesHolder.this.checkBoxFeature);
+
+                                    try {
+                                        updateValidation.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                                 for(CheckBox checkBox : FeaturesHolder.this.checkBoxes)
                                     checkBox.setClickable(true);

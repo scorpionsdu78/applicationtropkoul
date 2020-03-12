@@ -1,6 +1,7 @@
 package com.example.ddprojet.util.adapter;
 
 import android.content.Context;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +20,18 @@ import com.example.ddprojet.model.TraitsList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.TraitsListHolder>{
 
     protected TraitsList traitsList;
     protected List<TraitsListHolder> holders;
+    protected Callable<Boolean> updateValidation;
 
-    public TraitsListAdapter(){
+    public TraitsListAdapter(Callable<Boolean> updateValidation){
         this.holders = new ArrayList<>();
+
+        this.updateValidation = updateValidation;
     }
 
     public boolean getValidation() {
@@ -56,7 +61,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        TraitsListHolder holder = new TraitsListHolder(constraintLayout);
+        TraitsListHolder holder = new TraitsListHolder(constraintLayout, this.updateValidation);
         this.holders.add(holder);
 
 
@@ -82,12 +87,14 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
         protected TextView textViewChoose;
         protected RecyclerView recyclerViewTraits;
         protected Context context;
+        protected Callable<Boolean> updateValidation;
 
-        public TraitsListHolder(@NonNull View itemView) {
+        public TraitsListHolder(@NonNull View itemView, Callable<Boolean> updateValidation) {
             super(itemView);
             this.context = itemView.getContext();
             this.textViewChoose = itemView.findViewById(R.id.textViewChoose);
             this.recyclerViewTraits = itemView.findViewById(R.id.recyclerViewFeatures);
+            this.updateValidation = updateValidation;
         }
 
         public boolean getValidation(){
@@ -102,7 +109,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
 
         public void setRecyclerViewTraits(TraitsList traits){
             RecyclerView.LayoutManager manager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            TraitsAdapter adapter = new TraitsAdapter();
+            TraitsAdapter adapter = new TraitsAdapter(this.updateValidation);
 
             this.recyclerViewTraits.setLayoutManager(manager);
             this.recyclerViewTraits.setAdapter(adapter);
@@ -129,12 +136,14 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
             protected List<CheckBox> checkBoxesChecked;
 
             protected List<Trait> traits;
+            protected Callable<Boolean> updateValidation;
 
-            public TraitsAdapter(){
+            public TraitsAdapter(Callable<Boolean> updateValidation){
                 this.checkBoxes = new ArrayList<>();
                 this.checkBoxesChecked = new ArrayList<>();
 
                 this.traits = new ArrayList<>();
+                this.updateValidation = updateValidation;
             }
 
             public boolean getValidation(){
@@ -168,7 +177,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
 
                 holder.setName((trait.getSubName() != null) ? trait.getSubName() : trait.getName());
                 holder.setDescription(trait.getDescription());
-                holder.setCheckBoxOnClick(this.checkBoxesChecked, 1);
+                holder.setCheckBoxOnClick(this.checkBoxesChecked, 1, this.updateValidation);
             }
 
             @Override
@@ -206,7 +215,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
                     this.textViewDescription.setText(description);
                 }
 
-                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count){
+                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count, final Callable<Boolean> updateValidation){
                     this.checkBoxTrait.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -218,10 +227,22 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
                                         for(CheckBox checkBox : TraitsHolder.this.checkBoxes)
                                             if (!checkBox.isChecked())
                                                 checkBox.setClickable(false);
+
+                                    try {
+                                        updateValidation.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             }else {
                                 if (checkBoxesChecked.contains(TraitsHolder.this.checkBoxTrait)) {
                                     checkBoxesChecked.remove(TraitsHolder.this.checkBoxTrait);
+
+                                    try {
+                                        updateValidation.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                                 for(CheckBox checkBox : TraitsHolder.this.checkBoxes)
                                     checkBox.setClickable(true);

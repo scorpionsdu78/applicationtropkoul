@@ -19,6 +19,7 @@ import com.example.ddprojet.model.ProficienciesList;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class ProficienciesListAdapter extends RecyclerView.Adapter<ProficienciesListAdapter.ProficienciesListHolder>{
 
@@ -26,10 +27,12 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
     protected List<ProficienciesList> proficienciesLists;
     protected List<ProficienciesListHolder> holders;
+    protected Callable<Boolean> updateValidation;
 
-    public ProficienciesListAdapter(){
+    public ProficienciesListAdapter(Callable<Boolean> updateValidation){
         this.proficienciesLists = new ArrayList<>();
         this.holders = new ArrayList<>();
+        this.updateValidation = updateValidation;
     }
 
 
@@ -66,7 +69,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        ProficienciesListHolder holder = new ProficienciesListHolder(constraintLayout);
+        ProficienciesListHolder holder = new ProficienciesListHolder(constraintLayout, this.updateValidation);
         this.holders.add(holder);
 
 
@@ -94,12 +97,15 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
         protected TextView textViewChoose;
         protected RecyclerView recyclerViewProficiencies;
         protected Context context;
+        protected Callable<Boolean> updateValidation;
 
-        public ProficienciesListHolder(@NonNull View itemView) {
+        public ProficienciesListHolder(@NonNull View itemView, Callable<Boolean> updateValidation) {
             super(itemView);
+
             this.context = itemView.getContext();
             this.textViewChoose = itemView.findViewById(R.id.textViewChoose);
             this.recyclerViewProficiencies = itemView.findViewById(R.id.recyclerViewFeatures);
+            this.updateValidation = updateValidation;
         }
 
         public boolean getValidation(){
@@ -114,7 +120,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
         public void setRecyclerViewProficiencies(ProficienciesList proficiencies){
             RecyclerView.LayoutManager manager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            ProficienciesAdapter adapter = new ProficienciesAdapter();
+            ProficienciesAdapter adapter = new ProficienciesAdapter(this.updateValidation);
 
             this.recyclerViewProficiencies.setLayoutManager(manager);
             this.recyclerViewProficiencies.setAdapter(adapter);
@@ -141,10 +147,12 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
             protected List<CheckBox> checkBoxesChecked;
 
             protected ProficienciesList proficiencies;
+            protected Callable<Boolean> updateValidation;
 
-            public ProficienciesAdapter(){
+            public ProficienciesAdapter(Callable<Boolean> updateValidation){
                 this.checkBoxes = new ArrayList<>();
                 this.checkBoxesChecked = new ArrayList<>();
+                this.updateValidation = updateValidation;
             }
 
             public boolean getValidation(){
@@ -172,7 +180,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                 Proficiencies proficiencie = this.proficiencies.getProficiencies().get(position);
 
                 holder.setName(proficiencie.getName());
-                holder.setCheckBoxOnClick(this.checkBoxesChecked, this.proficiencies.getChoice());
+                holder.setCheckBoxOnClick(this.checkBoxesChecked, this.proficiencies.getChoice(), this.updateValidation);
             }
 
             @Override
@@ -203,7 +211,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                     this.checkBoxProficiencies.setText(name);
                 }
 
-                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count){
+                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count, final Callable<Boolean> updateValidation){
                     this.checkBoxProficiencies.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -215,10 +223,22 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                                         for(CheckBox checkBox : ProficienciesHolder.this.checkBoxes)
                                             if (!checkBox.isChecked())
                                                 checkBox.setClickable(false);
+
+                                    try {
+                                        updateValidation.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                             }else {
                                 if (checkBoxesChecked.contains(ProficienciesHolder.this.checkBoxProficiencies)) {
                                     checkBoxesChecked.remove(ProficienciesHolder.this.checkBoxProficiencies);
+
+                                    try {
+                                        updateValidation.call();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
                                 }
                                 for(CheckBox checkBox : ProficienciesHolder.this.checkBoxes)
                                     checkBox.setClickable(true);

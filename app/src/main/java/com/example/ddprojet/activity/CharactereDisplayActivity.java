@@ -15,6 +15,8 @@ import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.util.adapter.FeaturesListAdapter;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
+import java.util.concurrent.Callable;
+
 public class CharactereDisplayActivity extends AppCompatActivity {
 
     @Override
@@ -96,7 +98,12 @@ public class CharactereDisplayActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.features);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        FeaturesListAdapter adapter2 = new FeaturesListAdapter();
+        FeaturesListAdapter adapter2 = new FeaturesListAdapter(new Callable<Boolean>() {
+            @Override
+            public Boolean call() throws Exception {
+                return null;
+            }
+        });
         adapter2.addItems(character.getFeatures().toArray(new Feature[0]));
         rv.setAdapter(adapter2);
 

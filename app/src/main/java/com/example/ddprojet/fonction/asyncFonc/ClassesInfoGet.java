@@ -109,7 +109,7 @@ public class ClassesInfoGet extends AsyncTask<String, String, Class> {
             for(Feature feature : _class.getFeatureChoose()){
                 item += ("\n" + ((feature.getSubName() != null) ? feature.getSubName() : feature.getName()));
             }
-            
+
             adapterChooseFeatures.addItem(item);
 
             recyclerViewChooseFeatures.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
