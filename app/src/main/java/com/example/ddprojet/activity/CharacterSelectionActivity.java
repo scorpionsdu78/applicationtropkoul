@@ -84,7 +84,7 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             this.itemView = itemView;
 
             this.name = itemView.findViewById(R.id.textViewName);
-            this.race = itemView.findViewById(R.id.textViewClass);
+            this.race = itemView.findViewById(R.id.textViewRace);
             this.class_ = itemView.findViewById(R.id.textViewClass);
             this.alignment = itemView.findViewById(R.id.textViewAlignement);
             this.level = itemView.findViewById(R.id.textViewLevel);

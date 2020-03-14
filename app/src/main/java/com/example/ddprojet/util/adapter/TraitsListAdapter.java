@@ -1,7 +1,6 @@
 package com.example.ddprojet.util.adapter;
 
 import android.content.Context;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +61,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
 
         ConstraintLayout constraintLayout = (ConstraintLayout)LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.features_list_layout, parent, false);
+                .inflate(R.layout.choose_list_layout, parent, false);
 
         TraitsListHolder holder = new TraitsListHolder(constraintLayout, this.updateValidation, this.character);
         this.holders.add(holder);
@@ -173,7 +172,7 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
 
                 FrameLayout frameLayout = (FrameLayout) LayoutInflater
                         .from(parent.getContext())
-                        .inflate(R.layout.feature_item_layout, parent, false);
+                        .inflate(R.layout.choose_item_layout, parent, false);
 
                 return new TraitsHolder(frameLayout, this.checkBoxes);
             }

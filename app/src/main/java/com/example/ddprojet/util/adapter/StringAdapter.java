@@ -42,8 +42,6 @@ public class StringAdapter extends RecyclerView.Adapter<StringAdapter.StringHold
     }
 
     public void addItem(String item){
-        Log.i("adapter",item);
-
         this.items.add(item);
         this.notifyItemInserted( this.items.size() - 1);
     }
