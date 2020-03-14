@@ -41,9 +41,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/_5sdp"
+                android:fontFamily="@string/main_font"
                 android:text="Races: "
                 android:textAlignment="center"
-                android:textSize="@dimen/_30sdp" />
+                android:textColor="#642D04"
+                android:textSize="@dimen/_30sdp"
+                android:textStyle="bold" />
         </FrameLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
