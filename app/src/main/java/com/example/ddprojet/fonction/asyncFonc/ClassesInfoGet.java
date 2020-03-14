@@ -22,6 +22,7 @@ import java.util.Map;
 import com.example.ddprojet.connection.Class;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.util.ClassEnum;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
@@ -71,8 +72,19 @@ public class ClassesInfoGet extends AsyncTask<String, String, Class> {
         RecyclerView recyclerViewProficiencies = vue.get().findViewById(R.id.proficienciesChoice);
         StringAdapter adapterProficiencies = new StringAdapter();
 
-        for (ProficienciesList pl: _class.getProficienciesChoice()) {
-            adapterProficiencies.addItem(pl.toString());
+        for (ProficienciesList pl : _class.getProficienciesChoice()) {
+            String item = "";
+            if(pl.hasSkills()) {
+                item += "Choose " + pl.getChoice() + " " + pl.getList().get(0).getName();
+                for(Proficiency proficiency : pl.getList())
+                    item += "\n" + proficiency.getSubName();
+            } else {
+                item += "Choose " + pl.getChoice();
+                for(Proficiency proficiency : pl.getList())
+                    item += "\n" + proficiency.getName();
+            }
+            if(!item.isEmpty())
+                adapterProficiencies.addItem(item);
         }
 
         recyclerViewProficiencies.setLayoutManager(new LinearLayoutManager(vue.get().getContext(), LinearLayoutManager.VERTICAL, false));
@@ -118,7 +130,6 @@ public class ClassesInfoGet extends AsyncTask<String, String, Class> {
             ConstraintLayout constraintLayoutChooseFeatures= this.vue.get().findViewById(R.id.constraintLayoutChooseFeatures);
             constraintLayoutChooseFeatures.setVisibility(View.VISIBLE);
         }else{
-            Log.i("DulcheE", "null");
             ConstraintLayout constraintLayoutChooseFeatures= this.vue.get().findViewById(R.id.constraintLayoutChooseFeatures);
             constraintLayoutChooseFeatures.setVisibility(View.INVISIBLE);
             constraintLayoutChooseFeatures.setMaxHeight(0);

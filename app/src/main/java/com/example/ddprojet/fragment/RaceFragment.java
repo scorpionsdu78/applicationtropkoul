@@ -33,6 +33,8 @@ import java.util.concurrent.ExecutionException;
 import com.example.ddprojet.connection.Race;
 import com.example.ddprojet.model.Bonus;
 import com.example.ddprojet.model.Character;
+import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.RaceEnum;
 
@@ -217,12 +219,15 @@ public class RaceFragment extends Fragment {
         activity.setBonusCharac(bonusCharac);
         activity.setTraits(choosed.getGlobalTrait().getTraits(), choosed.getTraitsList());
 
-        if(choosed.getStartProf().hasSkills() !=null){
-            userCharacter.setProficiencies(choosed.getStartProf().getNames());
-            for (String skill: choosed.getStartProf().hasSkills()) {
-                activity.addSkill(skill);
+        ProficienciesList startProficiencies = new ProficienciesList(0);
+        for(Proficiency proficiency : this.choosed.getStartProf().getList()) {
+            if(proficiency.isSkill()) {
+                activity.addSkill(proficiency.getSubName());
+            }else {
+                startProficiencies.add(proficiency);
             }
         }
+        userCharacter.setProficiencies(startProficiencies.getNames());
 
         activity.ChangeFragment(FragmentEnum.RaceClassSelection);
     }

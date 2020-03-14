@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ddprojet.model.Bonus;
-import com.example.ddprojet.model.Proficiencies;
+import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.model.ProficienciesList;
 import com.example.ddprojet.model.Trait;
 import com.example.ddprojet.model.TraitsList;
@@ -101,7 +101,7 @@ public class Race extends APIconnection {
         if(array !=null) {
             for (int i = 0; i < array.length(); i++){
                 JSONObject tmp = array.getJSONObject(i);
-                startProf.add(new Proficiencies(tmp.getString("url"),tmp.getString("name")));
+                startProf.add(new Proficiency(tmp.getString("url"),tmp.getString("name")));
             }
         }
 

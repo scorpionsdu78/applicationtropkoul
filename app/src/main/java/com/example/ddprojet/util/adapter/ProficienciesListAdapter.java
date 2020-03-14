@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
-import com.example.ddprojet.model.Proficiencies;
+import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.model.ProficienciesList;
 
 import java.util.ArrayList;
@@ -80,7 +80,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
     public void onBindViewHolder(@NonNull ProficienciesListHolder holder, int position) {
         ProficienciesList proficienciesList = this.proficienciesLists.get(position);
 
-        holder.setChoose(proficienciesList.getChoice());
+        holder.setChoose(proficienciesList.getChoice(), (proficienciesList.hasSkills()) ? proficienciesList.getList().get(0).getName() : "");
         holder.setRecyclerViewProficiencies(proficienciesList);
     }
 
@@ -113,8 +113,8 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
         }
 
 
-        public void setChoose(int choose){
-            this.textViewChoose.setText(String.valueOf(choose));
+        public void setChoose(int choose, String name){
+            this.textViewChoose.setText(String.valueOf(choose) + ((name.isEmpty()) ? "" :  " " + name));
         }
 
 
@@ -177,9 +177,9 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
             @Override
             public void onBindViewHolder(@NonNull ProficienciesHolder holder, int position) {
-                Proficiencies proficiencie = this.proficiencies.getProficiencies().get(position);
+                Proficiency proficiencie = this.proficiencies.getProficiencies().get(position);
 
-                holder.setName(proficiencie.getName());
+                holder.setName((proficiencie.isSkill()) ? proficiencie.getSubName() : proficiencie.getName());
                 holder.setCheckBoxOnClick(this.checkBoxesChecked, this.proficiencies.getChoice(), this.updateValidation);
             }
 

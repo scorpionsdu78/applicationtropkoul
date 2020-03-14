@@ -321,7 +321,7 @@ public class Character implements Serializable {
         }
         else {
             for (String p: proficiencies) {
-                this.addProficiencies(new Proficiencies("",p));
+                this.addProficiencies(new Proficiency("",p));
             }
         }
     }
@@ -381,7 +381,7 @@ public class Character implements Serializable {
         this.speed = speed;
     }
 
-    public void addProficiencies(Proficiencies p){
+    public void addProficiencies(Proficiency p){
         this.proficiencies.add(p.getName());
     }
 

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ddprojet.model.Feature;
-import com.example.ddprojet.model.Proficiencies;
+import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.model.ProficienciesList;
 
 public class Class extends APIconnection {
@@ -55,7 +55,7 @@ public class Class extends APIconnection {
             //on parcour la list des proficiencies  et on ajoute les element a l'objet
             for (int j = 0; j<ListOfChoice.length(); j++){
                 JSONObject choice = ListOfChoice.getJSONObject(j);
-                Proficiencies p = new Proficiencies(choice.getString("url"),choice.getString("name"));
+                Proficiency p = new Proficiency(choice.getString("url"),choice.getString("name"));
                 result.add(p);
             }
 
@@ -69,7 +69,7 @@ public class Class extends APIconnection {
 
         for(int i = 0; i<BasicProficienciesTmp.length(); i++){
             JSONObject tmp = BasicProficienciesTmp.getJSONObject(i);
-            BasicProficiencies.add(new Proficiencies(tmp.getString("url"),tmp.getString("name")));
+            BasicProficiencies.add(new Proficiency(tmp.getString("url"),tmp.getString("name")));
         }
 
         //recuêration du nom

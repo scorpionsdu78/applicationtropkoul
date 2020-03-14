@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProficienciesList {
-    List<Proficiencies> list;
+    List<Proficiency> list;
     int choice;
 
     public ProficienciesList(int choice) {
         this.choice = choice;
-        list = new ArrayList<Proficiencies>();
+        list = new ArrayList<Proficiency>();
     }
 
-    public List<Proficiencies> getProficiencies(){
+    public List<Proficiency> getProficiencies(){
         return list;
     }
 
-    public void add(Proficiencies p){
+    public void add(Proficiency p){
         list.add(p);
     }
 
-    public List<Proficiencies> getList() {
+    public List<Proficiency> getList() {
         return list;
     }
 
@@ -30,20 +30,25 @@ public class ProficienciesList {
 
     public List<String> getNames(){
         List<String> names = new ArrayList<>();
-        for (Proficiencies p: list) {
+        for (Proficiency p: list) {
             names.add(p.getName());
         }
         return names;
     }
 
-    public List<String> hasSkills(){
-        List<String> retour = new ArrayList<>();
-        for (Proficiencies p: list) {
-            if(p.name.contains("Skill:")){
-                retour.add(p.name.split(" ")[1]);
-                list.remove(p);
+    public boolean hasSkills(){
+        if(this.getList().size() == 0)
+            return false;
+
+        boolean retour = true;
+
+        for (Proficiency p : this.list) {
+            if(!p.isSkill()){
+                retour = false;
+                break;
             }
         }
+
         return retour;
     }
 

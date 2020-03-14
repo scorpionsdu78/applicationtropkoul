@@ -120,7 +120,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_2sdp"
                 android:fontFamily="@string/main_font"
-                android:text="Choose" />
+                android:text="Choose"
+                android:textSize="@dimen/_12sdp" />
 
             <TextView
                 android:id="@+id/textViewChoose"
@@ -128,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:fontFamily="@string/main_font"
+                android:textSize="@dimen/_12sdp"
                 tools:text="2" />
 
             <TextView
@@ -136,7 +138,8 @@
                 android:layout_marginStart="@dimen/_2sdp"
                 android:layout_weight="1"
                 android:fontFamily="@string/main_font"
-                android:text=" :" />
+                android:text=" :"
+                android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
 

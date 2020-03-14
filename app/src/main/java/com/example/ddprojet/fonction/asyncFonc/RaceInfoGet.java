@@ -19,6 +19,8 @@ import java.util.List;
 
 import com.example.ddprojet.connection.Race;
 import com.example.ddprojet.model.Bonus;
+import com.example.ddprojet.model.Proficiency;
+import com.example.ddprojet.model.Trait;
 import com.example.ddprojet.util.RaceEnum;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
@@ -105,11 +107,27 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
         RecyclerView recyclerViewTraits = this.trait.get();
         StringAdapter adapterTraits = new StringAdapter();
 
+
         if(race.getTraitsList() != null){
-            adapterTraits.addItem("Choose " + Integer.toString(race.getTraitsList().getChoice()) + " :\n" + race.getTraitsList().toString());
+            String item = "";
+            if(race.getTraitsList().getTraits().get(0).getSubName() != null){
+                item += "Choose " + race.getTraitsList().getChoice() + " " + race.getTraitsList().getTraits().get(0).getName() + " :";
+
+                for(Trait trait : race.getTraitsList().getTraits()){
+                    item += "\n" + trait.getSubName();
+                }
+            } else {
+                item += "Choose " + race.getTraitsList().getChoice() + " :";
+
+                for(Trait trait : race.getTraitsList().getTraits())
+                    item += "\n" + trait.getName();
+            }
+            adapterTraits.addItem(item);
         }
 
-        adapterTraits.addItem(race.getGlobalTrait().toString());
+        for(Trait trait : race.getGlobalTrait().getTraits()){
+            adapterTraits.addItem(trait.getName());
+        }
 
         recyclerViewTraits.setLayoutManager(new LinearLayoutManager(view.get().getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerViewTraits.setAdapter(adapterTraits);
@@ -134,10 +152,13 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
             RecyclerView recyclerViewProficiencies = this.view.get().findViewById(R.id.prof);
             StringAdapter adapterProficiencies = new StringAdapter();
 
-            for (String s : race.getStartProf().getNames()) {
-                adapterProficiencies.addItem(s);
+            for (Proficiency proficiency : race.getStartProf().getList()) {
+                if(proficiency.isSkill())
+                    adapterProficiencies.addItem(proficiency.getSubName());
+                else
+                    adapterProficiencies.addItem(proficiency.getName());
             }
-
+            
             recyclerViewProficiencies.setLayoutManager(new LinearLayoutManager(view.get().getContext(), LinearLayoutManager.VERTICAL, false));
             recyclerViewProficiencies.setAdapter(adapterProficiencies);
 
