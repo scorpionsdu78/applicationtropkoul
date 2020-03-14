@@ -48,7 +48,7 @@ public class CharacSkillsFragment extends Fragment {
         this.view.findViewById(R.id.buttonNext).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CharacSkillsFragment.this.parent_activity.ChangeFragment(FragmentEnum.Spells);
+                CharacSkillsFragment.this.validate();
             }
         });
 
@@ -69,22 +69,27 @@ public class CharacSkillsFragment extends Fragment {
 
 
         //Init of the characs layout and values
-        this.strength_layout = (LinearLayout)this.view.findViewById(R.id.layoutStrength);
+        this.strength_layout = this.view.findViewById(R.id.layoutStrength);
+        this.dexterity_layout = this.view.findViewById(R.id.layoutDexterity);
+        this.constitution_layout = this.view.findViewById(R.id.layoutConstitution);
+        this.intelligence_layout = this.view.findViewById(R.id.layoutIntelligence);
+        this.wisdom_layout = this.view.findViewById(R.id.layoutWisdom);
+        this.charisma_layout = this.view.findViewById(R.id.layoutCharisma);
+
+
+        return this.view;
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
         init(this.strength_layout);
-
-        this.dexterity_layout = (LinearLayout)this.view.findViewById(R.id.layoutDexterity);
         init(this.dexterity_layout);
-
-        this.constitution_layout = (LinearLayout)this.view.findViewById(R.id.layoutConstitution);
         init(this.constitution_layout);
-
-        this.intelligence_layout = (LinearLayout)this.view.findViewById(R.id.layoutIntelligence);
         init(this.intelligence_layout);
-
-        this.wisdom_layout = (LinearLayout)this.view.findViewById(R.id.layoutWisdom);
         init(this.wisdom_layout);
-
-        this.charisma_layout = (LinearLayout)this.view.findViewById(R.id.layoutCharisma);
         init(this.charisma_layout);
 
 
@@ -150,13 +155,7 @@ public class CharacSkillsFragment extends Fragment {
 
         if(this.parent_activity.containBonusSkill("Persuasion"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxPersuasion)).setChecked(true);
-
-
-        return this.view;
     }
-
-
-
 
     protected void init(final LinearLayout parent){
         onClickPlus(parent);
@@ -388,26 +387,6 @@ public class CharacSkillsFragment extends Fragment {
     }
 
 
-    protected void updateSavingThrowsValue(TextView textView, LinearLayout parent){
-
-        String parent_value = ((TextView)parent.findViewById(R.id.textViewValue)).getText().toString();
-        String SavingThrown_value = ((CheckBox)parent.findViewById(R.id.checkBoxSavingThrows)).getText().toString();
-
-        try{
-            int value = (int)Math.floor((Float.parseFloat(parent_value) - 10) / 2);
-
-            if(this.parent_activity.getCharacter().ContainsSavingThrows(SavingThrown_value))
-                value += this.parent_activity.levelBonusSkill();
-
-            textView.setText(String.valueOf(value));
-
-        } catch (NumberFormatException e) {
-            return;
-        }
-
-    }
-
-
     protected void updateSkillValue(TextView textView, String skillName, LinearLayout parent){
 
         String parent_value = ((TextView)parent.findViewById(R.id.textViewValue)).getText().toString();
@@ -428,6 +407,26 @@ public class CharacSkillsFragment extends Fragment {
     }
 
 
+    protected void updateSavingThrowsValue(TextView textView, LinearLayout parent){
+
+        String parent_value = ((TextView)parent.findViewById(R.id.textViewValue)).getText().toString();
+        String SavingThrown_value = ((CheckBox)parent.findViewById(R.id.checkBoxSavingThrows)).getContentDescription().toString();
+
+        try{
+            int value = (int)Math.floor((Float.parseFloat(parent_value) - 10) / 2);
+
+            if(this.parent_activity.getCharacter().ContainsSavingThrows(SavingThrown_value))
+                value += this.parent_activity.levelBonusSkill();
+
+            textView.setText(String.valueOf(value));
+
+        } catch (NumberFormatException e) {
+            return;
+        }
+
+    }
+
+
     protected void updateCharacPoints(){
 
         ((TextView)this.view.findViewById(R.id.textViewCharacPoints)).setText(String.valueOf(this.characPoints));
@@ -439,6 +438,78 @@ public class CharacSkillsFragment extends Fragment {
             this.view.findViewById(R.id.buttonNext).setEnabled(false);
         }
 
+    }
+
+
+    protected void validate() {
+        Map<String, Integer> skills = new HashMap<>();
+
+
+        //Saved value of skills in character
+        skills.put("Athletics",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewAthletics)).getText().toString()));
+
+
+
+        skills.put("Acrobatics",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewAcrobatics)).getText().toString()));
+
+        skills.put("Sleight of Hand",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewSleight_of_Hand)).getText().toString()));
+
+        skills.put("Stealth",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewStealth)).getText().toString()));
+
+
+
+        skills.put("Arcana",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewArcana)).getText().toString()));
+
+        skills.put("History",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewHistory)).getText().toString()));
+
+        skills.put("Investigation",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewInvestigation)).getText().toString()));
+
+        skills.put("Nature",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewNature)).getText().toString()));
+
+        skills.put("Religion",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewReligion)).getText().toString()));
+
+
+
+        skills.put("Animal Handling",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewAnimalHandling)).getText().toString()));
+
+        skills.put("Insigth",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewInsight)).getText().toString()));
+
+        skills.put("Medicine",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewMedicine)).getText().toString()));
+
+        skills.put("Perception",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewPerception)).getText().toString()));
+
+        skills.put("Survival",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewSurvival)).getText().toString()));
+
+
+
+        skills.put("Deception",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewDeception)).getText().toString()));
+
+        skills.put("Intimidation",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewIntimidation)).getText().toString()));
+
+        skills.put("Performance",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewPerformance)).getText().toString()));
+
+        skills.put("Persuasion",
+            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewPersuasion)).getText().toString()));
+
+        this.parent_activity.getCharacter().setSkills(skills);
+        this.parent_activity.ChangeFragment(FragmentEnum.Spells);
     }
 
 }

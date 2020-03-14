@@ -81,18 +81,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         return character;
     }
 
-    public boolean containBonusSkill(String key){
-        return this.bonusSkill.contains(key);
-    }
-    public int getBonusCharac(String key){
-
-        if(this.bonusCharac.containsKey(key))
-            return this.bonusCharac.get(key);
-        else
-            return 0;
-
-    }
-
 
     public int getClassRequierement(String key){
         if(this.classRequierement.containsKey(key))
@@ -178,6 +166,19 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         return this.optionalTraits;
     }
 
+
+
+    public boolean containBonusSkill(String key){
+        return this.bonusSkill.contains(key);
+    }
+    public int getBonusCharac(String key){
+
+        if(this.bonusCharac.containsKey(key))
+            return this.bonusCharac.get(key);
+        else
+            return 0;
+
+    }
 
     public boolean addSkill(String skill){
         return this.bonusSkill.add(skill);
