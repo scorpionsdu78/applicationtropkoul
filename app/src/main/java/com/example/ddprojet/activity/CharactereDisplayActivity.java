@@ -1,7 +1,9 @@
 package com.example.ddprojet.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 import com.example.ddprojet.model.Character;
+import com.example.ddprojet.model.Feature;
+import com.example.ddprojet.util.adapter.FeatureAdapter;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
 public class CharactereDisplayActivity extends AppCompatActivity {
@@ -104,7 +108,9 @@ public class CharactereDisplayActivity extends AppCompatActivity {
         adapter2.addItems(character.getFeatures().toArray(new Feature[0]));
         rv.setAdapter(adapter2);*/
 
-        
+        FeatureAdapter adapter1 = new FeatureAdapter();
+        adapter1.addItems(character.getFeatures().toArray(new Feature[0]));
+        rv.setAdapter(adapter1);
 
         vue = findViewById(R.id.background);
         if(character.getBackground() == null){
@@ -119,4 +125,10 @@ public class CharactereDisplayActivity extends AppCompatActivity {
         vue.setText("PERSONALITY:\n" + character.getPersonality_traits());
 
     }
+
+    public void retour(View v){
+        Intent callActivity = new Intent(getApplicationContext(), CharacterSelectionActivity.class);
+        startActivity(callActivity);
+    }
+
 }

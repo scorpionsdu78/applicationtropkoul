@@ -341,7 +341,11 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         FileJson test = new FileJson(parser,v.getContext(),character.getName()+".json");
         test.save();
 
-        Intent callActivity = new Intent(getApplicationContext(), CharacterSelectionActivity.class);
+
+
+
+        Intent callActivity = new Intent(getApplicationContext(), CharactereDisplayActivity.class);
+        callActivity.putExtra("value", this.character);
         startActivity(callActivity);
 
     }
