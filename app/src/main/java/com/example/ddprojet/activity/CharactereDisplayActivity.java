@@ -11,11 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 import com.example.ddprojet.model.Character;
-import com.example.ddprojet.model.Feature;
-import com.example.ddprojet.util.adapter.FeaturesListAdapter;
 import com.example.ddprojet.util.adapter.StringAdapter;
-
-import java.util.concurrent.Callable;
 
 public class CharactereDisplayActivity extends AppCompatActivity {
 
@@ -107,6 +103,8 @@ public class CharactereDisplayActivity extends AppCompatActivity {
         }, character);
         adapter2.addItems(character.getFeatures().toArray(new Feature[0]));
         rv.setAdapter(adapter2);*/
+
+        
 
         vue = findViewById(R.id.background);
         if(character.getBackground() == null){

@@ -61,6 +61,8 @@ public class CharacterSelectionActivity extends AppCompatActivity {
     }
 
 
+
+
     public void ChangeActivity(View V){
         Intent callActivity = new Intent(getApplicationContext(), CharacterEditionActivity.class);
         startActivity(callActivity);

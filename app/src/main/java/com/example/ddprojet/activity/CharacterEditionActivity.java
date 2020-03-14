@@ -1,5 +1,6 @@
 package com.example.ddprojet.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -339,6 +340,9 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         FileJson test = new FileJson(parser,v.getContext(),character.getName()+".json");
         test.save();
+
+        Intent callActivity = new Intent(getApplicationContext(), CharacterSelectionActivity.class);
+        startActivity(callActivity);
 
     }
 
