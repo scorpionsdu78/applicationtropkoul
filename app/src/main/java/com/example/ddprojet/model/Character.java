@@ -1,7 +1,5 @@
 package com.example.ddprojet.model;
 
-import android.util.Log;
-
 import androidx.annotation.DrawableRes;
 
 import com.google.gson.annotations.SerializedName;
@@ -238,7 +236,6 @@ public class Character implements Serializable {
     }
 
     public void setRace(String race) {
-        Log.d("why","entrez dans le set race");
         this.race = race;
     }
 
@@ -326,6 +323,14 @@ public class Character implements Serializable {
         }
     }
 
+    public boolean addProficiencies(Proficiency p){
+        return this.proficiencies.add(p.getName());
+    }
+
+    public boolean removeProficiencies(Proficiency p){
+        return this.proficiencies.remove(p.getName());
+    }
+
     public List<String> getLanguages() {
         return languages;
     }
@@ -357,6 +362,14 @@ public class Character implements Serializable {
         }
     }
 
+    public boolean addTrait(Trait t){
+        return this.traits.add(t.name);
+    }
+
+    public boolean removeTrait(Trait t){
+        return this.traits.remove(t.name);
+    }
+
     public String getPersonality_traits() {
         return personality_traits;
     }
@@ -381,20 +394,20 @@ public class Character implements Serializable {
         this.speed = speed;
     }
 
-    public void addProficiencies(Proficiency p){
-        this.proficiencies.add(p.getName());
-    }
-
-    public void addTrait(Trait t){
-        this.traits.add(t.name);
-    }
-
     public List<Feature> getFeatures() {
         return features;
     }
 
     public void setFeatures(List<Feature> features) {
         this.features = features;
+    }
+
+    public boolean addFeature(Feature feature) {
+        return this.features.add(feature);
+    }
+
+    public boolean removeFeature(Feature feature) {
+        return this.features.remove(feature);
     }
 
     public List<Feature> getFeatureChoose() {

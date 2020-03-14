@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
-import com.example.ddprojet.fragment.BonusesSelectionFragment;
+import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.Feature;
 
 import java.util.ArrayList;
@@ -28,12 +28,14 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
     protected List<Feature> features;
     protected List<FeaturesListHolder> holders;
     protected Callable<Boolean> updateValidation;
+    protected Character character;
 
-    public FeaturesListAdapter(Callable<Boolean> updateValidation){
+    public FeaturesListAdapter(Callable<Boolean> updateValidation, Character character){
         this.features = new ArrayList<>();
         this.holders = new ArrayList<>();
 
         this.updateValidation = updateValidation;
+        this.character = character;
     }
 
     public boolean getValidation () {
@@ -68,7 +70,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        FeaturesListHolder holder = new FeaturesListHolder(constraintLayout, this.updateValidation);
+        FeaturesListHolder holder = new FeaturesListHolder(constraintLayout, this.updateValidation, this.character);
         this.holders.add(holder);
 
 
@@ -95,14 +97,16 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
         protected RecyclerView recyclerViewFeatures;
         protected Context context;
         protected Callable<Boolean> updateValidation;
+        protected Character character;
 
-        public FeaturesListHolder(@NonNull View itemView, Callable<Boolean> updateValidation) {
+        public FeaturesListHolder(@NonNull View itemView, Callable<Boolean> updateValidation, Character character) {
             super(itemView);
 
             this.context = itemView.getContext();
             this.textViewChoose = itemView.findViewById(R.id.textViewChoose);
             this.recyclerViewFeatures = itemView.findViewById(R.id.recyclerViewFeatures);
             this.updateValidation = updateValidation;
+            this.character = character;
         }
 
         public boolean getValidation() {
@@ -117,7 +121,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
         public void setRecyclerViewFeatures(List<Feature> features){
             RecyclerView.LayoutManager manager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            FeaturesAdapter adapter = new FeaturesAdapter(this.updateValidation);
+            FeaturesAdapter adapter = new FeaturesAdapter(this.updateValidation, this.character);
 
             this.recyclerViewFeatures.setLayoutManager(manager);
             this.recyclerViewFeatures.setAdapter(adapter);
@@ -145,13 +149,15 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
             protected List<Feature> features;
             protected Callable<Boolean> updateValidation;
+            protected Character character;
 
-            public FeaturesAdapter(Callable<Boolean> updateValidation){
+            public FeaturesAdapter(Callable<Boolean> updateValidation, Character character){
                 this.checkBoxes = new ArrayList<>();
                 this.checkBoxesChecked = new ArrayList<>();
 
                 this.features = new ArrayList<>();
                 this.updateValidation = updateValidation;
+                this.character = character;
             }
 
             public boolean getValidation(){
@@ -185,7 +191,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
                 holder.setName((feature.getSubName() != null) ? feature.getSubName() : feature.getName());
                 holder.setDescription(feature.getDesc());
-                holder.setCheckBoxOnClick(this.checkBoxesChecked, 1, this.updateValidation);
+                holder.setCheckBoxOnClick(feature, this.checkBoxesChecked, 1, this.updateValidation, this.character);
             }
 
             @Override
@@ -223,12 +229,13 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                     this.textViewDescription.setText(description);
                 }
 
-                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count, final Callable<Boolean> updateValidation){
+                public void setCheckBoxOnClick(final Feature feature, final List<CheckBox> checkBoxesChecked, final int count, final Callable<Boolean> updateValidation, final Character character){
                     this.checkBoxFeature.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (FeaturesHolder.this.checkBoxFeature.isChecked()) {
                                 if (checkBoxesChecked.size() < count) {
+                                    character.addFeature(feature);
                                     checkBoxesChecked.add(FeaturesHolder.this.checkBoxFeature);
 
                                     if (checkBoxesChecked.size() == count)
@@ -244,6 +251,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
                                 }
                             }else {
                                 if (checkBoxesChecked.contains(FeaturesHolder.this.checkBoxFeature)) {
+                                    character.removeFeature(feature);
                                     checkBoxesChecked.remove(FeaturesHolder.this.checkBoxFeature);
 
                                     try {

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
+import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.model.ProficienciesList;
 
@@ -28,11 +29,13 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
     protected List<ProficienciesList> proficienciesLists;
     protected List<ProficienciesListHolder> holders;
     protected Callable<Boolean> updateValidation;
+    protected CharacterEditionActivity parent_activity;
 
-    public ProficienciesListAdapter(Callable<Boolean> updateValidation){
+    public ProficienciesListAdapter(Callable<Boolean> updateValidation, CharacterEditionActivity parent_activity){
         this.proficienciesLists = new ArrayList<>();
         this.holders = new ArrayList<>();
         this.updateValidation = updateValidation;
+        this.parent_activity = parent_activity;
     }
 
 
@@ -69,7 +72,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                 .from(parent.getContext())
                 .inflate(R.layout.features_list_layout, parent, false);
 
-        ProficienciesListHolder holder = new ProficienciesListHolder(constraintLayout, this.updateValidation);
+        ProficienciesListHolder holder = new ProficienciesListHolder(constraintLayout, this.updateValidation, this.parent_activity);
         this.holders.add(holder);
 
 
@@ -98,14 +101,16 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
         protected RecyclerView recyclerViewProficiencies;
         protected Context context;
         protected Callable<Boolean> updateValidation;
+        protected CharacterEditionActivity parent_activity;
 
-        public ProficienciesListHolder(@NonNull View itemView, Callable<Boolean> updateValidation) {
+        public ProficienciesListHolder(@NonNull View itemView, Callable<Boolean> updateValidation, CharacterEditionActivity parent_activity) {
             super(itemView);
 
             this.context = itemView.getContext();
             this.textViewChoose = itemView.findViewById(R.id.textViewChoose);
             this.recyclerViewProficiencies = itemView.findViewById(R.id.recyclerViewFeatures);
             this.updateValidation = updateValidation;
+            this.parent_activity = parent_activity;
         }
 
         public boolean getValidation(){
@@ -120,21 +125,11 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
         public void setRecyclerViewProficiencies(ProficienciesList proficiencies){
             RecyclerView.LayoutManager manager = new LinearLayoutManager(this.context, LinearLayoutManager.VERTICAL, false);
-            ProficienciesAdapter adapter = new ProficienciesAdapter(this.updateValidation);
+            ProficienciesAdapter adapter = new ProficienciesAdapter(this.updateValidation, this.parent_activity);
 
             this.recyclerViewProficiencies.setLayoutManager(manager);
             this.recyclerViewProficiencies.setAdapter(adapter);
             adapter.setProficiencies(proficiencies);
-
-            /*int count = adapter.getItemCount();
-            Log.i("DulcheE", "" + count);
-
-            for(int i = 0; i < count; i++){
-                Log.i("DulcheE", "" + i);
-                View v = manager.findViewByPosition(i);
-
-                ((CheckBox)v.findViewById(R.id.checkBoxProficienciesName)).setChecked(true);
-            }*/
         }
 
 
@@ -148,11 +143,13 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
             protected ProficienciesList proficiencies;
             protected Callable<Boolean> updateValidation;
+            protected CharacterEditionActivity parent_activity;
 
-            public ProficienciesAdapter(Callable<Boolean> updateValidation){
+            public ProficienciesAdapter(Callable<Boolean> updateValidation, CharacterEditionActivity parent_activity){
                 this.checkBoxes = new ArrayList<>();
                 this.checkBoxesChecked = new ArrayList<>();
                 this.updateValidation = updateValidation;
+                this.parent_activity = parent_activity;
             }
 
             public boolean getValidation(){
@@ -180,7 +177,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                 Proficiency proficiencie = this.proficiencies.getProficiencies().get(position);
 
                 holder.setName((proficiencie.isSkill()) ? proficiencie.getSubName() : proficiencie.getName());
-                holder.setCheckBoxOnClick(this.checkBoxesChecked, this.proficiencies.getChoice(), this.updateValidation);
+                holder.setCheckBoxOnClick(proficiencie, this.checkBoxesChecked, this.proficiencies.getChoice(), this.updateValidation, this.parent_activity);
             }
 
             @Override
@@ -211,12 +208,16 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                     this.checkBoxProficiencies.setText(name);
                 }
 
-                public void setCheckBoxOnClick(final List<CheckBox> checkBoxesChecked, final int count, final Callable<Boolean> updateValidation){
+                public void setCheckBoxOnClick(final Proficiency proficiency, final List<CheckBox> checkBoxesChecked, final int count, final Callable<Boolean> updateValidation, final CharacterEditionActivity parent_activity){
                     this.checkBoxProficiencies.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (ProficienciesHolder.this.checkBoxProficiencies.isChecked()) {
                                 if (checkBoxesChecked.size() < count) {
+                                    if(proficiency.isSkill())
+                                        parent_activity.addSkill(proficiency.getSubName());
+                                    else
+                                        parent_activity.getCharacter().addProficiencies(proficiency);
                                     checkBoxesChecked.add(ProficienciesHolder.this.checkBoxProficiencies);
 
                                     if (checkBoxesChecked.size() == count)
@@ -232,6 +233,10 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
                                 }
                             }else {
                                 if (checkBoxesChecked.contains(ProficienciesHolder.this.checkBoxProficiencies)) {
+                                    if(proficiency.isSkill())
+                                        parent_activity.removeSkill(proficiency.getSubName());
+                                    else
+                                        parent_activity.getCharacter().removeProficiencies(proficiency);
                                     checkBoxesChecked.remove(ProficienciesHolder.this.checkBoxProficiencies);
 
                                     try {

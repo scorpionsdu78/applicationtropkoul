@@ -2,7 +2,6 @@ package com.example.ddprojet.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,19 +38,15 @@ public class CharacterSelectionActivity extends AppCompatActivity {
 
         String path = "/data/user/0/com.example.ddprojet/files/";
 
-        Log.d("Files", "Path: " + path);
 
         File directory = new File(path);
         File[] files = directory.listFiles();
         if(files != null){
-            Log.d("Files", "Size: " + files.length); // GOT AN ERROR EXCEPTION !
             for (int i = 0; i < files.length; i++)
             {
-                Log.d("Files", "FileName:" + files[i].getName());
                 FileJson fj = new FileJson(this.getApplicationContext(),files[i].getName());
 
                 Character character =  fj.getCharacter();
-                Log.d("file test", "character:" + character.getClass_());
                 //characterDescriptionViewAdapter.add(new CharacterDescription(character.getName(), character.getRace(), character.getClass_(),character.getAlignment(),character.getLevel(),R.drawable.avatar_barbarian));
                 characterDescriptionViewAdapter.add(new CharacterDescription(character,R.drawable.avatar_barbarian));
 

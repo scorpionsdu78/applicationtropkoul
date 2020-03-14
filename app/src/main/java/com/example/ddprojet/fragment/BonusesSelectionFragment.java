@@ -1,7 +1,6 @@
 package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +86,7 @@ public class BonusesSelectionFragment extends Fragment {
             public Boolean call() throws Exception {
                 return BonusesSelectionFragment.this.updateValidation();
             }
-        });
+        }, this.parent_activity.getCharacter());
 
         if(this.featuresList != null){
             adapterFeatures.addItems(this.featuresList.toArray(new Feature[0]));
@@ -107,7 +106,7 @@ public class BonusesSelectionFragment extends Fragment {
             public Boolean call() throws Exception {
                 return BonusesSelectionFragment.this.updateValidation();
             }
-        });
+        }, this.parent_activity.getCharacter());
 
         if(this.traitsList != null) {
             adapterTraits.setTraitsList(this.traitsList);
@@ -128,7 +127,7 @@ public class BonusesSelectionFragment extends Fragment {
             public Boolean call() throws Exception {
                 return BonusesSelectionFragment.this.updateValidation();
             }
-        });
+        }, this.parent_activity);
         if(this.proficienciesList != null)
             adapterProficiencies.addItems(this.proficienciesList.toArray(new ProficienciesList[0]));
 
@@ -141,14 +140,15 @@ public class BonusesSelectionFragment extends Fragment {
 
 
     public boolean updateValidation(){
-        boolean featuresValidation = ((FeaturesListAdapter)((RecyclerView)this.view.findViewById(R.id.layoutFeatures).findViewById(R.id.recyclerViewFeaturesLists)).getAdapter()).getValidation();
-        boolean traitsValidation = ((TraitsListAdapter)((RecyclerView)this.view.findViewById(R.id.layoutTraits).findViewById(R.id.recyclerViewFeaturesLists)).getAdapter()).getValidation();
-        boolean proficienciesValidation = ((ProficienciesListAdapter)((RecyclerView)this.view.findViewById(R.id.layoutProficiencies).findViewById(R.id.recyclerViewFeaturesLists)).getAdapter()).getValidation();
-
-        System.out.println("Features : " + featuresValidation);
-        System.out.println("Traits : " + traitsValidation);
-        System.out.println("Proficiencies : " + proficienciesValidation);
-        System.out.println("All : " + (featuresValidation && traitsValidation && proficienciesValidation));
+        boolean featuresValidation = ((FeaturesListAdapter)((RecyclerView)this.view.findViewById(R.id.layoutFeatures)
+                .findViewById(R.id.recyclerViewFeaturesLists))
+                .getAdapter()).getValidation();
+        boolean traitsValidation = ((TraitsListAdapter)((RecyclerView)this.view.findViewById(R.id.layoutTraits)
+                .findViewById(R.id.recyclerViewFeaturesLists))
+                .getAdapter()).getValidation();
+        boolean proficienciesValidation = ((ProficienciesListAdapter)((RecyclerView)this.view.findViewById(R.id.layoutProficiencies)
+                .findViewById(R.id.recyclerViewFeaturesLists))
+                .getAdapter()).getValidation();
 
         this.view.findViewById(R.id.buttonNext).setEnabled(featuresValidation && traitsValidation && proficienciesValidation);
 

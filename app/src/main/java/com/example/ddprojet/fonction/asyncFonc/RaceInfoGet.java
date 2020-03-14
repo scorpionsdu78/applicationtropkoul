@@ -158,7 +158,7 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
                 else
                     adapterProficiencies.addItem(proficiency.getName());
             }
-            
+
             recyclerViewProficiencies.setLayoutManager(new LinearLayoutManager(view.get().getContext(), LinearLayoutManager.VERTICAL, false));
             recyclerViewProficiencies.setAdapter(adapterProficiencies);
 

@@ -98,14 +98,15 @@ public class CharactereDisplayActivity extends AppCompatActivity {
 
         rv = findViewById(R.id.features);
         rv.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        FeaturesListAdapter adapter2 = new FeaturesListAdapter(new Callable<Boolean>() {
+        // TODO create new adapter
+        /*FeaturesListAdapter adapter2 = new FeaturesListAdapter(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
                 return null;
             }
-        });
+        }, character);
         adapter2.addItems(character.getFeatures().toArray(new Feature[0]));
-        rv.setAdapter(adapter2);
+        rv.setAdapter(adapter2);*/
 
         vue = findViewById(R.id.background);
         if(character.getBackground() == null){

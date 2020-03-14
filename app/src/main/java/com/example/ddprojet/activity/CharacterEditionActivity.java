@@ -1,7 +1,6 @@
 package com.example.ddprojet.activity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -53,7 +52,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private Map<String, Integer> classRequierement;
     private Map<String, Integer> bonusCharac;
     private String race;
-    private String classe;
+    private String class_;
 
     private List<Trait> traits;
     private TraitsList optionalTraits;
@@ -100,6 +99,100 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
             return this.classRequierement.get(key);
 
         return 0;
+    }
+
+    public void SetRequirement(String classe){
+        switch (classe){
+            case "Barbarian":
+                classRequierement.put(Requirement.Barbare.getStat1(),13);
+                break;
+
+            case "Bard":
+                classRequierement.put(Requirement.Barde.getStat1(),13);
+                break;
+
+            case "Cleric":
+                classRequierement.put(Requirement.Clerc.getStat1(),13);
+                break;
+
+            case "Druid":
+                classRequierement.put(Requirement.Druide.getStat1(),13);
+                break;
+
+            case "Fighter":
+                classRequierement.put(Requirement.Guerrier.getStat1(),13);
+                classRequierement.put(Requirement.Guerrier.getStat2(), 13);
+                break;
+
+            case "Monk":
+                classRequierement.put(Requirement.Moine.getStat1(), 13);
+                classRequierement.put(Requirement.Moine.getStat2(),13);
+                break;
+
+            case "Paladin":
+                classRequierement.put(Requirement.Paladin.getStat1(), 13);
+                classRequierement.put(Requirement.Paladin.getStat2(),13);
+                break;
+
+            case "Ranger":
+                classRequierement.put(Requirement.Rodeur.getStat1(),13);
+                classRequierement.put(Requirement.Rodeur.getStat2(),13);
+                break;
+
+            case "Rogue":
+                classRequierement.put(Requirement.Roublard.getStat1(),13);
+                break;
+
+            case "Sorcerer":
+                classRequierement.put(Requirement.Ensorceleur.getStat1(),13);
+                break;
+
+            case "Warlock":
+                classRequierement.put(Requirement.Sorcier.getStat1(),13);
+                break;
+
+            case "Wizard":
+                classRequierement.put(Requirement.Magicien.getStat1(), 13);
+                break;
+        }
+    }
+
+    public void setBonusCharac(HashMap<String,Integer> _bonusCharac) {
+
+        this.bonusCharac = _bonusCharac;
+
+    }
+
+    public void setTraits(List<Trait> traits, TraitsList optionalTraits){
+
+        this.traits = traits;
+        this.optionalTraits = optionalTraits;
+
+    }
+
+    public List<Trait> getTraits(){
+        return this.traits;
+    }
+
+    public TraitsList getOptionalTraits(){
+        return this.optionalTraits;
+    }
+
+
+    public boolean addSkill(String skill){
+        return this.bonusSkill.add(skill);
+    }
+
+    public boolean removeSkill(String skill){
+        return this.bonusSkill.remove(skill);
+    }
+
+    public List<Feature> getFeatureToChoose() {
+        return featureToChoose;
+    }
+
+    public void setFeatureToChoose(List<Feature> featureToChoose) {
+        this.featureToChoose = featureToChoose;
     }
 
 
@@ -239,110 +332,12 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.pager.setCurrentItem(this.pager.getCurrentItem() - 1);
     }
 
-    public void SetRequirement(String classe){
-        switch (classe){
-            case "Barbarian":
-                classRequierement.put(Requirement.Barbare.getStat1(),13);
-                break;
-
-            case "Bard":
-                classRequierement.put(Requirement.Barde.getStat1(),13);
-                break;
-
-            case "Cleric":
-                classRequierement.put(Requirement.Clerc.getStat1(),13);
-                break;
-
-            case "Druid":
-                classRequierement.put(Requirement.Druide.getStat1(),13);
-                break;
-
-            case "Fighter":
-                classRequierement.put(Requirement.Guerrier.getStat1(),13);
-                classRequierement.put(Requirement.Guerrier.getStat2(), 13);
-                break;
-
-            case "Monk":
-                classRequierement.put(Requirement.Moine.getStat1(), 13);
-                classRequierement.put(Requirement.Moine.getStat2(),13);
-                break;
-
-            case "Paladin":
-                classRequierement.put(Requirement.Paladin.getStat1(), 13);
-                classRequierement.put(Requirement.Paladin.getStat2(),13);
-                break;
-
-            case "Ranger":
-                classRequierement.put(Requirement.Rodeur.getStat1(),13);
-                classRequierement.put(Requirement.Rodeur.getStat2(),13);
-                break;
-
-            case "Rogue":
-                classRequierement.put(Requirement.Roublard.getStat1(),13);
-                break;
-
-            case "Sorcerer":
-                classRequierement.put(Requirement.Ensorceleur.getStat1(),13);
-                break;
-
-            case "Warlock":
-                classRequierement.put(Requirement.Sorcier.getStat1(),13);
-                break;
-
-            case "Wizard":
-                classRequierement.put(Requirement.Magicien.getStat1(), 13);
-                break;
-        }
-    }
-
-    public void setBonusCharac(HashMap<String,Integer> _bonusCharac) {
-
-            this.bonusCharac = _bonusCharac;
-
-    }
-
-    public void setTraits(List<Trait> traits, TraitsList optionalTraits){
-
-        this.traits = traits;
-        this.optionalTraits = optionalTraits;
-
-    }
-
-    public List<Trait> getTraits(){
-        return this.traits;
-    }
-
-    public TraitsList getOptionalTraits(){
-        return this.optionalTraits;
-    }
-
-
-    public void addSkill(String skill){
-        this.bonusSkill.add(skill);
-    }
-
-    public List<Feature> getFeatureToChoose() {
-        return featureToChoose;
-    }
-
-    public void setFeatureToChoose(List<Feature> featureToChoose) {
-        this.featureToChoose = featureToChoose;
-    }
-
     public void submit(View v){
         JsonParser parser = new JsonParser(this.character);
         parser.printJson();
 
         FileJson test = new FileJson(parser,v.getContext(),character.getName()+".json");
         test.save();
-        Log.i("testJason",Boolean.toString(test.isFilePresent()));
-        /*try {
-            Log.i("testJason",Boolean.toString(test.delete()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-        Log.i("testJason",Boolean.toString(test.isFilePresent()));
-        Log.i("testJason",test.read());
 
     }
 
