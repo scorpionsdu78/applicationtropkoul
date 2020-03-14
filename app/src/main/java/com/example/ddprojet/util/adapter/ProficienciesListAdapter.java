@@ -70,7 +70,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
         ConstraintLayout constraintLayout = (ConstraintLayout)LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.features_list_layout, parent, false);
+                .inflate(R.layout.choose_list_layout, parent, false);
 
         ProficienciesListHolder holder = new ProficienciesListHolder(constraintLayout, this.updateValidation, this.parent_activity);
         this.holders.add(holder);
@@ -167,7 +167,7 @@ public class ProficienciesListAdapter extends RecyclerView.Adapter<Proficiencies
 
                 FrameLayout frameLayout = (FrameLayout) LayoutInflater
                         .from(parent.getContext())
-                        .inflate(R.layout.feature_item_layout, parent, false);
+                        .inflate(R.layout.choose_item_layout, parent, false);
 
                 return new ProficienciesHolder(frameLayout, this.checkBoxes);
             }

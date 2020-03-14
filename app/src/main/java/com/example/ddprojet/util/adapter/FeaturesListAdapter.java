@@ -1,12 +1,10 @@
 package com.example.ddprojet.util.adapter;
 
 import android.content.Context;
-import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -68,7 +66,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
         ConstraintLayout constraintLayout = (ConstraintLayout)LayoutInflater
                 .from(parent.getContext())
-                .inflate(R.layout.features_list_layout, parent, false);
+                .inflate(R.layout.choose_list_layout, parent, false);
 
         FeaturesListHolder holder = new FeaturesListHolder(constraintLayout, this.updateValidation, this.character);
         this.holders.add(holder);
@@ -180,7 +178,7 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
 
                 FrameLayout frameLayout = (FrameLayout) LayoutInflater
                         .from(parent.getContext())
-                        .inflate(R.layout.feature_item_layout, parent, false);
+                        .inflate(R.layout.choose_item_layout, parent, false);
 
                 return new FeaturesHolder(frameLayout, this.checkBoxes);
             }

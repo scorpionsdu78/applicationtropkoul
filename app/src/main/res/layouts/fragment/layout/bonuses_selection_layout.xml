@@ -36,15 +36,15 @@
 
             <include
                 android:id="@+id/layoutFeatures"
-                layout="@layout/features_list_list_layout" />
+                layout="@layout/choose_list_list_layout" />
 
             <include
                 android:id="@+id/layoutTraits"
-                layout="@layout/features_list_list_layout" />
+                layout="@layout/choose_list_list_layout" />
 
             <include
                 android:id="@+id/layoutProficiencies"
-                layout="@layout/features_list_list_layout" />
+                layout="@layout/choose_list_list_layout" />
 
         </LinearLayout>
 

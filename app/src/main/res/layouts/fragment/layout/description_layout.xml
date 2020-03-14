@@ -262,7 +262,8 @@
                                 android:fontFamily="@string/main_font"
                                 android:inputType="textPersonName"
                                 android:textSize="@dimen/_20sdp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:text="CharacterName"/>
 
                             <ImageView
                                 android:id="@+id/imageView2"
@@ -301,7 +302,7 @@
                             android:gravity="center"
                             android:paddingBottom="@dimen/_15sdp"
                             android:textAlignment="center"
-                            android:visibility="visible" />
+                            android:visibility="visible"/>
 
                         <Spinner
                             android:id="@+id/al2"
@@ -333,7 +334,8 @@
                         android:gravity="start|top"
                         android:inputType="textMultiLine"
                         android:minLines="2"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_12sdp"
+                        tools:text="PersonalityTrait\nPersonalityTrait"/>
 
                     <TextView
                         android:layout_width="match_parent"
@@ -353,7 +355,8 @@
                         android:gravity="start|top"
                         android:inputType="textMultiLine"
                         android:minLines="4"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_12sdp"
+                        tools:text="Background..."/>
 
                     <Button
                         android:id="@+id/validation"
