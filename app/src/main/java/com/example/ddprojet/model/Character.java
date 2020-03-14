@@ -150,24 +150,29 @@ public class Character implements Serializable {
 
         this.skills = new HashMap<String, Integer>();
         tmp = file.getJSONObject("skills");
-        skills.put("Nature",new Integer(tmp.getInt("Nature")));
-        skills.put("Medicine", new Integer(tmp.getInt("Medicine")));
-        skills.put("Survival", new Integer(tmp.getInt("Survival")));
-        skills.put("Perception", new Integer(tmp.getInt("Perception")));
-        skills.put("Stealth ", new Integer(tmp.getInt("Stealth ")));
-        skills.put("Insight", new Integer( tmp.getInt("Insight")));
-        skills.put("Deception", new Integer(tmp.getInt("Deception")));
-        skills.put("Sleight of Hand", new Integer(tmp.getInt("Sleight of Hand")));
-        skills.put("Investigation", new Integer(tmp.getInt( "Investigation")));
-        skills.put("Performance", new Integer(tmp.getInt("Performance")));
-        skills.put("Acrobatics", new Integer(tmp.getInt("Acrobatics")));
-        skills.put("Religion", new Integer(tmp.getInt("Religion")));
-        skills.put("Arcana", new Integer(tmp.getInt("Arcana")));
-        skills.put("Athletics", new Integer(tmp.getInt("Athletics")));
-        skills.put("Animal Handling", new Integer(tmp.getInt("Animal Handling")));
-        skills.put("Persuasion", new Integer(tmp.getInt("Persuasion")));
-        skills.put("Intimidation", new Integer(tmp.getInt( "Intimidation")));
-        skills.put("History", new Integer(tmp.getInt("History")));
+        skills.put("Nature",new Integer(tmp.optInt("Nature")));
+        skills.put("Medicine", new Integer(tmp.optInt("Medicine")));
+        skills.put("Survival", new Integer(tmp.optInt("Survival")));
+        skills.put("Perception", new Integer(tmp.optInt("Perception")));
+        if(tmp.opt("Stealth") != null){
+            skills.put("Stealth", new Integer(tmp.getInt("Stealth")));
+        }
+        else {
+            skills.put("Stealth", new Integer(0));
+        }
+        skills.put("Insight", new Integer( tmp.optInt("Insight")));
+        skills.put("Deception", new Integer(tmp.optInt("Deception")));
+        skills.put("Sleight of Hand", new Integer(tmp.optInt("Sleight of Hand")));
+        skills.put("Investigation", new Integer(tmp.optInt( "Investigation")));
+        skills.put("Performance", new Integer(tmp.optInt("Performance")));
+        skills.put("Acrobatics", new Integer(tmp.optInt("Acrobatics")));
+        skills.put("Religion", new Integer(tmp.optInt("Religion")));
+        skills.put("Arcana", new Integer(tmp.optInt("Arcana")));
+        skills.put("Athletics", new Integer(tmp.optInt("Athletics")));
+        skills.put("Animal Handling", new Integer(tmp.optInt("Animal Handling")));
+        skills.put("Persuasion", new Integer(tmp.optInt("Persuasion")));
+        skills.put("Intimidation", new Integer(tmp.optInt( "Intimidation")));
+        skills.put("History", new Integer(tmp.optInt("History")));
 
         this.speed = file.getInt("speed");
 
