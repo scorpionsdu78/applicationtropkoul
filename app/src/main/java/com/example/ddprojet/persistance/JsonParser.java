@@ -1,10 +1,7 @@
 package com.example.ddprojet.persistance;
 
-import android.util.Log;
-
-import com.google.gson.Gson;
-
 import com.example.ddprojet.model.Character;
+import com.google.gson.Gson;
 
 public class JsonParser {
 
@@ -16,10 +13,6 @@ public class JsonParser {
         this.character = character;
         converter = new Gson();
         json = converter.toJson(character);
-    }
-
-    public void printJson(){
-        Log.i("testJson",json);
     }
 
     public String getJson() {

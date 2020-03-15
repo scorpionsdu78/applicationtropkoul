@@ -12,14 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.example.ddprojet.connection.Class;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
@@ -27,6 +19,11 @@ import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.service.LoadingService;
 import com.example.ddprojet.util.ClassEnum;
 import com.example.ddprojet.util.adapter.StringAdapter;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 
 public class ClassesInfoGet extends AsyncTask<String, String, Class> {
 

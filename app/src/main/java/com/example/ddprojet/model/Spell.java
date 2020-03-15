@@ -1,8 +1,8 @@
 package com.example.ddprojet.model;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
+
+import com.example.ddprojet.connection.APIconnection;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,8 +10,6 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.ddprojet.connection.APIconnection;
 
 public class Spell extends APIconnection implements Comparable<Spell>{
 
@@ -111,10 +109,7 @@ public class Spell extends APIconnection implements Comparable<Spell>{
     public boolean isFor(String classe){
 
         for (String s: classes) {
-            Log.i("alerte","entrez dans le for de isfor");
-
             if(s.toLowerCase().equals(classe.toLowerCase())){
-                Log.i("alerte","le sort est pour la classe1");
                 return true;
             }
         }

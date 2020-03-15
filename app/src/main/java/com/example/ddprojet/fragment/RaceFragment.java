@@ -20,23 +20,21 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
+import com.example.ddprojet.activity.CharacterEditionActivity;
+import com.example.ddprojet.connection.Race;
 import com.example.ddprojet.fonction.asyncFonc.RaceInfoGet;
 import com.example.ddprojet.fonction.asyncFonc.RacesGet;
-
-import java.util.HashMap;
-import java.util.Vector;
-import java.util.concurrent.ExecutionException;
-
-import com.example.ddprojet.connection.Race;
 import com.example.ddprojet.model.Bonus;
 import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.ProficienciesList;
 import com.example.ddprojet.model.Proficiency;
-import com.example.ddprojet.service.LoadingService;
 import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.RaceEnum;
+
+import java.util.HashMap;
+import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
 public class RaceFragment extends Fragment {
 

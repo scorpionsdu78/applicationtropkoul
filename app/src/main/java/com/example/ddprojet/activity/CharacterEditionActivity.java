@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
@@ -37,10 +36,10 @@ import com.example.ddprojet.model.Trait;
 import com.example.ddprojet.model.TraitsList;
 import com.example.ddprojet.persistance.FileJson;
 import com.example.ddprojet.persistance.JsonParser;
-import com.example.ddprojet.util.adapter.Adapter;
 import com.example.ddprojet.util.CustomViewPager;
 import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.Requirement;
+import com.example.ddprojet.util.adapter.Adapter;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.ByteArrayOutputStream;
@@ -52,8 +51,6 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static android.media.MediaRecorder.VideoSource.CAMERA;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -354,7 +351,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
     public void submit(View v){
         JsonParser parser = new JsonParser(this.character);
-        parser.printJson();
 
         FileJson test = new FileJson(parser,v.getContext(),character.getName()+".json");
         test.save();

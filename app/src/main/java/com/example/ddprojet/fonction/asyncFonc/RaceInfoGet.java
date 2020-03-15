@@ -12,13 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
-
-import org.json.JSONException;
-
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.util.List;
-
 import com.example.ddprojet.connection.Race;
 import com.example.ddprojet.model.Bonus;
 import com.example.ddprojet.model.Proficiency;
@@ -26,6 +19,12 @@ import com.example.ddprojet.model.Trait;
 import com.example.ddprojet.service.LoadingService;
 import com.example.ddprojet.util.RaceEnum;
 import com.example.ddprojet.util.adapter.StringAdapter;
+
+import org.json.JSONException;
+
+import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.util.List;
 
 public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
 

@@ -1,7 +1,5 @@
 package com.example.ddprojet.model;
 
-import androidx.annotation.DrawableRes;
-
 public class CharacterDescription {
 
     protected String name;

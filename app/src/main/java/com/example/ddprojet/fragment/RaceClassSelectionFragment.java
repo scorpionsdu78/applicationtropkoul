@@ -13,9 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
-
+import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.util.ClassEnum;
 import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.RaceEnum;

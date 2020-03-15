@@ -1,7 +1,6 @@
 package com.example.ddprojet.persistance;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.ddprojet.model.Character;
 import com.google.gson.Gson;
@@ -72,7 +71,6 @@ public class FileJson implements Serializable {
 
     public boolean isFilePresent() {
         String path = context.getFilesDir().getAbsolutePath() + "/" + this.filename;
-        Log.i("testParse",path);
         File file = new File(path);
         return file.exists();
     }

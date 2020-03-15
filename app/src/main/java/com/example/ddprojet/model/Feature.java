@@ -1,7 +1,5 @@
 package com.example.ddprojet.model;
 
-import android.util.Log;
-
 import com.example.ddprojet.connection.APIconnection;
 
 import org.json.JSONException;

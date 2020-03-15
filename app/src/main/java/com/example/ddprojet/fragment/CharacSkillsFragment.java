@@ -1,7 +1,6 @@
 package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
+import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.util.FragmentEnum;
 
 import java.util.HashMap;
@@ -169,7 +168,6 @@ public class CharacSkillsFragment extends Fragment {
 
 
         if(this.parent_activity.getCharacter().getSavingThrows().contains(characName)) {
-            Log.i("DulcheE", "Saving trows " + characName);
             CheckBox checkBoxSavingThrows = parent.findViewById(R.id.checkBoxSavingThrows);
             checkBoxSavingThrows.setChecked(true);
         }

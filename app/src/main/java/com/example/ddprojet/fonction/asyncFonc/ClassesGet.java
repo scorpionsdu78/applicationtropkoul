@@ -2,6 +2,7 @@ package com.example.ddprojet.fonction.asyncFonc;
 
 import android.os.AsyncTask;
 
+import com.example.ddprojet.connection.Class;
 import com.example.ddprojet.fragment.ClassFragment;
 
 import org.json.JSONArray;
@@ -9,8 +10,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-
-import com.example.ddprojet.connection.Class;
 
 public class ClassesGet extends AsyncTask<String, String, String> {
 

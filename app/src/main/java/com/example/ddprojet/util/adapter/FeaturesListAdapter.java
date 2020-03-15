@@ -124,16 +124,6 @@ public class FeaturesListAdapter extends RecyclerView.Adapter<FeaturesListAdapte
             this.recyclerViewFeatures.setLayoutManager(manager);
             this.recyclerViewFeatures.setAdapter(adapter);
             adapter.addItems(features.toArray(new Feature[0]));
-
-            /*int count = adapter.getItemCount();
-            Log.i("DulcheE", "" + count);
-
-            for(int i = 0; i < count; i++){
-                Log.i("DulcheE", "" + i);
-                View v = manager.findViewByPosition(i);
-
-                ((CheckBox)v.findViewById(R.id.checkBoxFeatureName)).setChecked(true);
-            }*/
         }
 
 

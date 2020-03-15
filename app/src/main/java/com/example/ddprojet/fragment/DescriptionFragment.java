@@ -32,8 +32,6 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.util.List;
 
-import static android.media.MediaRecorder.VideoSource.CAMERA;
-
 public class DescriptionFragment extends Fragment {
 
     private View v;

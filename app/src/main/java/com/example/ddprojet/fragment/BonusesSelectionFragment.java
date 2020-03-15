@@ -5,29 +5,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
+import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
-import com.example.ddprojet.model.Trait;
 import com.example.ddprojet.model.TraitsList;
 import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.adapter.FeaturesListAdapter;
 import com.example.ddprojet.util.adapter.ProficienciesListAdapter;
 import com.example.ddprojet.util.adapter.TraitsListAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 

@@ -1,7 +1,5 @@
 package com.example.ddprojet.model;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,7 +43,6 @@ public class TraitsList {
 
         if(name == null){
             for (Trait t: traits) {
-                Log.d("JTL", t.getName() + t.getDescription());
                 s += t.getName();
 
                 if(t != traits.get(traits.size()-1))
@@ -54,7 +51,6 @@ public class TraitsList {
         }else {
             s += name + ": \n";
             for (Trait t: traits) {
-                Log.d("JTL", t.getName() + t.getDescription());
                 s += t.getSubName();
 
                 if(t != traits.get(traits.size()-1))

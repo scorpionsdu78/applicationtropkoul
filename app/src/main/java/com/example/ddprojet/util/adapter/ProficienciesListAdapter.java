@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 import com.example.ddprojet.activity.CharacterEditionActivity;
-import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.model.Proficiency;
 
 import java.util.ArrayList;
 import java.util.List;

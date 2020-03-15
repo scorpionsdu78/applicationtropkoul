@@ -118,16 +118,6 @@ public class TraitsListAdapter extends RecyclerView.Adapter<TraitsListAdapter.Tr
             this.recyclerViewTraits.setLayoutManager(manager);
             this.recyclerViewTraits.setAdapter(adapter);
             adapter.addItems(traits.getTraits().toArray(new Trait[0]));
-
-            /*int count = adapter.getItemCount();
-            Log.i("DulcheE", "" + count);
-
-            for(int i = 0; i < count; i++){
-                Log.i("DulcheE", "" + i);
-                View v = manager.findViewByPosition(i);
-
-                ((CheckBox)v.findViewById(R.id.checkBoxTraitName)).setChecked(true);
-            }*/
         }
 
 

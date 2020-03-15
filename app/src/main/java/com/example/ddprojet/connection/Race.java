@@ -1,6 +1,10 @@
 package com.example.ddprojet.connection;
 
-import android.util.Log;
+import com.example.ddprojet.model.Bonus;
+import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.model.Proficiency;
+import com.example.ddprojet.model.Trait;
+import com.example.ddprojet.model.TraitsList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,12 +13,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.ddprojet.model.Bonus;
-import com.example.ddprojet.model.Proficiency;
-import com.example.ddprojet.model.ProficienciesList;
-import com.example.ddprojet.model.Trait;
-import com.example.ddprojet.model.TraitsList;
 
 public class Race extends APIconnection {
 
@@ -50,26 +48,17 @@ public class Race extends APIconnection {
             bonuses.add(new Bonus(tmp.getString("name"),tmp.getInt("bonus")));//on crer un nouveau bonus avec la charac + la valeur
         }
 
-        Log.d("iii","balise1");
-
         //on suit la meme logique qu'avec les proficiencies sauf qu'ici on stock le nom et la description
         if(file.optJSONObject("trait_options") !=null){
             JSONObject traitOption = file.getJSONObject("trait_options");
             traitsList = new TraitsList(traitOption.getInt("choose"));
 
-            Log.d("iii","balise2");
-
             JSONArray listTraitTmp = traitOption.getJSONArray("from");
             for (int i=0; i<listTraitTmp.length(); i++){
                 JSONObject tampon = listTraitTmp.getJSONObject(i);
                 traitsList.add(new Trait(tampon.getString("url"),tampon.getString("name")));
-                Log.d("iii","balise3");
-
             }
         }
-
-        Log.d("iii","balise4");
-
 
 
         //on recomance pour les traits globaux
@@ -80,7 +69,6 @@ public class Race extends APIconnection {
 
         for (int i=0; i<traitglobaux.length(); i++){
             JSONObject tampon = traitglobaux.getJSONObject(i);
-            Log.d("debug", tampon.getString("url"));
             globalTrait.add(new Trait(tampon.getString("url"),tampon.getString("name")));
         }
 

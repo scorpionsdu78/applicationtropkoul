@@ -2,16 +2,14 @@ package com.example.ddprojet.fonction.asyncFonc;
 
 import android.os.AsyncTask;
 
-import com.example.ddprojet.fragment.RaceFragment.*;
+import com.example.ddprojet.connection.Race;
+import com.example.ddprojet.fragment.RaceFragment.RaceDescriptionAdaptator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.lang.String;
-
-import com.example.ddprojet.connection.Race;
 
 public class RacesGet extends AsyncTask<String, String, String> {
 

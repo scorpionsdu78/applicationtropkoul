@@ -1,7 +1,6 @@
 package com.example.ddprojet.fonction.asyncFonc;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.ddprojet.fragment.SpellsFragment;
 import com.example.ddprojet.model.Spell;
@@ -46,11 +45,7 @@ public class SpellsGet extends AsyncTask<String,String, Spell> {
     @Override
     protected void onPostExecute(Spell spell) {
         SpellsFragment.SpellAdapteur adapteur = adaptor.get();
-        if(spell == null){
-            Log.i("alerte","chelou pi");
-        }
-        else {
-            Log.i("alerte", spell.getName());
+        if(spell != null){
             adapteur.add(spell);
         }
     }

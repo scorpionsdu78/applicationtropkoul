@@ -20,18 +20,17 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.R;
+import com.example.ddprojet.activity.CharacterEditionActivity;
+import com.example.ddprojet.connection.Class;
 import com.example.ddprojet.fonction.asyncFonc.ClassesGet;
 import com.example.ddprojet.fonction.asyncFonc.ClassesInfoGet;
+import com.example.ddprojet.model.Character;
+import com.example.ddprojet.util.ClassEnum;
+import com.example.ddprojet.util.FragmentEnum;
 
 import java.util.Vector;
 import java.util.concurrent.ExecutionException;
-
-import com.example.ddprojet.connection.Class;
-import com.example.ddprojet.model.Character;
-import com.example.ddprojet.util.FragmentEnum;
-import com.example.ddprojet.util.ClassEnum;
 
 public class ClassFragment extends Fragment {
 

@@ -1,7 +1,5 @@
 package com.example.ddprojet.model;
 
-import androidx.annotation.DrawableRes;
-
 import com.google.gson.annotations.SerializedName;
 
 import org.json.JSONArray;

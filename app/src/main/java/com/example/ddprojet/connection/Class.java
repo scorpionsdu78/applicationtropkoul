@@ -1,6 +1,8 @@
 package com.example.ddprojet.connection;
 
-import android.util.Log;
+import com.example.ddprojet.model.Feature;
+import com.example.ddprojet.model.ProficienciesList;
+import com.example.ddprojet.model.Proficiency;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,10 +11,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.example.ddprojet.model.Feature;
-import com.example.ddprojet.model.Proficiency;
-import com.example.ddprojet.model.ProficienciesList;
 
 public class Class extends APIconnection {
 
@@ -88,11 +86,7 @@ public class Class extends APIconnection {
 
         APIconnection co = new APIconnection(file.getJSONObject("class_levels").getString("url") + "/1");
         JSONObject fichier = co.getFile();
-        Log.i("DulcheE", fichier.toString());
-        Log.i("DulcheE", "test on  " + name);
         if(name.toLowerCase().equals("fighter")){
-            Log.i("DulcheE", "enter on fighter for " + name);
-            Log.i("DulcheE", (featureChoose == null) ? "null" : "nor null");
             featureChoose = new ArrayList<>();
             featureChoose.add(new Feature("/api/features/fighting-style-archery"));
             featureChoose.add(new Feature("/api/features/fighting-style-defense"));
@@ -100,7 +94,6 @@ public class Class extends APIconnection {
             featureChoose.add(new Feature("/api/features/fighting-style-great-weapon-fighting"));
             featureChoose.add(new Feature("/api/features/fighting-style-protection"));
             featureChoose.add(new Feature("/api/features/fighting-style-two-weapon-fighting"));
-            Log.i("DulcheE", (featureChoose == null) ? "null" : "nor null");
         }
 
         JSONArray tmp = fichier.getJSONArray("features");

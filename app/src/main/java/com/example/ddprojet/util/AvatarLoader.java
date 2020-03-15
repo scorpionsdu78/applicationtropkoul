@@ -3,7 +3,6 @@ package com.example.ddprojet.util;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import com.example.ddprojet.R;
 
