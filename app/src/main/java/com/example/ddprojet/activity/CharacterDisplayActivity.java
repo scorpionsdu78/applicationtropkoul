@@ -14,10 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ddprojet.R;
 import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.Feature;
+import com.example.ddprojet.persistance.FileJson;
 import com.example.ddprojet.util.adapter.FeatureAdapter;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
+import java.io.IOException;
+
 public class CharacterDisplayActivity extends AppCompatActivity {
+
+    private Character character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +31,7 @@ public class CharacterDisplayActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         System.out.println(extras.containsKey("value"));
-        Character character = (Character) extras.getSerializable("value");
+        character = (Character) extras.getSerializable("value");
 
         Log.d("test transfert", character.toString());
 
@@ -107,9 +112,11 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         adapter2.addItems(character.getFeatures().toArray(new Feature[0]));
         rv.setAdapter(adapter2);*/
 
-        FeatureAdapter adapter1 = new FeatureAdapter();
-        adapter1.addItems(character.getFeatures().toArray(new Feature[0]));
-        rv.setAdapter(adapter1);
+        if(character.getFeatures() != null) {
+            FeatureAdapter adapter1 = new FeatureAdapter();
+            adapter1.addItems(character.getFeatures().toArray(new Feature[0]));
+            rv.setAdapter(adapter1);
+        }
 
         vue = findViewById(R.id.background);
         if(character.getBackground().isEmpty()){
@@ -131,6 +138,17 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     public void retour(View v){
         Intent callActivity = new Intent(getApplicationContext(), CharacterSelectionActivity.class);
         startActivity(callActivity);
+    }
+
+    public void delete(View v){
+        try {
+            FileJson fj = new FileJson(this.getApplicationContext(),character.getName()+".json");
+            fj.delete();
+            Intent callActivity = new Intent(getApplicationContext(), CharacterSelectionActivity.class);
+            startActivity(callActivity);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -103,86 +103,98 @@ public class Character implements Serializable {
 
         this.characteristic = new HashMap<>();
         tmp = file.getJSONObject("characteristic");
-        this.characteristic.put("CON",new Integer(tmp.getInt("CON")));
-        this.characteristic.put("CHA",new Integer(tmp.getInt("CHA")));
-        this.characteristic.put("WIS",new Integer(tmp.getInt("WIS")));
-        this.characteristic.put("STR",new Integer(tmp.getInt("STR")));
-        this.characteristic.put("DEX",new Integer(tmp.getInt("DEX")));
-        this.characteristic.put("INT",new Integer(tmp.getInt("INT")));
+        this.characteristic.put("CON",new Integer(tmp.optInt("CON")));
+        this.characteristic.put("CHA",new Integer(tmp.optInt("CHA")));
+        this.characteristic.put("WIS",new Integer(tmp.optInt("WIS")));
+        this.characteristic.put("STR",new Integer(tmp.optInt("STR")));
+        this.characteristic.put("DEX",new Integer(tmp.optInt("DEX")));
+        this.characteristic.put("INT",new Integer(tmp.optInt("INT")));
 
-        this.class_ = file.getString("class");
+        this.class_ = file.optString("class");
 
-        array = file.getJSONArray("features");
-        this.features = new ArrayList<Feature>();
-        for(int i=0; i<array.length(); i++){
-            JSONObject obj = array.getJSONObject(i);
-            this.features.add(new Feature(obj.getString("name"),obj.getString("Desc")));
+        array = file.optJSONArray("features");
+        if(array != null){
+            this.features = new ArrayList<Feature>();
+            for(int i=0; i<array.length(); i++){
+                JSONObject obj = array.optJSONObject(i);
+                if(obj!=null){
+                    this.features.add(new Feature(obj.getString("name"),obj.getString("Desc")));
+                }
+            }
         }
 
-        this.hitDice = file.getInt("hitDice");
+        this.hitDice = file.optInt("hitDice");
 
         this.languages = new ArrayList<>();
         array = file.getJSONArray("languages");
-        for(int i=0; i<array.length(); i++){
-            languages.add(array.getString(i));
+        if(array!=null) {
+            for (int i = 0; i < array.length(); i++) {
+                languages.add(array.getString(i));
+            }
         }
 
-        this.level = file.getInt("level");
+        this.level = file.optInt("level");
 
-        this.life = file.getInt("life");
+        this.life = file.optInt("life");
 
-        this.personality_traits = file.getString("personality_traits");
+        this.personality_traits = file.optString("personality_traits");
 
         this.proficiencies = new ArrayList<>();
-        array = file.getJSONArray("proficiencies");
-        for (int i=0; i<array.length(); i++)
-        {
-            proficiencies.add(array.getString(i));
+        if(array!=null) {
+            array = file.getJSONArray("proficiencies");
+            for (int i = 0; i < array.length(); i++) {
+                proficiencies.add(array.getString(i));
+            }
         }
 
-        this.race = file.getString("race");
+        this.race = file.optString("race");
 
         this.savingThrows = new ArrayList<>();
-        array = file.getJSONArray("savingThrows");
-        for(int i =0; i<array.length(); i++){
-            savingThrows.add(array.getString(i));
+        array = file.optJSONArray("savingThrows");
+        if(array!=null) {
+            for (int i = 0; i < array.length(); i++) {
+                savingThrows.add(array.getString(i));
+            }
         }
 
         this.skills = new HashMap<String, Integer>();
-        tmp = file.getJSONObject("skills");
-        skills.put("Nature",new Integer(tmp.optInt("Nature")));
-        skills.put("Medicine", new Integer(tmp.optInt("Medicine")));
-        skills.put("Survival", new Integer(tmp.optInt("Survival")));
-        skills.put("Perception", new Integer(tmp.optInt("Perception")));
-        if(tmp.opt("Stealth") != null){
-            skills.put("Stealth", new Integer(tmp.getInt("Stealth")));
+        tmp = file.optJSONObject("skills");
+        if(tmp != null) {
+            skills.put("Nature", new Integer(tmp.optInt("Nature")));
+            skills.put("Medicine", new Integer(tmp.optInt("Medicine")));
+            skills.put("Survival", new Integer(tmp.optInt("Survival")));
+            skills.put("Perception", new Integer(tmp.optInt("Perception")));
+            if (tmp.opt("Stealth") != null) {
+                skills.put("Stealth", new Integer(tmp.getInt("Stealth")));
+            } else {
+                skills.put("Stealth", new Integer(0));
+            }
+            skills.put("Insight", new Integer(tmp.optInt("Insight")));
+            skills.put("Deception", new Integer(tmp.optInt("Deception")));
+            skills.put("Sleight of Hand", new Integer(tmp.optInt("Sleight of Hand")));
+            skills.put("Investigation", new Integer(tmp.optInt("Investigation")));
+            skills.put("Performance", new Integer(tmp.optInt("Performance")));
+            skills.put("Acrobatics", new Integer(tmp.optInt("Acrobatics")));
+            skills.put("Religion", new Integer(tmp.optInt("Religion")));
+            skills.put("Arcana", new Integer(tmp.optInt("Arcana")));
+            skills.put("Athletics", new Integer(tmp.optInt("Athletics")));
+            skills.put("Animal Handling", new Integer(tmp.optInt("Animal Handling")));
+            skills.put("Persuasion", new Integer(tmp.optInt("Persuasion")));
+            skills.put("Intimidation", new Integer(tmp.optInt("Intimidation")));
+            skills.put("History", new Integer(tmp.optInt("History")));
         }
-        else {
-            skills.put("Stealth", new Integer(0));
-        }
-        skills.put("Insight", new Integer( tmp.optInt("Insight")));
-        skills.put("Deception", new Integer(tmp.optInt("Deception")));
-        skills.put("Sleight of Hand", new Integer(tmp.optInt("Sleight of Hand")));
-        skills.put("Investigation", new Integer(tmp.optInt( "Investigation")));
-        skills.put("Performance", new Integer(tmp.optInt("Performance")));
-        skills.put("Acrobatics", new Integer(tmp.optInt("Acrobatics")));
-        skills.put("Religion", new Integer(tmp.optInt("Religion")));
-        skills.put("Arcana", new Integer(tmp.optInt("Arcana")));
-        skills.put("Athletics", new Integer(tmp.optInt("Athletics")));
-        skills.put("Animal Handling", new Integer(tmp.optInt("Animal Handling")));
-        skills.put("Persuasion", new Integer(tmp.optInt("Persuasion")));
-        skills.put("Intimidation", new Integer(tmp.optInt( "Intimidation")));
-        skills.put("History", new Integer(tmp.optInt("History")));
 
-        this.speed = file.getInt("speed");
+        this.speed = file.optInt("speed");
 
         this.traits = new ArrayList<>();
-        array = file.getJSONArray("traits");
-        for(int i =0; i<array.length(); i++){
-            traits.add(array.getString(i));
+        array = file.optJSONArray("traits");
+        if(array !=null) {
+            for (int i = 0; i < array.length(); i++) {
+                traits.add(array.getString(i));
+            }
         }
 
-        this.name = file.getString("name");
+        this.name = file.optString("name");
 
     }
 
@@ -445,6 +457,7 @@ public class Character implements Serializable {
 
         return true;
     }
+
 
     @Override
     public String toString() {
