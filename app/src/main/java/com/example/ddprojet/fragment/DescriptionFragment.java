@@ -36,10 +36,10 @@ public class DescriptionFragment extends Fragment {
 
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(v.getContext(),
-                R.array.array_1, android.R.layout.simple_spinner_item);
+                R.array.array_lawfulChaoticAxis, android.R.layout.simple_spinner_item);
         ali1.setAdapter(adapter);
 
-        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(v.getContext(),R.array.array_2, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(v.getContext(),R.array.array_goodEvilAxis, android.R.layout.simple_spinner_item);
         ali2.setAdapter(adapter1);
 
         Button btn = (Button) v.findViewById(R.id.validation);

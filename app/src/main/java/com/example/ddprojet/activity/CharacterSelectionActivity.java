@@ -176,7 +176,7 @@ public class CharacterSelectionActivity extends AppCompatActivity {
 
 
 
-        Intent callActivity = new Intent(getApplicationContext(), CharactereDisplayActivity.class);
+        Intent callActivity = new Intent(getApplicationContext(), CharacterDisplayActivity.class);
         callActivity.putExtra("value", character);
         startActivity(callActivity);
     }

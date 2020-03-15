@@ -344,7 +344,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
 
 
-        Intent callActivity = new Intent(getApplicationContext(), CharactereDisplayActivity.class);
+        Intent callActivity = new Intent(getApplicationContext(), CharacterDisplayActivity.class);
         callActivity.putExtra("value", this.character);
         startActivity(callActivity);
 

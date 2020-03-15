@@ -17,7 +17,7 @@ import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.util.adapter.FeatureAdapter;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
-public class CharactereDisplayActivity extends AppCompatActivity {
+public class CharacterDisplayActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +45,23 @@ public class CharactereDisplayActivity extends AppCompatActivity {
         vue = findViewById(R.id.alignement);
         vue.setText(character.getAlignment().toString());
 
-        vue = findViewById(R.id.charac1);
-        Integer tmp = character.getCharacteristic().get("INT");
-        vue.setText("INT: " + tmp.toString());
-
-        vue = findViewById(R.id.charac2);
-        vue.setText("CON: " + character.getCharacteristic().get("CON").toString());
-
-        vue = findViewById(R.id.charac3);
-        vue.setText("CHA: " + character.getCharacteristic().get("CHA").toString());
-
-        vue = findViewById(R.id.charac4);
-        vue.setText("WIS: " + character.getCharacteristic().get("WIS").toString());
-
-        vue = findViewById(R.id.charac5);
+        vue = findViewById(R.id.characSTR);
         vue.setText("STR: " + character.getCharacteristic().get("STR").toString());
 
-        vue = findViewById(R.id.charac6);
+        vue = findViewById(R.id.characCON);
+        vue.setText("CON: " + character.getCharacteristic().get("CON").toString());
+
+        vue = findViewById(R.id.characINT);
+        vue.setText("INT: " + character.getCharacteristic().get("INT").toString());
+
+        vue = findViewById(R.id.characDEX);
         vue.setText("DEX: " + character.getCharacteristic().get("DEX").toString());
+
+        vue = findViewById(R.id.characWIS);
+        vue.setText("WIS: " + character.getCharacteristic().get("WIS").toString());
+
+        vue = findViewById(R.id.characCHA);
+        vue.setText("CHA: " + character.getCharacteristic().get("CHA").toString());
 
         RecyclerView rv = findViewById(R.id.skills);
         rv.setLayoutManager(new GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false));
@@ -113,16 +112,19 @@ public class CharactereDisplayActivity extends AppCompatActivity {
         rv.setAdapter(adapter1);
 
         vue = findViewById(R.id.background);
-        if(character.getBackground() == null){
-            vue.setText("BACKGROUNG: NONE");
+        if(character.getBackground().isEmpty()){
+            vue.setText("[NONE]");
         }else {
-            Log.i("test",character.getBackground());
-            vue.setText("BACKGROUNG:\n" + character.getBackground());
+            vue.setText(character.getBackground());
         }
 
 
         vue = findViewById(R.id.personality);
-        vue.setText("PERSONALITY:\n" + character.getPersonality_traits());
+        if(character.getPersonality_traits().isEmpty()){
+            vue.setText("[NONE]");
+        }else {
+            vue.setText(character.getPersonality_traits());
+        }
 
     }
 
