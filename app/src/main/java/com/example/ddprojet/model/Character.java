@@ -23,7 +23,7 @@ public class Character implements Serializable {
     protected String class_;
     protected Alignment alignment;
     protected int level;
-    protected @DrawableRes int avatar;
+    protected String avatarPath;
 
     protected int life;
     protected int hitDice;
@@ -65,14 +65,14 @@ public class Character implements Serializable {
 
     }
 
-    public Character(String name, String race, String class_, Alignment alignment, int level, @DrawableRes int avatar){
+    public Character(String name, String race, String class_, Alignment alignment, int level, String avatarPath){
 
         this.name = name;
         this.race = race;
         this.class_ = class_;
         this.alignment = alignment;
         this.level = level;
-        this.avatar = avatar;
+        this.avatarPath = avatarPath;
 
         this.characteristic = new HashMap<>();
         this.skills = new HashMap<>();
@@ -97,7 +97,7 @@ public class Character implements Serializable {
             this.aptitudes.add(array.getString(i));
         }
 
-        this.avatar = file.getInt("avatar");
+        this.avatarPath = file.getString("avatarPath");
 
         this.background = file.getString("background");
 
@@ -186,7 +186,7 @@ public class Character implements Serializable {
 
     }
 
-    public Character(String name, String race, String class_, Alignment alignment, int level, @DrawableRes int avatar,
+    public Character(String name, String race, String class_, Alignment alignment, int level, String avatarPath,
                      Map<String, Integer> characteristic, Map<String, Integer> skills, List<String> savingThrows,
                      List<String> spells, List<String> proficiencies, List<String> languages, List<String> aptitudes, List<String> traits,
                      String personality_traits, String ideals, String bonds, String flaws) {
@@ -196,7 +196,7 @@ public class Character implements Serializable {
         this.class_ = class_;
         this.alignment = alignment;
         this.level = level;
-        this.avatar = avatar;
+        this.avatarPath = avatarPath;
 
         this.characteristic = characteristic;
         this.skills = skills;
@@ -268,12 +268,12 @@ public class Character implements Serializable {
         this.level = level;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public String getAvatarPath() {
+        return this.avatarPath;
     }
 
-    public void setAvatar(@DrawableRes int avatar) {
-        this.avatar = avatar;
+    public void setAvatarPath(String avatarPath) {
+        this.avatarPath = avatarPath;
     }
 
     public Map<String, Integer> getCharacteristic() {

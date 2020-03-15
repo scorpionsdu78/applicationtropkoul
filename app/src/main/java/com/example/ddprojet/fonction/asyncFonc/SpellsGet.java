@@ -44,10 +44,8 @@ public class SpellsGet extends AsyncTask<String,String, List<Spell>> {
     protected void onPostExecute(List<Spell> spellList) {
         SpellsFragment.SpellAdapteur adapteur = adaptor.get();
         if(spellList == null){
-            Log.i("alerte","chelou pi");
         }
         for (Spell s: spellList) {
-            Log.i("alerte",s.getName());
             adapteur.add(s);
         }
     }

@@ -1,10 +1,17 @@
 package com.example.ddprojet.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,10 +43,17 @@ import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.Requirement;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.media.MediaRecorder.VideoSource.CAMERA;
 
 public class CharacterEditionActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -48,6 +62,8 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
     private NavigationView navigationView;
 
     private CustomViewPager pager;
+
+    public ImageView imageViewDescriptionFragmentAvatar;
 
     private Character character;
 
@@ -355,6 +371,74 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         }
 
 
+    }
+
+
+    //Handle the change of the avatar from DescriptionFragment
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Toast.makeText(this, "Get result !", Toast.LENGTH_SHORT).show();
+        System.out.println(requestCode);
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == this.RESULT_CANCELED) {
+            Toast.makeText(this, "Failt!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (requestCode == 1) {
+            Toast.makeText(this, "Gallery", Toast.LENGTH_SHORT).show();
+            if (data != null) {
+                Uri contentURI = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
+                    saveImage(bitmap);
+                    Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
+                    imageViewDescriptionFragmentAvatar.setImageBitmap(bitmap);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Toast.makeText(this, "Failed!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        } else if (requestCode == 2) {
+            Toast.makeText(this, "Camera", Toast.LENGTH_SHORT).show();
+            Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+            imageViewDescriptionFragmentAvatar.setImageBitmap(thumbnail);
+            saveImage(thumbnail);
+            Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    //Save the new image from the camera to the gallery
+    public String saveImage(Bitmap myBitmap) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
+        File wallpaperDirectory = new File(
+                Environment.getExternalStorageDirectory() + "/D&D Project");
+        // have the object build the directory structure, if needed.
+        if (!wallpaperDirectory.exists()) {
+            wallpaperDirectory.mkdirs();
+        }
+
+        try {
+            File f = new File(wallpaperDirectory, Calendar.getInstance()
+                    .getTimeInMillis() + ".jpg");
+            f.createNewFile();
+            FileOutputStream fo = new FileOutputStream(f);
+            fo.write(bytes.toByteArray());
+            MediaScannerConnection.scanFile(this,
+                    new String[]{f.getPath()},
+                    new String[]{"image/jpeg"}, null);
+            fo.close();
+            this.character.setAvatarPath(f.getAbsolutePath());
+            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+
+            return f.getAbsolutePath();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        return "";
     }
 
 
