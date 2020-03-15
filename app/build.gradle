@@ -54,4 +54,7 @@ dependencies {
 
     //sdp
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
+
+    //dexter for permission
+    implementation 'com.karumi:dexter:5.0.0'
 }

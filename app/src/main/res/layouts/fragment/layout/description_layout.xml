@@ -266,12 +266,22 @@
                                 tools:text="CharacterName"/>
 
                             <ImageView
-                                android:id="@+id/imageView2"
+                                android:id="@+id/imageViewAvatar"
                                 android:layout_width="match_parent"
-                                android:layout_height="@dimen/_200sdp"
+                                android:layout_height="@dimen/_150sdp"
                                 android:layout_gravity="center_horizontal"
                                 android:scaleType="fitCenter"
-                                app:srcCompat="@drawable/avatar_barbarian" />
+                                tools:srcCompat="@drawable/avatar_barbarian" />
+
+                            <Button
+                                android:id="@+id/buttonAvatar"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_horizontal"
+                                android:layout_marginStart="@dimen/_20sdp"
+                                android:layout_marginEnd="@dimen/_20sdp"
+                                android:text="Select or capture avatar"
+                                android:textSize="@dimen/_10sdp" />
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>

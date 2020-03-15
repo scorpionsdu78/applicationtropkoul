@@ -9,30 +9,30 @@ public class CharacterDescription {
     protected String class_;
     protected Alignment alignment;
     protected int level;
-    protected @DrawableRes int avatar;
+    protected String avatarPath;
     protected Character character;
 
 
 
     public CharacterDescription() {}
 
-    public CharacterDescription(String name, String race, String class_, Alignment alignment, int level, @DrawableRes int avatar) {
+    public CharacterDescription(String name, String race, String class_, Alignment alignment, int level, String avatarPath) {
         this.name = name;
         this.race = race;
         this.class_ = class_;
         this.alignment = alignment;
         this.level = level;
-        this.avatar = avatar;
+        this.avatarPath = avatarPath;
     }
 
-    public CharacterDescription(Character character, @DrawableRes int avatar) {
+    public CharacterDescription(Character character) {
         this.character = character;
         this.name = character.getName();
         this.race = character.getRace();
         this.class_ = character.getClass_();
         this.alignment = character.getAlignment();
         this.level = character.getLevel();
-        this.avatar = avatar;
+        this.avatarPath = character.getAvatarPath();
 
     }
 
@@ -76,12 +76,12 @@ public class CharacterDescription {
         this.level = level;
     }
 
-    public int getAvatar() {
-        return avatar;
+    public String getAvatarPath() {
+        return this.avatarPath;
     }
 
-    public void setAvatar(@DrawableRes int avatar) {
-        this.avatar = avatar;
+    public void setAvatar(String avatarPath) {
+        this.avatarPath = avatarPath;
     }
 
     public Character getCharacter() {

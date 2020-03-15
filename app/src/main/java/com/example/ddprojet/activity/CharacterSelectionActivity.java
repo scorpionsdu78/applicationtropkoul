@@ -1,7 +1,9 @@
 package com.example.ddprojet.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import com.example.ddprojet.model.Alignment;
 import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.CharacterDescription;
 import com.example.ddprojet.persistance.FileJson;
+import com.example.ddprojet.util.AvatarLoader;
 
 import java.io.File;
 import java.util.Vector;
@@ -48,10 +51,9 @@ public class CharacterSelectionActivity extends AppCompatActivity {
 
                 Character character =  fj.getCharacter();
                 if(character != null){
-                    characterDescriptionViewAdapter.add(new CharacterDescription(character,R.drawable.avatar_barbarian));
+                    characterDescriptionViewAdapter.add(new CharacterDescription(character));
                 }
                 //characterDescriptionViewAdapter.add(new CharacterDescription(character.getName(), character.getRace(), character.getClass_(),character.getAlignment(),character.getLevel(),R.drawable.avatar_barbarian));
-
 
             }
         }
@@ -114,8 +116,8 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             this.level.setText(Integer.toString(level));
         }
 
-        public void setAvatar(@DrawableRes int avatar){
-            this.avatar.setImageResource(avatar);
+        public void setAvatar(Bitmap avatar){
+            this.avatar.setImageBitmap(avatar);
         }
 
         public void setOnclick(final Character character){
@@ -163,7 +165,8 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             holder.setClass(characterDescription.getClass_());
             holder.setAlignment(characterDescription.getAlignment());
             holder.setLevel(characterDescription.getLevel());
-            holder.setAvatar(characterDescription.getAvatar());
+            Log.d("DulcheE", characterDescription.getAvatarPath());
+            holder.setAvatar(new AvatarLoader(characterDescription.getAvatarPath()).load(CharacterSelectionActivity.this.getResources()));
             holder.setOnclick(characterDescription.getCharacter());
 
         }
