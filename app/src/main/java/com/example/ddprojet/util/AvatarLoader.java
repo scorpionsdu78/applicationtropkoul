@@ -19,7 +19,7 @@ public class AvatarLoader {
     public Bitmap load(Resources res){
 
         if(this.avatarPath == null)
-            return BitmapFactory.decodeResource(res, R.drawable.class_default);
+            return BitmapFactory.decodeResource(res, R.drawable.avatar_default);
 
 
         File imgFile = new File(this.avatarPath);
@@ -30,6 +30,6 @@ public class AvatarLoader {
         }
 
 
-        return BitmapFactory.decodeResource(res, R.drawable.class_default);
+        return BitmapFactory.decodeResource(res, R.drawable.avatar_default);
     }
 }
