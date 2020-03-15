@@ -100,7 +100,7 @@ public class FileJson {
     public Character getCharacter(){
         Gson gson = new Gson();
         String content = read();
-        Log.i("test json->class", content);
+
         Character character = null;
         try {
             JSONObject obj = new JSONObject(content);
@@ -110,7 +110,6 @@ public class FileJson {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Log.i("test json->class", character.toString());
         return character;
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -346,6 +347,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
         Intent callActivity = new Intent(getApplicationContext(), CharacterDisplayActivity.class);
         callActivity.putExtra("value", this.character);
+        Toast.makeText(this, "Character saved !", Toast.LENGTH_LONG).show();
         startActivity(callActivity);
 
     }
