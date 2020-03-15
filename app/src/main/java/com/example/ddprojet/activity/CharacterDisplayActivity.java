@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,10 +16,9 @@ import com.example.ddprojet.R;
 import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.persistance.FileJson;
+import com.example.ddprojet.util.AvatarLoader;
 import com.example.ddprojet.util.adapter.FeatureAdapter;
 import com.example.ddprojet.util.adapter.StringAdapter;
-
-import java.io.IOException;
 
 public class CharacterDisplayActivity extends AppCompatActivity {
 
@@ -27,16 +27,16 @@ public class CharacterDisplayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_charactere_display);
+        setContentView(R.layout.activity_character_display);
 
         Bundle extras = getIntent().getExtras();
         System.out.println(extras.containsKey("value"));
         character = (Character) extras.getSerializable("value");
-
-        Log.d("test transfert", character.toString());
-
+        
         TextView vue = findViewById(R.id.name);
         vue.setText(character.getName());
+
+        ((ImageView)findViewById(R.id.imageViewAvatar)).setImageBitmap(new AvatarLoader(this.character.getAvatarPath()).load(this.getResources()));
 
         vue = findViewById(R.id.race);
         vue.setText(character.getRace());

@@ -3,6 +3,7 @@ package com.example.ddprojet.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -164,6 +165,7 @@ public class CharacterSelectionActivity extends AppCompatActivity {
             holder.setClass(characterDescription.getClass_());
             holder.setAlignment(characterDescription.getAlignment());
             holder.setLevel(characterDescription.getLevel());
+            Log.d("DulcheE", characterDescription.getAvatarPath());
             holder.setAvatar(new AvatarLoader(characterDescription.getAvatarPath()).load(CharacterSelectionActivity.this.getResources()));
             holder.setOnclick(characterDescription.getCharacter());
 

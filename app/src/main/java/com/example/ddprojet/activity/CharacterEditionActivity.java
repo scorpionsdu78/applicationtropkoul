@@ -432,7 +432,8 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
                     new String[]{"image/jpeg"}, null);
             fo.close();
             this.character.setAvatarPath(f.getAbsolutePath());
-            Log.d("TAG", "File Saved::--->" + f.getAbsolutePath());
+            Log.d("DulcheE", "File Saved :--->" + f.getAbsolutePath());
+            Log.d("DulcheE", "Character avatar :--->" + this.character.getAvatarPath());
 
             return f.getAbsolutePath();
         } catch (IOException e1) {

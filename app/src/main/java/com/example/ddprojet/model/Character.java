@@ -97,7 +97,7 @@ public class Character implements Serializable {
             this.aptitudes.add(array.getString(i));
         }
 
-        this.avatarPath = file.getString("avatarPath");
+        this.avatarPath = file.optString("avatarPath");
 
         this.background = file.getString("background");
 

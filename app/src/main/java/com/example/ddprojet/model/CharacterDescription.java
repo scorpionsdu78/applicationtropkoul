@@ -32,7 +32,7 @@ public class CharacterDescription {
         this.class_ = character.getClass_();
         this.alignment = character.getAlignment();
         this.level = character.getLevel();
-        this.avatarPath = avatarPath;
+        this.avatarPath = character.getAvatarPath();
 
     }
 
