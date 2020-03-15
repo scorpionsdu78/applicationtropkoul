@@ -3,6 +3,7 @@ package com.example.ddprojet.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
 
@@ -220,10 +221,10 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.bonusCharac = new HashMap<>();
 
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        this.drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
+        this.drawerLayout = findViewById(R.id.drawer_layout);
         this.navigationView = findViewById(R.id.nav_view);
         this.navigationView.setNavigationItemSelectedListener(this);
 
@@ -231,10 +232,10 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         this.drawerLayout.addDrawerListener(toggle);
 
         // rend inaccessible les étapes non validés dans le drawer
-        /*SubMenu subMenu = this.navigationView.getMenu().getItem(0).getSubMenu();
+        SubMenu subMenu = this.navigationView.getMenu().getItem(0).getSubMenu();
         for(int i = 1; i < subMenu.size(); i++){
             subMenu.getItem(i).setCheckable(false);
-        }*/
+        }
 
         toggle.syncState();
 

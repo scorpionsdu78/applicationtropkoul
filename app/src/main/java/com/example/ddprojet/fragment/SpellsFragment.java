@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,32 +17,51 @@ import com.example.ddprojet.R;
 import com.example.ddprojet.activity.CharacterEditionActivity;
 import com.example.ddprojet.fonction.asyncFonc.SpellsGet;
 import com.example.ddprojet.model.Spell;
+import com.example.ddprojet.util.FragmentEnum;
 
 import java.lang.ref.WeakReference;
 import java.util.Vector;
 
 public class SpellsFragment extends Fragment {
 
-    View vue;
+    View view;
+    CharacterEditionActivity parent_activity;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.spells_layout, container, false);
+        this.view = inflater.inflate(R.layout.spells_layout, container, false);
 
-        vue = v;
+        this.parent_activity = (CharacterEditionActivity)this.getActivity();
 
-        return v;
+
+        Button buttonNext = this.view.findViewById(R.id.buttonNext);
+        buttonNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SpellsFragment.this.parent_activity.ChangeFragment(FragmentEnum.Description);
+            }
+        });
+
+        Button buttonBack = this.view.findViewById(R.id.buttonBack);
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SpellsFragment.this.parent_activity.ChangeFragment(FragmentEnum.CharacSkills);
+            }
+        });
+
+        return this.view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
 
-        RecyclerView rv = (RecyclerView) vue.findViewById(R.id.spellList);
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.spellList);
         SpellAdapteur adaptor = new SpellAdapteur();
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(vue.getContext());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
         rv.setLayoutManager(layoutManager);
 
         rv.setAdapter(adaptor);
@@ -52,7 +72,7 @@ public class SpellsFragment extends Fragment {
         if(activity.getCharacter().isHasSpellCasting()) {
             get.execute(activity.getCharacter().getClass_());
         }else {
-            TextView titre = vue.findViewById(R.id.SpellTitle);
+            TextView titre = view.findViewById(R.id.SpellTitle);
             titre.setText("no spell for this classe");
         }
     }
