@@ -20,6 +20,7 @@ import com.example.ddprojet.util.FragmentEnum;
 import java.util.HashMap;
 import java.util.Map;
 
+// Fragment to select the level of the characteristics of the character
 public class CharacSkillsFragment extends Fragment {
 
     protected View view;
@@ -54,6 +55,7 @@ public class CharacSkillsFragment extends Fragment {
         //Init the number of point to attribute to the characs
         this.characPoints = 27 + this.parent_activity.levelBonusCharac();
 
+        //Init the cost of points by the level of the characteristic
         this.characPointsCosts = new HashMap<>();
         this.characPointsCosts.put(8, 0);
         this.characPointsCosts.put(9, 1);
@@ -84,6 +86,7 @@ public class CharacSkillsFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        // Init the characteristics
         init(this.strength_layout);
         init(this.dexterity_layout);
         init(this.constitution_layout);
@@ -97,7 +100,6 @@ public class CharacSkillsFragment extends Fragment {
             ((CheckBox)this.view.findViewById(R.id.checkBoxAthletics)).setChecked(true);
 
 
-
         if(this.parent_activity.containBonusSkill("Acrobatics"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxAcrobatics)).setChecked(true);
 
@@ -106,7 +108,6 @@ public class CharacSkillsFragment extends Fragment {
 
         if(this.parent_activity.containBonusSkill("Stealth"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxStealth)).setChecked(true);
-
 
 
         if(this.parent_activity.containBonusSkill("Arcana"))
@@ -125,7 +126,6 @@ public class CharacSkillsFragment extends Fragment {
             ((CheckBox)this.view.findViewById(R.id.checkBoxReligion)).setChecked(true);
 
 
-
         if(this.parent_activity.containBonusSkill("Animal Handling"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxAnimalHandling)).setChecked(true);
 
@@ -142,7 +142,6 @@ public class CharacSkillsFragment extends Fragment {
             ((CheckBox)this.view.findViewById(R.id.checkBoxSurvival)).setChecked(true);
 
 
-
         if(this.parent_activity.containBonusSkill("Deception"))
             ((CheckBox)this.view.findViewById(R.id.checkBoxDeception)).setChecked(true);
 
@@ -156,12 +155,14 @@ public class CharacSkillsFragment extends Fragment {
             ((CheckBox)this.view.findViewById(R.id.checkBoxPersuasion)).setChecked(true);
     }
 
+    // Init the layout of the characteristic
+    // Setup buttons, the init value of the characteristic, and the value of the skills
     protected void init(final LinearLayout parent){
         onClickPlus(parent);
         onClickMinus(parent);
 
-        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
-        TextView textViewValue = (TextView)parent.findViewById(R.id.textViewValue);
+        String characName = parent.findViewById(R.id.textViewLabel).getContentDescription().toString();
+        TextView textViewValue = parent.findViewById(R.id.textViewValue);
 
         int initValue = 8;
         initValue += this.parent_activity.getBonusCharac(characName);
@@ -186,9 +187,10 @@ public class CharacSkillsFragment extends Fragment {
     }
 
 
+    // Setup the function for the button plus of the layout for the characteristic
     protected void onClickPlus(final LinearLayout parent){
 
-        Button button = (Button)parent.findViewById(R.id.button2);
+        Button button = parent.findViewById(R.id.button2);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -202,9 +204,10 @@ public class CharacSkillsFragment extends Fragment {
 
     }
 
+    // Setup the function for the button minus of the layout for the characteristic
     protected void onClickMinus(final LinearLayout parent){
 
-        Button button = (Button)parent.findViewById(R.id.button);
+        Button button = parent.findViewById(R.id.button);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -219,11 +222,12 @@ public class CharacSkillsFragment extends Fragment {
     }
 
 
+    // Increment the value of the characteristic if we have enough points to pay the cost and if we are below the limit and update the value of the skills
     protected void addValueCharacTextView(LinearLayout parent){
 
         if(this.characPoints > 0) {
 
-            TextView characTextView = (TextView)parent.findViewById(R.id.textViewValue);
+            TextView characTextView = parent.findViewById(R.id.textViewValue);
             String number = characTextView.getText().toString();
 
             int number_parsed = 0;
@@ -245,7 +249,7 @@ public class CharacSkillsFragment extends Fragment {
 
             characTextView.setText(String.valueOf(number_parsed));
 
-            String characName = ((TextView) parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
+            String characName = parent.findViewById(R.id.textViewLabel).getContentDescription().toString();
             this.parent_activity.getCharacter().getCharacteristic().put(characName, number_parsed);
 
             this.characPoints -= cost;
@@ -257,6 +261,7 @@ public class CharacSkillsFragment extends Fragment {
 
     }
 
+    // Decrement the value of the characteristic and if we are upside the limit and update the value of the skills
     protected void soustractValueCharacTextView(LinearLayout parent){
 
         TextView characTextView = (TextView)parent.findViewById(R.id.textViewValue);
@@ -289,11 +294,11 @@ public class CharacSkillsFragment extends Fragment {
         }
     }
 
-
+    // Update the value of every skills of the characteristic which just changed
     protected void updateSkillsValue(LinearLayout parent){
 
-        String characName = ((TextView)parent.findViewById(R.id.textViewLabel)).getContentDescription().toString();
-        TextView savingThrows = (TextView)parent.findViewById(R.id.textViewSavingThrows);
+        String characName = parent.findViewById(R.id.textViewLabel).getContentDescription().toString();
+        TextView savingThrows = parent.findViewById(R.id.textViewSavingThrows);
         updateSavingThrowsValue(savingThrows, parent);
 
         switch (characName){
@@ -384,7 +389,7 @@ public class CharacSkillsFragment extends Fragment {
 
     }
 
-
+    // Update the value of one skill
     protected void updateSkillValue(TextView textView, String skillName, LinearLayout parent){
 
         String parent_value = ((TextView)parent.findViewById(R.id.textViewValue)).getText().toString();
@@ -404,7 +409,7 @@ public class CharacSkillsFragment extends Fragment {
 
     }
 
-
+    // Update the value of the saving throws of the characteristic which just changed
     protected void updateSavingThrowsValue(TextView textView, LinearLayout parent){
 
         String parent_value = ((TextView)parent.findViewById(R.id.textViewValue)).getText().toString();
@@ -424,7 +429,7 @@ public class CharacSkillsFragment extends Fragment {
 
     }
 
-
+    // On changes to the characPoint, we update the value on the layout and enable or not the button to go to the next fragment
     protected void updateCharacPoints(){
 
         ((TextView)this.view.findViewById(R.id.textViewCharacPoints)).setText(String.valueOf(this.characPoints));
@@ -439,74 +444,8 @@ public class CharacSkillsFragment extends Fragment {
     }
 
 
+    // When we validate the step and go to the next one
     protected void validate() {
-        Map<String, Integer> skills = new HashMap<>();
-
-
-        //Saved value of skills in character
-        skills.put("Athletics",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewAthletics)).getText().toString()));
-
-
-
-        skills.put("Acrobatics",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewAcrobatics)).getText().toString()));
-
-        skills.put("Sleight of Hand",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewSleight_of_Hand)).getText().toString()));
-
-        skills.put("Stealth",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewStealth)).getText().toString()));
-
-
-
-        skills.put("Arcana",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewArcana)).getText().toString()));
-
-        skills.put("History",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewHistory)).getText().toString()));
-
-        skills.put("Investigation",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewInvestigation)).getText().toString()));
-
-        skills.put("Nature",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewNature)).getText().toString()));
-
-        skills.put("Religion",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewReligion)).getText().toString()));
-
-
-
-        skills.put("Animal Handling",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewAnimalHandling)).getText().toString()));
-
-        skills.put("Insigth",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewInsight)).getText().toString()));
-
-        skills.put("Medicine",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewMedicine)).getText().toString()));
-
-        skills.put("Perception",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewPerception)).getText().toString()));
-
-        skills.put("Survival",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewSurvival)).getText().toString()));
-
-
-
-        skills.put("Deception",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewDeception)).getText().toString()));
-
-        skills.put("Intimidation",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewIntimidation)).getText().toString()));
-
-        skills.put("Performance",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewPerformance)).getText().toString()));
-
-        skills.put("Persuasion",
-            Integer.parseInt(((TextView)this.view.findViewById(R.id.textViewPersuasion)).getText().toString()));
-
-        this.parent_activity.getCharacter().setSkills(skills);
         this.parent_activity.ChangeFragment(FragmentEnum.Spells);
     }
 

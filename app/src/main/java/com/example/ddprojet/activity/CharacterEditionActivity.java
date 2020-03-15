@@ -228,6 +228,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
         setContentView(R.layout.activity_character_edition);
 
         this.character = new Character();
+        this.character.setLevel(1);
 
         this.bonusSkill = new ArrayList<>();
         this.classRequierement = new HashMap<>();

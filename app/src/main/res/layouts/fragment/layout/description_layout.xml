@@ -271,7 +271,7 @@
                                 android:layout_height="@dimen/_150sdp"
                                 android:layout_gravity="center_horizontal"
                                 android:scaleType="fitCenter"
-                                tools:srcCompat="@drawable/avatar_barbarian" />
+                                app:srcCompat="@drawable/avatar_default" />
 
                             <Button
                                 android:id="@+id/buttonAvatar"

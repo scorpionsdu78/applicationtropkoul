@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes;
 import com.example.ddprojet.R;
 
 
+// Link a race to a drawable
 public enum RaceEnum {
 
     Dragonborn(R.drawable.race_dragonborn),

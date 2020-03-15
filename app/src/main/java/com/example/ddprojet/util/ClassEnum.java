@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes;
 
 import com.example.ddprojet.R;
 
-
+// Link a Class to a drawable
 public enum ClassEnum {
 
     Barbarian(R.drawable.class_barbarian),

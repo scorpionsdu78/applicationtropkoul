@@ -26,6 +26,7 @@ import com.example.ddprojet.util.adapter.TraitsListAdapter;
 import java.util.List;
 import java.util.concurrent.Callable;
 
+//Fragment to select the features, the traits and the proficiencies optionals from the race and the class
 public class BonusesSelectionFragment extends Fragment {
 
     private CharacterEditionActivity parent_activity;
@@ -43,6 +44,7 @@ public class BonusesSelectionFragment extends Fragment {
         //Init of the parent activity
         this.parent_activity = (CharacterEditionActivity)this.getActivity();
 
+        //Setup Next/Back buttons
         Button buttonNext = this.view.findViewById(R.id.buttonNext);
 
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +70,13 @@ public class BonusesSelectionFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+        //Setup the list of the list of features/traits/proficiencies to choose
         this.featuresList = this.parent_activity.getFeatureToChoose();
         this.traitsList = this.parent_activity.getOptionalTraits();
         this.proficienciesList = this.parent_activity.getListToChoseFrom();
 
 
+        //Features RecyclerView
         RecyclerView recyclerViewFeaturesList = this.view.findViewById(R.id.layoutFeatures).findViewById(R.id.recyclerViewFeaturesLists);
 
         RecyclerView.LayoutManager managerFeatures = new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false);
@@ -91,6 +95,7 @@ public class BonusesSelectionFragment extends Fragment {
         recyclerViewFeaturesList.setAdapter(adapterFeatures);
 
 
+        //Traits recyclerView
         TextView textViewLabelTraits = this.view.findViewById(R.id.layoutTraits).findViewById(R.id.textViewLabel);
         textViewLabelTraits.setText("Traits :");
         RecyclerView recyclerViewTraitsList = this.view.findViewById(R.id.layoutTraits).findViewById(R.id.recyclerViewFeaturesLists);
@@ -111,7 +116,7 @@ public class BonusesSelectionFragment extends Fragment {
         recyclerViewTraitsList.setAdapter(adapterTraits);
 
 
-
+        //Proficiencies recyclerView
         TextView textViewLabelProficiencies = this.view.findViewById(R.id.layoutProficiencies).findViewById(R.id.textViewLabel);
         textViewLabelProficiencies.setText("Proficiencies :");
         RecyclerView recyclerViewProficienciesList = this.view.findViewById(R.id.layoutProficiencies).findViewById(R.id.recyclerViewFeaturesLists);
@@ -130,10 +135,12 @@ public class BonusesSelectionFragment extends Fragment {
         recyclerViewProficienciesList.setAdapter(adapterProficiencies);
 
 
+        //By default, the button next is disable
         this.view.findViewById(R.id.buttonNext).setEnabled(false);
     }
 
 
+    // When we click on a checkBox, we check if every choices have been made
     public boolean updateValidation(){
         boolean featuresValidation = ((FeaturesListAdapter)((RecyclerView)this.view.findViewById(R.id.layoutFeatures)
                 .findViewById(R.id.recyclerViewFeaturesLists))

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -143,7 +144,10 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         try {
             FileJson fj = new FileJson(this.getApplicationContext(),character.getName()+".json");
             fj.delete();
+
             Intent callActivity = new Intent(getApplicationContext(), CharacterSelectionActivity.class);
+            Toast.makeText(this, "Character deleted !", Toast.LENGTH_LONG).show();
+
             startActivity(callActivity);
         } catch (Exception e) {
             e.printStackTrace();

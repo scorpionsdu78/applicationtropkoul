@@ -4,6 +4,7 @@ import androidx.annotation.IdRes;
 
 import com.example.ddprojet.R;
 
+// Link a fragment to its position in the ViewPager, its position in the navigation drawer and to the id of its navigation for the drawer
 public enum FragmentEnum {
 
     RaceClassSelection(0, 0, R.id.nav_raceClass),

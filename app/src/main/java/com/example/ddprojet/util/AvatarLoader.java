@@ -8,6 +8,7 @@ import com.example.ddprojet.R;
 
 import java.io.File;
 
+//Load a Bitmap from a absolute path to a file
 public class AvatarLoader {
 
     private String avatarPath;

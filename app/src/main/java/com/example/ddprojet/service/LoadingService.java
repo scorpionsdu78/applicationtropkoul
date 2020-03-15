@@ -11,6 +11,8 @@ import androidx.annotation.Nullable;
 import java.util.Timer;
 import java.util.TimerTask;
 
+// Create at the beginning of an asyncTask and destroy at the end
+// Display the message "Loading..." in Toasts
 public class LoadingService extends Service {
 
     private Timer timer;
