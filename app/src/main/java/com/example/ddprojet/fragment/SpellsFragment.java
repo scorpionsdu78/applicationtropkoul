@@ -15,17 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ddprojet.R;
 import com.example.ddprojet.activity.CharacterEditionActivity;
+import com.example.ddprojet.fonction.asyncFonc.SpellListGetter;
 import com.example.ddprojet.fonction.asyncFonc.SpellsGet;
 import com.example.ddprojet.model.Spell;
 import com.example.ddprojet.util.FragmentEnum;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.lang.ref.WeakReference;
 import java.util.Vector;
+import java.util.concurrent.ExecutionException;
 
 public class SpellsFragment extends Fragment {
 
     View view;
     CharacterEditionActivity parent_activity;
+    JSONArray list;
 
     @Nullable
     @Override
@@ -34,6 +40,15 @@ public class SpellsFragment extends Fragment {
 
         this.parent_activity = (CharacterEditionActivity)this.getActivity();
 
+        SpellListGetter slg = new SpellListGetter();
+        slg.execute("get");
+        try {
+            list = slg.get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Button buttonNext = this.view.findViewById(R.id.buttonNext);
         buttonNext.setOnClickListener(new View.OnClickListener() {
@@ -67,10 +82,17 @@ public class SpellsFragment extends Fragment {
         rv.setAdapter(adaptor);
 
         CharacterEditionActivity activity = (CharacterEditionActivity)getActivity();
-        SpellsGet get = new SpellsGet(new WeakReference<SpellAdapteur>(adaptor));
+
 
         if(activity.getCharacter().isHasSpellCasting()) {
-            get.execute(activity.getCharacter().getClass_());
+            for(int i=0; i<list.length(); i++){
+                try {
+                    SpellsGet get = new SpellsGet(new WeakReference<SpellAdapteur>(adaptor),activity.getCharacter().getClass_());
+                    get.execute("/api/spells/"+list.getJSONObject(i).getString("index"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }else {
             TextView titre = view.findViewById(R.id.SpellTitle);
             titre.setText("no spell for this classe");
