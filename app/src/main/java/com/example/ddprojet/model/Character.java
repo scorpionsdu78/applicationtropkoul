@@ -439,6 +439,13 @@ public class Character implements Serializable {
         return result;
     }
 
+    public boolean isSaveble(){
+        if(this.class_ == null || this.race == null || this.name==null || this.background == null || this.personality_traits == null)
+            return false;
+
+        return true;
+    }
+
     @Override
     public String toString() {
         return "Character{" +

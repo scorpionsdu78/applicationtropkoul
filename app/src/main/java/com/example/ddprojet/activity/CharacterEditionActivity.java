@@ -344,11 +344,15 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
 
 
 
+        if(character.isSaveble()){
+            Intent callActivity = new Intent(getApplicationContext(), CharacterDisplayActivity.class);
+            callActivity.putExtra("value", this.character);
+            Toast.makeText(this, "Character saved !", Toast.LENGTH_LONG).show();
+            startActivity(callActivity);
+        }else{
+            Toast.makeText(this, "veuillez suivre les etapes de creation", Toast.LENGTH_LONG).show();
+        }
 
-        Intent callActivity = new Intent(getApplicationContext(), CharacterDisplayActivity.class);
-        callActivity.putExtra("value", this.character);
-        Toast.makeText(this, "Character saved !", Toast.LENGTH_LONG).show();
-        startActivity(callActivity);
 
     }
 
