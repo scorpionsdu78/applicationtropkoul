@@ -1,7 +1,6 @@
 package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,13 +51,6 @@ public class ClassFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Log.d("why",((CharacterEditionActivity)getActivity()).getCharacter().toString());
-        Log.d("why",((CharacterEditionActivity)getActivity()).getCharacter().getRace() + "");
-
-
-        for (String s: ((CharacterEditionActivity)getActivity()).getCharacter().getTraits()) {
-            Log.d("transfert",s);
-        }
 
         this.vue.findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -162,7 +154,7 @@ public class ClassFragment extends Fragment {
             this.popupWindow.dismiss();
         this.popupWindow = new PopupWindow(popupView, width, height, focusable);
 
-        ClassesInfoGet update = new ClassesInfoGet(popupView);
+        ClassesInfoGet update = new ClassesInfoGet(popupView, this.getActivity());
         update.execute(name);
         try {
             choosed = update.get();

@@ -367,7 +367,7 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
             Toast.makeText(this, "Character saved !", Toast.LENGTH_LONG).show();
             startActivity(callActivity);
         }else{
-            Toast.makeText(this, "veuillez suivre les etapes de creation", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Veuillez suivre les étapes de création", Toast.LENGTH_LONG).show();
         }
 
 
@@ -432,8 +432,6 @@ public class CharacterEditionActivity extends AppCompatActivity implements Navig
                     new String[]{"image/jpeg"}, null);
             fo.close();
             this.character.setAvatarPath(f.getAbsolutePath());
-            Log.d("DulcheE", "File Saved :--->" + f.getAbsolutePath());
-            Log.d("DulcheE", "Character avatar :--->" + this.character.getAvatarPath());
 
             return f.getAbsolutePath();
         } catch (IOException e1) {

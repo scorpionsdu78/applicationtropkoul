@@ -1,7 +1,8 @@
 package com.example.ddprojet.fonction.asyncFonc;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,17 +24,21 @@ import com.example.ddprojet.connection.Class;
 import com.example.ddprojet.model.Feature;
 import com.example.ddprojet.model.ProficienciesList;
 import com.example.ddprojet.model.Proficiency;
+import com.example.ddprojet.service.LoadingService;
 import com.example.ddprojet.util.ClassEnum;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
 public class ClassesInfoGet extends AsyncTask<String, String, Class> {
 
     WeakReference<View> vue;
+    WeakReference<Activity> activity;
 
 
-
-    public ClassesInfoGet(View _vue) {
+    public ClassesInfoGet(View _vue, Activity activity) {
         this.vue = new WeakReference<>(_vue);
+        this.activity = new WeakReference<>(activity);
+
+        this.activity.get().startService(new Intent(this.activity.get(), LoadingService.class));
     }
 
     @Override
@@ -56,6 +61,11 @@ public class ClassesInfoGet extends AsyncTask<String, String, Class> {
 
     @Override
     protected void onPostExecute(Class _class) {
+
+        if(_class == null){
+            this.activity.get().stopService(new Intent(this.activity.get(), LoadingService.class));
+            return;
+        }
 
         TextView txt = vue.get().findViewById(R.id.name);
         txt.setText(_class.getName());
@@ -134,6 +144,8 @@ public class ClassesInfoGet extends AsyncTask<String, String, Class> {
             constraintLayoutChooseFeatures.setVisibility(View.INVISIBLE);
             constraintLayoutChooseFeatures.setMaxHeight(0);
         }
+
+        this.activity.get().stopService(new Intent(this.activity.get(), LoadingService.class));
 
     }
 }

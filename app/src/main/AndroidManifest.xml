@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activity.CharacterDisplayActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.CharacterSelectionActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -30,7 +30,9 @@
         </activity>
         <activity
             android:name=".activity.CharacterEditionActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <service android:name=".service.LoadingService"/>
 
         <meta-data
             android:name="preloaded_fonts"

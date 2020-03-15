@@ -19,8 +19,6 @@ public class AvatarLoader {
 
     public Bitmap load(Resources res){
 
-        Log.d("DulcheE", this.avatarPath);
-
         if(this.avatarPath == null)
             return BitmapFactory.decodeResource(res, R.drawable.class_default);
 

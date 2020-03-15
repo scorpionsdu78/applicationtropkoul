@@ -1,7 +1,6 @@
 package com.example.ddprojet.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +34,7 @@ import com.example.ddprojet.model.Bonus;
 import com.example.ddprojet.model.Character;
 import com.example.ddprojet.model.ProficienciesList;
 import com.example.ddprojet.model.Proficiency;
+import com.example.ddprojet.service.LoadingService;
 import com.example.ddprojet.util.FragmentEnum;
 import com.example.ddprojet.util.RaceEnum;
 
@@ -42,6 +42,7 @@ public class RaceFragment extends Fragment {
 
     private Race choosed;
     private PopupWindow popupWindow;
+    private CharacterEditionActivity parent_activity;
 
     //TODO saved states !
 
@@ -49,6 +50,8 @@ public class RaceFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
          View v = inflater.inflate(R.layout.race_layout, container, false);
+
+         this.parent_activity = (CharacterEditionActivity)this.getActivity();
 
         RecyclerView rv = (v).findViewById(R.id.RaceRecyclerView);
         RaceDescriptionAdaptator adaptator = new RaceDescriptionAdaptator();
@@ -62,7 +65,7 @@ public class RaceFragment extends Fragment {
         RacesGet getter = new RacesGet(adaptator);
         getter.execute("test");
 
-        ((Button)v.findViewById(R.id.backButton)).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.backButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ((CharacterEditionActivity)RaceFragment.this.getActivity()).ChangeFragment(FragmentEnum.RaceClassSelection);
@@ -80,9 +83,9 @@ public class RaceFragment extends Fragment {
 
         public RaceHolder(@NonNull View itemView) {
             super(itemView);
-            photo = (ImageView) itemView.findViewById(R.id.imageViewClass);
-            name = (TextView) itemView.findViewById(R.id.textViewClass);
-            fr = (FrameLayout) itemView.findViewById(R.id.frameLayoutClass);
+            photo = itemView.findViewById(R.id.imageViewClass);
+            name = itemView.findViewById(R.id.textViewClass);
+            fr = itemView.findViewById(R.id.frameLayoutClass);
             fr.setPadding(5,5,5,5);
         }
 
@@ -129,7 +132,6 @@ public class RaceFragment extends Fragment {
             String race = races.elementAt(position);
 
             holder.setName(race);
-            Log.d("error",race);
             holder.setPhoto(RaceEnum.getValue(race));
             holder.setOnclick();
 
@@ -157,7 +159,7 @@ public class RaceFragment extends Fragment {
         RaceInfoGet getter = new RaceInfoGet(popupView, (TextView)popupView.findViewById(R.id.name), (TextView)popupView.findViewById(R.id.speed), (TextView)popupView.findViewById(R.id.alignement),
                 (TextView)popupView.findViewById(R.id.age), (TextView)popupView.findViewById(R.id.size), (TextView)popupView.findViewById(R.id.sizeDesc),
                 (TextView)popupView.findViewById(R.id.langDesc) ,(RecyclerView)popupView.findViewById(R.id.languages), (RecyclerView)popupView.findViewById(R.id.trait),
-                (RecyclerView) popupView.findViewById(R.id.Bonus));
+                (RecyclerView) popupView.findViewById(R.id.Bonus), this.parent_activity);
         getter.execute(name);
 
         try {

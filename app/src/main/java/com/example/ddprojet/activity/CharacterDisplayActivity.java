@@ -32,7 +32,7 @@ public class CharacterDisplayActivity extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         System.out.println(extras.containsKey("value"));
         character = (Character) extras.getSerializable("value");
-        
+
         TextView vue = findViewById(R.id.name);
         vue.setText(character.getName());
 

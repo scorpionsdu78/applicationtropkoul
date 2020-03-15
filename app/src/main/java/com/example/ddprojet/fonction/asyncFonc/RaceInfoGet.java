@@ -1,5 +1,7 @@
 package com.example.ddprojet.fonction.asyncFonc;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +23,7 @@ import com.example.ddprojet.connection.Race;
 import com.example.ddprojet.model.Bonus;
 import com.example.ddprojet.model.Proficiency;
 import com.example.ddprojet.model.Trait;
+import com.example.ddprojet.service.LoadingService;
 import com.example.ddprojet.util.RaceEnum;
 import com.example.ddprojet.util.adapter.StringAdapter;
 
@@ -38,9 +41,11 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
     private WeakReference<RecyclerView> trait;
     private WeakReference<RecyclerView> Bonus;
 
+    private WeakReference<Activity> activity;
+
 
     public RaceInfoGet(View v, TextView _name, TextView _speed, TextView _alignement, TextView _age, TextView _size, TextView _sizeDesc, TextView _langDesc, RecyclerView _langues,
-                       RecyclerView _trait, RecyclerView _bonus) {
+                       RecyclerView _trait, RecyclerView _bonus, Activity activity) {
         this.view = new WeakReference<>(v);
         this.name = new WeakReference<>(_name);
         this.speed = new WeakReference<>(_speed);
@@ -52,6 +57,9 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
         this.langues = new WeakReference<>(_langues);
         this.trait = new WeakReference<>(_trait);
         this.Bonus = new WeakReference<>(_bonus);
+        this.activity = new WeakReference<>(activity);
+
+        this.activity.get().startService(new Intent(this.activity.get(), LoadingService.class));
     }
 
     @Override
@@ -72,8 +80,11 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
 
     @Override
     protected void onPostExecute(Race race) {
-        if(race == null)
+
+        if(race == null){
+            this.activity.get().stopService(new Intent(this.activity.get(), LoadingService.class));
             return;
+        }
 
         name.get().setText(race.getName());
 
@@ -167,6 +178,8 @@ public class RaceInfoGet extends AsyncTask<String, List<String>, Race> {
             constraintLayoutProficiencies.setVisibility(View.INVISIBLE);
             constraintLayoutProficiencies.setMaxHeight(0);
         }
+
+        this.activity.get().stopService(new Intent(this.activity.get(), LoadingService.class));
 
     }
 
