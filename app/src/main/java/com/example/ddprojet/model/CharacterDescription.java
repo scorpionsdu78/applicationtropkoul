@@ -13,6 +13,7 @@ public class CharacterDescription {
     protected Character character;
 
 
+
     public CharacterDescription() {}
 
     public CharacterDescription(String name, String race, String class_, Alignment alignment, int level, @DrawableRes int avatar) {

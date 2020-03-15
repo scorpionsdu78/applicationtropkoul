@@ -47,8 +47,11 @@ public class CharacterSelectionActivity extends AppCompatActivity {
                 FileJson fj = new FileJson(this.getApplicationContext(),files[i].getName());
 
                 Character character =  fj.getCharacter();
+                if(character != null){
+                    characterDescriptionViewAdapter.add(new CharacterDescription(character,R.drawable.avatar_barbarian));
+                }
                 //characterDescriptionViewAdapter.add(new CharacterDescription(character.getName(), character.getRace(), character.getClass_(),character.getAlignment(),character.getLevel(),R.drawable.avatar_barbarian));
-                characterDescriptionViewAdapter.add(new CharacterDescription(character,R.drawable.avatar_barbarian));
+
 
             }
         }
